@@ -32,13 +32,9 @@ test name; event; alerts fields
     | **modify_perm** | `modify_perm=file_path%perms` | `modify_perm=/tmp/file.txt%644` |
     | **execute_command** | `execute_command=command` | `execute_command=service auditd stop` |
 
-- Alert fields: is the list of fields to be checked from the generated alert. The test will pass only if **ALL** the conditions in the list are passed.
+- Alert fields: is the list of fields to be checked from the generated alert. The test will pass only if **ALL** the conditions in the list are passed. The check uses a **regex** string, so this field accept any valid regex for Python.
     ```
     syscheck.path=/root/test/file1.txt, syscheck.event=added
-    ```
-    It's possible to negate a condition using the character `!`:
-    ```
-    syscheck.path=/root/test/file1.txt, !syscheck.event=added
     ```
 
 ### Test file example:
@@ -46,7 +42,7 @@ test name; event; alerts fields
 Test file for Syscheck
 ========================
 
-[config-block]
+[config-block:append]
   <syscheck>
     <directories check_all="yes" realtime="yes" >/root/test</directories>
   </syscheck>
@@ -54,8 +50,12 @@ Test file for Syscheck
 
 
 [tests]
+Added config check; none; rule.id=502
 File creation; create_file:/root/test/file1.txt; syscheck.path=/root/test/file1.txt, syscheck.event=added
-File perm modification; modify_perm:/root/test/file1.txt % 600; syscheck.path=/root/test/file1.txt, syscheck.event=modified
+File content modification; modify_content:/root/test/file1.txt; syscheck.path=/root/test/file1.txt, syscheck.event=modified
+File perm modification; modify_perm:/root/test/file1.txt % 600; syscheck.path=/root/test/file1.txt, syscheck.event=modified, syscheck.perm_after=100600
+File owner modification; modify_owner:/root/test/file1.txt % 17987; syscheck.path=/root/test/file1.txt, syscheck.event=modified, syscheck.uid_after=17987
+File group modification; modify_group:/root/test/file1.txt % 997; syscheck.path=/root/test/file1.txt, syscheck.event=modified, syscheck.gid_after=997
 File deletion; delete_file:/root/test/file1.txt; syscheck.path=/root/test/file1.txt, syscheck.event=deleted
 [end]
 ```
