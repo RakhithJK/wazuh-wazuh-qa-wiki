@@ -15,7 +15,7 @@
 - [0212 - Check overlap of scheduled syscheck scan and realtime scan](#212)
 
 
-### <a name="201"></a>0201 - Default syscheck configuration: Linux/Windows
+### <a name="201"></a>201 - Default syscheck configuration: Linux/Windows
 #### Purpose
 To ensure that the same number of syscheck alerts are produced in the same environment, so no false positives are reported. Default syscheck configuration
 #### Configuration
@@ -30,7 +30,7 @@ ___
 
 
 
-### <a name="202"></a>0202 - Real time monitoring - add: Linux/Windows
+### <a name="202"></a>202 - Real time monitoring - add: Linux/Windows
 #### Purpose
 To ensure the 'realtime' feature takes effect in time.
 #### Configuration
@@ -45,7 +45,7 @@ ___
 
 
 
-### <a name="203"></a>0203 - Whodata Linux/Windows
+### <a name="203"></a>203 - Whodata Linux/Windows
 #### Purpose
 To ensure the 'whodata' feature takes effect in time.
 #### Configuration
@@ -58,7 +58,7 @@ The number of alerts must ONLY match in Elasticsearch to the number of added fil
 ___
 <br>
 
-### <a name="204"></a>0204 - Whodata Linux - no audit installed
+### <a name="204"></a>204 - Whodata Linux - no audit installed
 #### Purpose
 To ensure the missing dependency is properly handled.
 #### Configuration
@@ -71,7 +71,7 @@ An Error log must be provoked in the alerts.log, and realtime mode should be swi
 ___
 <br>
 
-### <a name="0205"></a>0205 - Use of restrict option: Linux/Windows
+### <a name="205"></a>205 - Use of restrict option: Linux/Windows
 #### Purpose
 To ensure that only restricted files are effectively monitored.
 #### Configuration
@@ -85,7 +85,7 @@ There should only be one alert related to the restricted file.
 ___
 <br>
 
-### <a name="0206"></a>0206 - Use of tags: Linux/Windows
+### <a name="206"></a>206 - Use of tags: Linux/Windows
 #### Purpose
 Ensure that alerts are generated with the specified tags
 #### Configuration
@@ -100,7 +100,7 @@ ___
 <br>
 
 
-### <a name="0207"></a>0207 - Use of  report changes: Linux/Windows
+### <a name="207"></a>207 - Use of  report changes: Linux/Windows
 #### Purpose
 To be sure that the content of the change is in the alert.
 #### Configuration
@@ -115,7 +115,7 @@ ___
 <br>
 
 
-### <a name="0208"></a>0208 - Use of ignore files: Linux/Windows
+### <a name="208"></a>208 - Use of ignore files: Linux/Windows
 #### Purpose
 To be sure that specified files are ignored and not monitored.
 #### Configuration
@@ -128,7 +128,7 @@ There should not be any alert related to this action.
 ___
 <br>
 
-### <a name="0209"></a>0209 - Recursion level
+### <a name="209"></a>209 - Recursion level
 #### Purpose
 Check the behavior of the recursion_level option.
 #### Configuration
@@ -141,7 +141,7 @@ level 5 folder with some files."
 ___
 <br>
 
-### <a name="0210"></a>0210 - Scheduled scan
+### <a name="210"></a>210 - Scheduled scan
 ### 0210 - Scheduled scan
 #### Purpose
 "Check that the scans are effectively launched when reached
@@ -157,7 +157,7 @@ and the alerts must be triggered. "
 ___
 <br>
 
-### <a name="0211"></a>0211 - Custom configuration
+### <a name="211"></a>211 - Custom configuration
 #### Purpose
 Check the filters applied and the custom configuration works properly
 #### Configuration
@@ -169,7 +169,7 @@ After the specified time, the scan must launch and the alerts must be triggered.
 ___
 <br>
 
-### <a name="0212"></a>0212 - Check overlap of scheduled syscheck scan and realtime scan
+### <a name="212"></a>212 - Check overlap of scheduled syscheck scan and realtime scan
 
 #### Purpose
 Determine how does the periodic fim scan affect to realtime and if the overlap produces failures in alert generation or big delays.
