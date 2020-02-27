@@ -62,8 +62,8 @@ ___
 #### Purpose
 To ensure the missing dependency is properly handled.
 #### Configuration
--  Monitor `/opt/fim_testing` with 320 recursion level.
-- whodata='yes', check_all="yes"
+-  Monitor `/opt/fim_testing` with `recursion_level=320`
+- `whodata='yes'`, `check_all="yes"`
 #### Input values
 - Generate 1,100, 1000 and 10.000 files at the same time.
 #### Expected results
