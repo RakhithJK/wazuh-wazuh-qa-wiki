@@ -3,18 +3,18 @@
 
 
 
-- [0201 - Default syscheck configuration: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0201---default-syscheck-configuration-linuxwindows)
-- [0202 - Real time monitoring - add: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0202---real-time-monitoring---add-linuxwindows)
-- [0203 - Whodata Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0203---whodata-linuxwindows)
-- [0204 - Whodata Linux - no audit installed](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0204---whodata-linux---no-audit-installed)
-- [0205 - Use of restrict option: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0205---use-of-restrict-option-linuxwindows)
-- [0206 - Use of tags: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0206---use-of-tags-linuxwindows)
-- [0207 - Use of  report changes: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0207---use-of--report-changes-linuxwindows)
-- [0208 - Use of ignore files: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0208---use-of-ignore-files-linuxwindows)
-- [0209 - Recursion level](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0209---recursion-level)
-- [0210 - Scheduled scan](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0210---scheduled-scan)
-- [0211 - Custom configuration](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0211---custom-configuration)
-- [0212 - Check overlap of scheduled syscheck scan and realtime scan](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_edit#0212---check-overlap-of-scheduled-syscheck-scan-and-realtime-scan)
+- [0201 - Default syscheck configuration: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0201---default-syscheck-configuration-linuxwindows)
+- [0202 - Real time monitoring - add: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0202---real-time-monitoring---add-linuxwindows)
+- [0203 - Whodata Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0203---whodata-linuxwindows)
+- [0204 - Whodata Linux - no audit installed](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0204---whodata-linux---no-audit-installed)
+- [0205 - Use of restrict option: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0205---use-of-restrict-option-linuxwindows)
+- [0206 - Use of tags: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0206---use-of-tags-linuxwindows)
+- [0207 - Use of  report changes: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0207---use-of--report-changes-linuxwindows)
+- [0208 - Use of ignore files: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0208---use-of-ignore-files-linuxwindows)
+- [0209 - Recursion level](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0209---recursion-level)
+- [0210 - Scheduled scan](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0210---scheduled-scan)
+- [0211 - Custom configuration](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0211---custom-configuration)
+- [0212 - Check overlap of scheduled syscheck scan and realtime scan](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0212---check-overlap-of-scheduled-syscheck-scan-and-realtime-scan)
 
 
 
