@@ -1,25 +1,21 @@
 ## Scenarios list
 ### Index
 
+- [0201 - Default syscheck configuration: Linux/Windows](#201)
+- [0202 - Real time monitoring - add: Linux/Windows](#202)
+- [0203 - Whodata Linux/Windows](#203)
+- [0204 - Whodata Linux - no audit installed](#204)
+- [0205 - Use of restrict option: Linux/Windows](#205)
+- [0206 - Use of tags: Linux/Windows](#206)
+- [0207 - Use of  report changes: Linux/Windows](#207)
+- [0208 - Use of ignore files: Linux/Windows](#208)
+- [0209 - Recursion level](#209)
+- [0210 - Scheduled scan](#210)
+- [0211 - Custom configuration](#211)
+- [0212 - Check overlap of scheduled syscheck scan and realtime scan](#212)
 
 
-- [0201 - Default syscheck configuration: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0201---default-syscheck-configuration-linuxwindows)
-- [0202 - Real time monitoring - add: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0202---real-time-monitoring---add-linuxwindows)
-- [0203 - Whodata Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0203---whodata-linuxwindows)
-- [0204 - Whodata Linux - no audit installed](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0204---whodata-linux---no-audit-installed)
-- [0205 - Use of restrict option: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0205---use-of-restrict-option-linuxwindows)
-- [0206 - Use of tags: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0206---use-of-tags-linuxwindows)
-- [0207 - Use of  report changes: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0207---use-of--report-changes-linuxwindows)
-- [0208 - Use of ignore files: Linux/Windows](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0208---use-of-ignore-files-linuxwindows)
-- [0209 - Recursion level](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0209---recursion-level)
-- [0210 - Scheduled scan](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0210---scheduled-scan)
-- [0211 - Custom configuration](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0211---custom-configuration)
-- [0212 - Check overlap of scheduled syscheck scan and realtime scan](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests%3A-Scenarios-list/_0212---check-overlap-of-scheduled-syscheck-scan-and-realtime-scan)
-
-
-
-
-### 0201 - Default syscheck configuration: Linux/Windows
+### <a name="201"></a>0201 - Default syscheck configuration: Linux/Windows
 #### Purpose
 To ensure that the same number of syscheck alerts are produced in the same environment, so no false positives are reported. Default syscheck configuration
 #### Configuration
@@ -34,8 +30,7 @@ ___
 
 
 
-
-### 0202 - Real time monitoring - add: Linux/Windows
+### <a name="202"></a>0202 - Real time monitoring - add: Linux/Windows
 #### Purpose
 To ensure the 'realtime' feature takes effect in time.
 #### Configuration
@@ -50,8 +45,7 @@ ___
 
 
 
-
-### 0203 - Whodata Linux/Windows
+### <a name="203"></a>0203 - Whodata Linux/Windows
 #### Purpose
 To ensure the 'whodata' feature takes effect in time.
 #### Configuration
@@ -64,8 +58,7 @@ The number of alerts must ONLY match in Elasticsearch to the number of added fil
 ___
 <br>
 
-
-### 0204 - Whodata Linux - no audit installed
+### <a name="204"></a>0204 - Whodata Linux - no audit installed
 #### Purpose
 To ensure the missing dependency is properly handled.
 #### Configuration
@@ -78,8 +71,7 @@ An Error log must be provoked in the alerts.log, and realtime mode should be swi
 ___
 <br>
 
-
-### 0205 - Use of restrict option: Linux/Windows
+### <a name="0205"></a>0205 - Use of restrict option: Linux/Windows
 #### Purpose
 To ensure that only restricted files are effectively monitored.
 #### Configuration
@@ -93,7 +85,7 @@ There should only be one alert related to the restricted file.
 ___
 <br>
 
-### 0206 - Use of tags: Linux/Windows
+### <a name="0206"></a>0206 - Use of tags: Linux/Windows
 #### Purpose
 Ensure that alerts are generated with the specified tags
 #### Configuration
@@ -108,7 +100,7 @@ ___
 <br>
 
 
-### 0207 - Use of  report changes: Linux/Windows
+### <a name="0207"></a>0207 - Use of  report changes: Linux/Windows
 #### Purpose
 To be sure that the content of the change is in the alert.
 #### Configuration
@@ -123,8 +115,7 @@ ___
 <br>
 
 
-
-### 0208 - Use of ignore files: Linux/Windows
+### <a name="0208"></a>0208 - Use of ignore files: Linux/Windows
 #### Purpose
 To be sure that specified files are ignored and not monitored.
 #### Configuration
@@ -137,8 +128,7 @@ There should not be any alert related to this action.
 ___
 <br>
 
-
-### 0209 - Recursion level.
+### <a name="0209"></a>0209 - Recursion level
 #### Purpose
 Check the behavior of the recursion_level option.
 #### Configuration
@@ -151,7 +141,7 @@ level 5 folder with some files."
 ___
 <br>
 
-
+### <a name="0210"></a>0210 - Scheduled scan
 ### 0210 - Scheduled scan
 #### Purpose
 "Check that the scans are effectively launched when reached
@@ -167,8 +157,7 @@ and the alerts must be triggered. "
 ___
 <br>
 
-
-### 0211 - Custom configuration
+### <a name="0211"></a>0211 - Custom configuration
 #### Purpose
 Check the filters applied and the custom configuration works properly
 #### Configuration
@@ -180,14 +169,13 @@ After the specified time, the scan must launch and the alerts must be triggered.
 ___
 <br>
 
+### <a name="0212"></a>0212 - Check overlap of scheduled syscheck scan and realtime scan
 
-### 0212 - "Check overlap of scheduled syscheck scan and realtime scan
 #### Purpose
-"Determine how does the periodic fim scan affect to realtime and if the
- overlap produces failures in alert generation or big delays"
+Determine how does the periodic fim scan affect to realtime and if the overlap produces failures in alert generation or big delays.
 #### Configuration
 - Monitor `/opt/fim_testing` with 4 recursion level.
-- `frequency="10"` ', check_all="yes"
+- `frequency="10"`, `check_all="yes"`
 #### Input values
 - Generate 1,100, 1000 and 10.000 files at the same time.
 #### Expected results
