@@ -1,0 +1,1 @@
+FIM System tests: Test workflow explanation and diagram
