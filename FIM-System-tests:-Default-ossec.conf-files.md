@@ -1,6 +1,6 @@
-Linux Agents
+## Linux Agents
 
-## rpm `ossec.conf`
+### rpm `ossec.conf`
 ```XML
 <!--
   Wazuh - Agent - Default configuration for centos 7.6
@@ -222,7 +222,7 @@ Linux Agents
 
 
 
-## deb `ossec.conf` 
+### deb `ossec.conf` 
 ```XML
 <!--
   Wazuh - Agent - Default configuration
