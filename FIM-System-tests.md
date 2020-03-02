@@ -5,6 +5,7 @@ The goal of FIM service tests wiki is to gather, unify and summarize all the nee
 
  * [Tests scope and objectives](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Tests-scope-and-objectives)
  * [Scenarios specifications list](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Scenarios-list)
+ * [Default ossec.conf files](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Default-ossec.conf-files)
  * [Test workflow explanation and diagram](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Test-workflow-explanation-and-diagram)
  * [Steps to set the test environment](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Steps-to-set-the-test-environment)
 
