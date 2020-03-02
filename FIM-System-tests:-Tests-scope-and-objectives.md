@@ -1,6 +1,6 @@
-### AWS environment description:
+## AWS environment description:
 
-## Initial environment
+### Initial environment
 #### Manager
 Amazon Linux 2
 #### Agents:
