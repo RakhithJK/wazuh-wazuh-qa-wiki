@@ -142,7 +142,6 @@ ___
 <br>
 
 ### <a name="210"></a>210 - Scheduled scan
-### 0210 - Scheduled scan
 #### Purpose
 "Check that the scans are effectively launched when reached
 the specified time."
