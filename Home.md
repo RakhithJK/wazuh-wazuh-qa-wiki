@@ -3,6 +3,8 @@ Welcome to the wazuh-qa wiki!
 * [System Tests](https://github.com/wazuh/wazuh-qa/wiki/System-testing)
   * [FIM System tests](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests)
     * [Scenarios specifications list](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Scenarios-list)
+    * [AWS Environment details](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-AWS-Environment-details)
+    * [Local test environment](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Steps-to-set-the-test-environment)
     * [Test workflow explanation and diagram](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Test-workflow-explanation-and-diagram)
     * [Serialization system for test scenarios](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Serialization-system-for-test-scenarios)
-    * [Steps to set the test environment](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Steps-to-set-the-test-environment)
+
