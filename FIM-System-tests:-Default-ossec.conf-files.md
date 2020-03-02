@@ -2,8 +2,6 @@ Linux Agents
 
 ## rpm `ossec.conf`
 ```XML
-  GNU nano 2.3.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           File: /var/ossec/etc/ossec.conf
-
 <!--
   Wazuh - Agent - Default configuration for centos 7.6
   More info at: https://documentation.wazuh.com
