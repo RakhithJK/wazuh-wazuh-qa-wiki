@@ -113,7 +113,6 @@
     <!-- Directories to check  (perform all possible verifications) -->
     <directories>/etc,/usr/bin,/usr/sbin</directories>
     <directories>/bin,/sbin,/boot</directories>
-    <directories recursion_level="320" check_all="yes" whodata="yes">/opt/fim_testing</directories>
 
 
     <!-- Files/directories to ignore -->
@@ -225,7 +224,8 @@
 ### deb `ossec.conf` 
 ```XML
 <!--
-  Wazuh - Agent - Default configuration
+<!--
+  Wazuh - Agent - Default configuration for ubuntu 19.04
   More info at: https://documentation.wazuh.com
   Mailing list: https://groups.google.com/forum/#!forum/wazuh
 -->
@@ -237,7 +237,7 @@
       <port>1514</port>
       <protocol>udp</protocol>
     </server>
-    <config-profile>linux_system_tests</config-profile>
+    <config-profile>ubuntu, ubuntu19, ubuntu19.04</config-profile>
     <notify_time>10</notify_time>
     <time-reconnect>60</time-reconnect>
     <auto_restart>yes</auto_restart>
@@ -247,7 +247,7 @@
   <client_buffer>
     <!-- Agent buffer options -->
     <disabled>no</disabled>
-    <queue_size>15000</queue_size>
+    <queue_size>5000</queue_size>
     <events_per_second>500</events_per_second>
   </client_buffer>
 
@@ -286,7 +286,7 @@
 
     <java_path>wodles/java</java_path>
     <ciscat_path>wodles/ciscat</ciscat_path>
-  </wodle>  
+  </wodle>
 
   <!-- Osquery integration -->
   <wodle name="osquery">
@@ -330,7 +330,6 @@
     <!-- Directories to check  (perform all possible verifications) -->
     <directories>/etc,/usr/bin,/usr/sbin</directories>
     <directories>/bin,/sbin,/boot</directories>
-    <directories recursion_level="320" check_all="yes" whodata="yes">/opt/fim_testing</directories>
 
     <!-- Files/directories to ignore -->
     <ignore>/etc/mtab</ignore>
@@ -361,13 +360,14 @@
     <process_priority>10</process_priority>
 
     <!-- Maximum output throughput -->
-    <max_eps>200</max_eps>
+    <max_eps>100</max_eps>
 
     <!-- Database synchronization settings -->
     <synchronization>
       <enabled>yes</enabled>
       <interval>5m</interval>
       <max_interval>1h</max_interval>
+      <max_eps>10</max_eps>
     </synchronization>
   </syscheck>
 
@@ -406,6 +406,11 @@
 </ossec_config>
 
 <ossec_config>
+  <localfile>
+    <log_format>audit</log_format>
+    <location>/var/log/audit/audit.log</location>
+  </localfile>
+
   <localfile>
     <log_format>syslog</log_format>
     <location>/var/ossec/logs/active-responses.log</location>
