@@ -87,7 +87,7 @@ ___
 <br>
 
 ### <a name="205"></a>205 - Use of restrict option: Linux/Windows
-**related issue**: [#526](https://github.com/wazuh/wazuh-qa/issues/526
+**related issue**: [#526](https://github.com/wazuh/wazuh-qa/issues/526)
 #### Purpose
 To ensure that only restricted files are effectively monitored.
 #### Configuration - Linux
@@ -104,7 +104,7 @@ ___
 <br>
 
 ### <a name="206"></a>206 - Use of tags: Linux/Windows
-**related issue**: [#524](https://github.com/wazuh/wazuh-qa/issues/524
+**related issue**: [#524](https://github.com/wazuh/wazuh-qa/issues/524)
 #### Purpose
 Ensure that alerts are generated with the specified tags
 #### Configuration - Linux
@@ -122,7 +122,7 @@ ___
 
 
 ### <a name="207"></a>207 - Use of  report changes: Linux/Windows
-**related issue**: [#523](https://github.com/wazuh/wazuh-qa/issues/523
+**related issue**: [#523](https://github.com/wazuh/wazuh-qa/issues/523)
 #### Purpose
 To be sure that the content of the change is in the alert.
 #### Configuration - Linux
@@ -140,7 +140,7 @@ ___
 
 
 ### <a name="208"></a>208 - Use of ignore files: Linux/Windows
-**related issue**: [#538](https://github.com/wazuh/wazuh-qa/issues/538
+**related issue**: [#538](https://github.com/wazuh/wazuh-qa/issues/538)
 #### Purpose
 To be sure that specified files are ignored and not monitored.
 #### Configuration - Linux
@@ -157,7 +157,7 @@ ___
 <br>
 
 ### <a name="209"></a>209 - Recursion level
-**related issue**: [#540](https://github.com/wazuh/wazuh-qa/issues/540
+**related issue**: [#540](https://github.com/wazuh/wazuh-qa/issues/540)
 #### Purpose
 Check the behavior of the recursion_level option.
 #### Configuration
@@ -171,7 +171,7 @@ ___
 <br>
 
 ### <a name="210"></a>210 - Scheduled scan
-**related issue**: [#553](https://github.com/wazuh/wazuh-qa/issues/553
+**related issue**: [#553](https://github.com/wazuh/wazuh-qa/issues/553)
 #### Purpose
 "Check that the scans are effectively launched when reached
 the specified time."
@@ -199,7 +199,7 @@ ___
 <br>
 
 ### <a name="212"></a>212 - Check overlap of scheduled syscheck scan and realtime scan
-**related issue**: [#556](https://github.com/wazuh/wazuh-qa/issues/556
+**related issue**: [#556](https://github.com/wazuh/wazuh-qa/issues/556)
 #### Purpose
 Determine how does the periodic fim scan affect to realtime and if the overlap produces failures in alert generation or big delays.
 #### Configuration - Linux
