@@ -1,4 +1,4 @@
-## Scenarios list
+## Scenarios list [#493](https://github.com/wazuh/wazuh-qa/issues/493)
 ### Index
 
 - [0201 - Default syscheck configuration: Linux/Windows](#201)
