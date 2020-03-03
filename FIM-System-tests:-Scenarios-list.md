@@ -21,10 +21,9 @@ To ensure that the same number of syscheck alerts are produced in the same envir
 #### Configuration - Linux
 - `<frequency>10</frequency>`
 - `<directories>/opt/fim_testing</directories>`
-- No explicit recursion level
 #### Configuration - Windows
-
-
+- `<frequency>10</frequency>`
+- `<directories recursion_level="320">C:\fim_testing</directories>`
 #### Input values
 - 
 #### Expected results
@@ -37,9 +36,12 @@ ___
 ### <a name="202"></a>202 - Real time monitoring - add: Linux/Windows
 #### Purpose
 To ensure the 'realtime' feature takes effect in time.
-#### Configuration
--  Monitor `/opt/fim_testing` with 320 recursion level.
-- `whodata="yes"`, `check_all="yes"`
+#### Configuration - Linux
+- `<frequency>1000000</frequency>`
+- `<directories realtime="yes" check_all="yes" recursion_level="4">/opt/fim_testing</directories>`
+#### Configuration - Windows
+- `<frequency>1000000</frequency>`
+- `<directories recursion_level="320" check_all="yes" realtime="yes">C:\fim_testing</directories>`
 #### Input values
 - Generate 1,100, 1000 and 10.000 files at the same time.
 #### Expected results
@@ -52,9 +54,12 @@ ___
 ### <a name="203"></a>203 - Whodata Linux/Windows
 #### Purpose
 To ensure the 'whodata' feature takes effect in time.
-#### Configuration
--  Monitor `/opt/fim_testing` with 320 recursion level.
-- `whodata="yes"`, `check_all="yes"`
+#### Configuration - Linux
+- ` <frequency>43200</frequency>`
+- `<directories recursion_level="320" check_all="yes" whodata="yes">/opt/fim_testing</directories>`
+#### Configuration - Windows
+- `<frequency>43200</frequency>`
+- `<directories recursion_level="320" check_all="yes" whodata="yes">C:\fim_testing</directories>`
 #### Input values
 - Generate 1,100, 1000 and 10.000 files at the same time.
 #### Expected results
@@ -65,9 +70,10 @@ ___
 ### <a name="204"></a>204 - Whodata Linux - no audit installed
 #### Purpose
 To ensure the missing dependency is properly handled.
-#### Configuration
--  Monitor `/opt/fim_testing` with `recursion_level=320`
-- `whodata='yes'`, `check_all="yes"`
+#### Configuration - Linux
+- ` <frequency>43200</frequency>`
+- `<directories recursion_level="320" check_all="yes" whodata="yes">/opt/fim_testing</directories>`
+#### Configuration - Windows - N/A
 #### Input values
 - Generate 1,100, 1000 and 10.000 files at the same time.
 #### Expected results
@@ -78,10 +84,12 @@ ___
 ### <a name="205"></a>205 - Use of restrict option: Linux/Windows
 #### Purpose
 To ensure that only restricted files are effectively monitored.
-#### Configuration
-- Monitor `/opt/fim_testing` with 320 recursion level.
-- `frequency="10"`check_all="yes"
-- restrict="^ignoredfile.txt$"
+#### Configuration - Linux
+- `<frequency>10</frequency>`
+- `<directories recursion_level="320" check_all="yes" restrict="fimtest">/opt/fim_testing</directories>`
+#### Configuration - Windows
+- `<frequency>10</frequency>`
+- `<directories recursion_level="320" check_all="yes" restrict="fimtest">C:\fim_testing</directories>`
 #### Input values
 Create an 'ignoredfile.txt' file within `/opt/fim_testing while` creating other files.
 #### Expected results
@@ -92,10 +100,12 @@ ___
 ### <a name="206"></a>206 - Use of tags: Linux/Windows
 #### Purpose
 Ensure that alerts are generated with the specified tags
-#### Configuration
--  Monitor `/opt/fim_testing` with 320 recursion level.
-- `frequency="10"`  check_all="yes"
-3. tags="tagtest"
+#### Configuration - Linux
+- `<frequency>10</frequency>`
+- `<directories tags="test_tag">/opt/fim_testing</directories>`
+#### Configuration - Windows
+- `<frequency>10</frequency>`
+- `<directories recursion_level="320" tags="test_tag">C:\fim_testing</directories>`
 #### Input values
 Create a test file.
 #### Expected results
@@ -107,10 +117,12 @@ ___
 ### <a name="207"></a>207 - Use of  report changes: Linux/Windows
 #### Purpose
 To be sure that the content of the change is in the alert.
-#### Configuration
--  Monitor `/opt/fim_testing` with 320 recursion level.
-- `frequency="10"`  check_all="yes"
-3. report_changes="yes"
+#### Configuration - Linux
+- `<frequency>10</frequency>`
+- `<directories recursion_level="320" check_all="yes" realtime="yes" report_changes="yes">/opt/fim_testing</directories>`
+#### Configuration - Windows
+- `<frequency>10</frequency>`
+- `<directories recursion_level="320" check_all="yes" realtime="yes" report_changes="yes">C:\fim_testing</directories>`
 #### Input values
 Modify a monitored file.
 #### Expected results
@@ -122,9 +134,12 @@ ___
 ### <a name="208"></a>208 - Use of ignore files: Linux/Windows
 #### Purpose
 To be sure that specified files are ignored and not monitored.
-#### Configuration
-- `<ignore type="sregex">.mp3$|.avi$|.mpg$</ignore>`
-`frequency="10"`
+#### Configuration - Linux
+- `<frequency>10</frequency>`
+- `<directories>/opt/fim_testing</directories>`
+#### Configuration - Windows
+- `<frequency>10</frequency>`
+- `<directories recursion_level="320">C:\fim_testing</directories>`
 #### Input values
 Create a file that satisfies the ignored type regex.
 #### Expected results
@@ -176,9 +191,12 @@ ___
 
 #### Purpose
 Determine how does the periodic fim scan affect to realtime and if the overlap produces failures in alert generation or big delays.
-#### Configuration
-- Monitor `/opt/fim_testing` with 4 recursion level.
-- `frequency="10"`, `check_all="yes"`
+#### Configuration - Linux
+- `<frequency>600</frequency>`
+- `<directories realtime="yes" check_all="yes" recursion_level="4">/opt/fim_testing</directories>`
+#### Configuration - Windows
+- `<frequency>600</frequency>`
+- `<directories recursion_level="320" check_all="yes" realtime="yes">C:\fim_testing</directories>`
 #### Input values
 - Generate 1,100, 1000 and 10.000 files at the same time.
 #### Expected results
