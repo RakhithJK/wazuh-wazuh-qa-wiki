@@ -33,8 +33,7 @@ ___
 
 
 
-### <a name="202"></a>202 - Real time monitoring - add: Linux/Windows
-**related issue**: [#531](https://github.com/wazuh/wazuh-qa/issues/531)
+### <a name="202"></a>202 - Real time monitoring - add: Linux/Windows [#531](https://github.com/wazuh/wazuh-qa/issues/531)
 #### Purpose
 To ensure the 'realtime' feature takes effect in time.
 #### Configuration - Linux
@@ -54,8 +53,7 @@ ___
 
 
 
-### <a name="203"></a>203 - Whodata Linux/Windows
-**related issue**: [#528](https://github.com/wazuh/wazuh-qa/issues/528)
+### <a name="203"></a>203 - Whodata Linux/Windows [#528](https://github.com/wazuh/wazuh-qa/issues/528)
 #### Purpose
 To ensure the 'whodata' feature takes effect in time.
 #### Configuration - Linux
@@ -71,8 +69,7 @@ The number of alerts must ONLY match in Elasticsearch to the number of added fil
 ___
 <br>
 
-### <a name="204"></a>204 - Whodata Linux - no audit installed
-**related issue**: [#520](https://github.com/wazuh/wazuh-qa/issues/520
+### <a name="204"></a>204 - Whodata Linux - no audit installed [#520](https://github.com/wazuh/wazuh-qa/issues/520)
 #### Purpose
 To ensure the missing dependency is properly handled.
 #### Configuration - Linux
@@ -86,8 +83,7 @@ An Error log must be provoked in the alerts.log, and realtime mode should be swi
 ___
 <br>
 
-### <a name="205"></a>205 - Use of restrict option: Linux/Windows
-**related issue**: [#526](https://github.com/wazuh/wazuh-qa/issues/526)
+### <a name="205"></a>205 - Use of restrict option: Linux/Windows [#526](https://github.com/wazuh/wazuh-qa/issues/526)
 #### Purpose
 To ensure that only restricted files are effectively monitored.
 #### Configuration - Linux
@@ -103,8 +99,7 @@ There should only be one alert related to the restricted file.
 ___
 <br>
 
-### <a name="206"></a>206 - Use of tags: Linux/Windows
-**related issue**: [#524](https://github.com/wazuh/wazuh-qa/issues/524)
+### <a name="206"></a>206 - Use of tags: Linux/Windows [#524](https://github.com/wazuh/wazuh-qa/issues/524)
 #### Purpose
 Ensure that alerts are generated with the specified tags
 #### Configuration - Linux
@@ -121,8 +116,7 @@ ___
 <br>
 
 
-### <a name="207"></a>207 - Use of  report changes: Linux/Windows
-**related issue**: [#523](https://github.com/wazuh/wazuh-qa/issues/523)
+### <a name="207"></a>207 - Use of  report changes: Linux/Windows [#523](https://github.com/wazuh/wazuh-qa/issues/523)
 #### Purpose
 To be sure that the content of the change is in the alert.
 #### Configuration - Linux
@@ -139,8 +133,7 @@ ___
 <br>
 
 
-### <a name="208"></a>208 - Use of ignore files: Linux/Windows
-**related issue**: [#538](https://github.com/wazuh/wazuh-qa/issues/538)
+### <a name="208"></a>208 - Use of ignore files: Linux/Windows [#538](https://github.com/wazuh/wazuh-qa/issues/538)
 #### Purpose
 To be sure that specified files are ignored and not monitored.
 #### Configuration - Linux
@@ -156,8 +149,7 @@ There should not be any alert related to this action.
 ___
 <br>
 
-### <a name="209"></a>209 - Recursion level
-**related issue**: [#540](https://github.com/wazuh/wazuh-qa/issues/540)
+### <a name="209"></a>209 - Recursion level [#540](https://github.com/wazuh/wazuh-qa/issues/540)
 #### Purpose
 Check the behavior of the recursion_level option.
 #### Configuration
@@ -170,8 +162,7 @@ level 5 folder with some files."
 ___
 <br>
 
-### <a name="210"></a>210 - Scheduled scan
-**related issue**: [#553](https://github.com/wazuh/wazuh-qa/issues/553)
+### <a name="210"></a>210 - Scheduled scan [#553](https://github.com/wazuh/wazuh-qa/issues/553)
 #### Purpose
 "Check that the scans are effectively launched when reached
 the specified time."
@@ -198,8 +189,7 @@ After the specified time, the scan must launch and the alerts must be triggered.
 ___
 <br>
 
-### <a name="212"></a>212 - Check overlap of scheduled syscheck scan and realtime scan
-**related issue**: [#556](https://github.com/wazuh/wazuh-qa/issues/556)
+### <a name="212"></a>212 - Check overlap of scheduled syscheck scan and realtime scan [#556](https://github.com/wazuh/wazuh-qa/issues/556)
 #### Purpose
 Determine how does the periodic fim scan affect to realtime and if the overlap produces failures in alert generation or big delays.
 #### Configuration - Linux
