@@ -18,13 +18,17 @@
 ### <a name="201"></a>201 - Default syscheck configuration: Linux/Windows
 #### Purpose
 To ensure that the same number of syscheck alerts are produced in the same environment, so no false positives are reported. Default syscheck configuration
-#### Configuration
-- queue_size: 15000
-- events_per_second: 500
+#### Configuration - Linux
+- `<frequency>10</frequency>`
+- `<directories>/opt/fim_testing</directories>`
+- No explicit recursion level
+#### Configuration - Windows
+
+
 #### Input values
 - 
 #### Expected results
-"A static number of syscheck alerts indexed in Elasticsearch."
+A static number of syscheck alerts correctly indexed in the `alerts.json` file and the Elasticsearch indices.
 ___
 <br>
 
