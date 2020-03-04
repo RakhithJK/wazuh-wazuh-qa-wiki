@@ -13,7 +13,8 @@
 - [0210 - Scheduled scan](#210)
 - [0211 - Custom configuration](#211)
 - [0212 - Check overlap of scheduled syscheck scan and realtime scan](#212)
-
+___
+<br>
 
 ### <a name="201"></a>201 - Default syscheck configuration: Linux/Windows [#480](https://github.com/wazuh/wazuh-qa/issues/480)
 #### Purpose
