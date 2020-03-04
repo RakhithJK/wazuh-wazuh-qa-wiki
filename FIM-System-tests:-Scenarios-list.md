@@ -15,7 +15,7 @@
 - [0212 - Check overlap of scheduled syscheck scan and realtime scan](#212)
 
 
-### <a name="201"></a>201 - Default syscheck configuration: Linux/Windows
+### <a name="201"></a>201 - Default syscheck configuration: Linux/Windows [#480](https://github.com/wazuh/wazuh-qa/issues/480)
 #### Purpose
 To ensure that the same number of syscheck alerts are produced in the same environment, so no false positives are reported. Default syscheck configuration
 #### Configuration - Linux
@@ -24,8 +24,22 @@ To ensure that the same number of syscheck alerts are produced in the same envir
 #### Configuration - Windows
 - `<frequency>10</frequency>`
 - `<directories recursion_level="320">C:\fim_testing</directories>`
-#### Input values
-- 
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+
+```
 #### Expected results
 A static number of syscheck alerts correctly indexed in the `alerts.json` file and the Elasticsearch indices.
 ___
@@ -42,8 +56,21 @@ To ensure the 'realtime' feature takes effect in time.
 #### Configuration - Windows
 - `<frequency>1000000</frequency>`
 - `<directories recursion_level="320" check_all="yes" realtime="yes">C:\fim_testing</directories>`
-#### Input values
-- Generate 1,100, 1000 and 10.000 files at the same time.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 The number of alerts must ONLY match in Elasticsearch to the number of added files. Also the timestamp should be close in time to the timestamp of the alert generation.
 
@@ -62,8 +89,21 @@ To ensure the 'whodata' feature takes effect in time.
 #### Configuration - Windows
 - `<frequency>43200</frequency>`
 - `<directories recursion_level="320" check_all="yes" whodata="yes">C:\fim_testing</directories>`
-#### Input values
-- Generate 1,100, 1000 and 10.000 files at the same time.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 The number of alerts must ONLY match in Elasticsearch to the number of added files. Also the timestamp should be close in time to the timestamp of the alert generation, and the fields of the alerts must be matching to Whodata fields.
 ___
@@ -76,8 +116,21 @@ To ensure the missing dependency is properly handled.
 - ` <frequency>43200</frequency>`
 - `<directories recursion_level="320" check_all="yes" whodata="yes">/opt/fim_testing</directories>`
 #### Configuration - Windows - N/A
-#### Input values
-- Generate 1,100, 1000 and 10.000 files at the same time.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 An Error log must be provoked in the alerts.log, and realtime mode should be switched to.
 ___
@@ -92,8 +145,21 @@ To ensure that only restricted files are effectively monitored.
 #### Configuration - Windows
 - `<frequency>10</frequency>`
 - `<directories recursion_level="320" check_all="yes" restrict="fimtest">C:\fim_testing</directories>`
-#### Input values
-Create an 'ignoredfile.txt' file within `/opt/fim_testing while` creating other files.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 There should only be one alert related to the restricted file.
 ___
@@ -108,8 +174,21 @@ Ensure that alerts are generated with the specified tags
 #### Configuration - Windows
 - `<frequency>10</frequency>`
 - `<directories recursion_level="320" tags="test_tag">C:\fim_testing</directories>`
-#### Input values
-Create a test file.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 There should be one alert with the specified tag within its body.
 ___
@@ -125,8 +204,21 @@ To be sure that the content of the change is in the alert.
 #### Configuration - Windows
 - `<frequency>10</frequency>`
 - `<directories recursion_level="320" check_all="yes" realtime="yes" report_changes="yes">C:\fim_testing</directories>`
-#### Input values
-Modify a monitored file.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 There should be one alert with the text change within the body.
 ___
@@ -142,8 +234,21 @@ To be sure that specified files are ignored and not monitored.
 #### Configuration - Windows
 - `<frequency>10</frequency>`
 - `<directories recursion_level="320">C:\fim_testing</directories>`
-#### Input values
-Create a file that satisfies the ignored type regex.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 There should not be any alert related to this action.
 ___
@@ -155,9 +260,21 @@ Check the behavior of the recursion_level option.
 #### Configuration
 - `<frequency>10</frequency>`
 - `<directories recursion_level="4" check_all="yes">/opt/fim_testing</directories>`
-#### Input values
-"Create files at level 4. Also create a 
-level 5 folder with some files."
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 ___
 <br>
@@ -182,8 +299,21 @@ ___
 Check the filters applied and the custom configuration works properly
 #### Configuration
 - Monitor different <directories> folder
-#### Input values
-- Generate 1,100, 1000 and 10.000 files at the same time.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
 After the specified time, the scan must launch and the alerts must be triggered.
 ___
@@ -198,6 +328,19 @@ Determine how does the periodic fim scan affect to realtime and if the overlap p
 #### Configuration - Windows
 - `<frequency>600</frequency>`
 - `<directories recursion_level="320" check_all="yes" realtime="yes">C:\fim_testing</directories>`
-#### Input values
-- Generate 1,100, 1000 and 10.000 files at the same time.
+#### Input values - file creation
+```json
+{
+    "root_folder": "{{ agents_fim_testing_path }}",
+    "recursion_level": 3,
+    "folder_length": 5,
+    "file_length": 5,
+    "file_size_specifications":[
+        { "size": 10240, "amount": 4000},
+        { "size": 524288, "amount": 500},
+        { "size": 1048576, "amount": 500},
+        { "size": 10485760, "amount": 10}
+    ]
+}
+```
 #### Expected results
