@@ -11,4 +11,4 @@ The goal of FIM service tests wiki is to gather, unify and summarize all the nee
 ___
 <br>
 
-<a target="new" href="https://i.imgur.com/Sl2kAzB.png"><img src="https://i.imgur.com/Sl2kAzB.png" width="900"></a>
+<a target="blank" href="https://i.imgur.com/Sl2kAzB.png"><img src="https://i.imgur.com/Sl2kAzB.png" width="900"></a>
