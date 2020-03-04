@@ -153,8 +153,8 @@ ___
 #### Purpose
 Check the behavior of the recursion_level option.
 #### Configuration
-- Monitor `/opt/fim_testing` with 4 recursion level.
-- `frequency="10"`, check_all="yes"
+- `<frequency>10</frequency>`
+- `<directories recursion_level="4" check_all="yes">/opt/fim_testing</directories>`
 #### Input values
 "Create files at level 4. Also create a 
 level 5 folder with some files."
