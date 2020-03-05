@@ -1,7 +1,7 @@
-The purpose of these tests is to evaluate the FIM module compliance with the specified requirements.
+## FIM System tests
+The purpose of these tests is to evaluate the FIM module compliance with the specified requirements, in an environment as close to production one as possible.
 
-This wiki aims to gather, unify and summarize all the needed testing processes. It contains the methodology, specifications, desired workflow, and serializations to be applied in the context of the FIM service tests.
-
+The goal of FIM service tests wiki is to gather, unify and summarize all the needed testing processes. It will contain the methodology, specifications, desired workflow, and serializations to be applied in the context of the FIM service tests.
 
  * [Scenarios specifications list](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Scenarios-list)
  * [AWS Environment details](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-AWS-Environment-details)
