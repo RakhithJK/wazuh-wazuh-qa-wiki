@@ -1,4 +1,3 @@
-## FIM System tests
 The purpose of these tests is to evaluate the FIM module compliance with the specified requirements.
 
 This wiki aims to gather, unify and summarize all the needed testing processes. It contains the methodology, specifications, desired workflow, and serializations to be applied in the context of the FIM service tests.
