@@ -7,6 +7,8 @@ The goal of this wiki section is to gather, unify and summarize all the needed t
  * [Local test environment](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Steps-to-set-the-test-environment)
  * [Default configuration files](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Default-ossec.conf-files)
  * [Test workflow explanation and diagram](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Test-workflow-explanation-and-diagram)
+* [Example test execution record](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Example-test-execution)
+
 ___
 <br>
 
