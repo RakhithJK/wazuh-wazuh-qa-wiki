@@ -1,0 +1,2 @@
+### Example execution for scenario [0203 - Whodata Linux/Windows](#203)
+<a href="https://asciinema.org/a/qXKfLRf1g9a3tLOD6cj8638i9" target="_blank"><img src="https://asciinema.org/a/qXKfLRf1g9a3tLOD6cj8638i9.svg" /></a>
