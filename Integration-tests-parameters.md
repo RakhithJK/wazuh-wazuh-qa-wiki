@@ -219,7 +219,7 @@ the `wazuh-qa` repository.
 ## WPK
 
 - **Health-check**: ???
-- **Target**: agent or manager ?
+- **Target**: agent and manager 
 - **Self-configured tests**: No 
 - **Custom configuration**: No
 - **prerequisite**: Upload packages to `trash` repository
