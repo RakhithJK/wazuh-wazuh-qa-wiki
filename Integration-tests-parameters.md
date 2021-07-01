@@ -93,6 +93,7 @@ the `wazuh-qa` repository.
 ---
 
 ## FIM
+These tests should be run using tiers 0,1 and 2 : `--tier 0 --tier 1 --tier 2` 
 
 - Manager:
     - **Health-check**: ???
