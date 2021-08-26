@@ -1,5 +1,3 @@
-## Documenting tests using the `DocGenerator` tool
-
 ### Introduction
 
 This section describes the steps to add the documentation code to the Python modules containing the developed tests. From this code, it will be possible to generate the documentation in different formats through `DocGenerator` tool. Thanks to this solution, it will be possible to standardize the documentation for all tests and, at the same time, fit the project's requirements.
@@ -116,7 +114,7 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
 </p>
 </details>
 
-The below tables show the allowed fields for these blocks along with the data type and possible values for these fields:
+The below tables show the allowed fields for these blocks along with the data type and example values for these fields:
 #### Module block
 
 | Name | Type | Requirement | Description | Example case |
@@ -139,8 +137,11 @@ The below tables show the allowed fields for these blocks along with the data ty
 |:-:|:-:|:-:|:-:|:-:|
 | description       | String | Mandatory | The main description of what the test does   | Check if vulnerability detector behaves as expected when importing Debian OVAL feed with extra tags. |
 | wazuh_min_version | String | Mandatory | Wazuh minimal version                        | 4.1                                                                                                  |
-| parameters        | List   | Optional  | List of pairs(name [type],brief) that describe the test parameters | type: fixture, brief: Modify the Debian OVAL feed, setting a test tag value.   |
+| parameters        | List   | Optional  | List of pairs(name (type),brief) that describe the test parameters | type: fixture, brief: Modify the Debian OVAL feed, setting a test tag value.   |
 | assertions        | List   | Mandatory | A list of what the module checks              | Feeds URL's, download, fields content, extra and missing tags                                       |
 | test_input        | String | Mandatory | Input values evaluated by the test           | Multiple feeds in XML format with extra tags added.                                                  |       
 | logging           | List   | Mandatory | List of pairs(file_name,message) with the output data the test expects | ossec.log, "INFO: \(\d+\): The update of the Debian Buster feed finished successfully." |
 | tags              | List   | Optional  | Pre-defined labels to help identify the test | debian                                                                                               |
+
+#### Pre-defined values
+
