@@ -30,7 +30,7 @@ copyright:
     This program is free software; you can redistribute it and/or modify it under the terms of GPLv2
 
 type: 
-    Integration
+    integration
 
 description: 
     These tests will check if, during enrollment, the agent re-establishes communication with the manager
@@ -42,13 +42,13 @@ tiers:
     - 0
 
 component: 
-    Agent
+    agent
 
 path:
     tests/integration/test_agentd/
 
 daemons:
-    - wazuh-agentd
+    - agentd
 
 os_support:
     - Linux, RHEL5
@@ -115,3 +115,32 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
 ```
 </p>
 </details>
+
+The below tables show the allowed fields for these blocks along with the data type and possible values for these fields:
+#### Module block
+
+| Name | Type | Requirement | Description | Example case |
+|:-:|:-:|:-:|:-:|:-:|
+| copyright    | String | Mandatory | Module copyright                                                 | Copyright (C) 2015-2021...                                                         |
+| type         | String | Mandatory | Type of tests included in the module                             | integration                                                                        |
+| description  | String | Mandatory | Overview of what the module does   	                       | Checks the components involved in feed management of Vulnerability Detector module |
+| tiers        | List   | Mandatory | Tiers covered by the module                                      | 0, 1, 2                                                                            |
+| component    | String | Mandatory | Wazuh component used by the module (server/agent)                | server                                                                             |
+| path         | String | Mandatory | Relative path to the test                                        | tests/integration/test_vulnerability_detector/test_scan_results/ |
+| daemons      | List   | Mandatory | Daemons running during the test	                               | wazuh-db, modulesd                                                                 |
+| os_support   | List   | Mandatory | List of pairs(os_name,os_version) that that identifies the operating system | Linux, Debian Buster                                                    |
+| coverage     | Int    | Optional  | % coverage, represented as an integer                            | 33                                        |
+| tags         | List   | Optional  | Pre-defined labels to help identify the module                   | NVD, feeds, mock                                                                   |
+
+
+#### Test block
+
+| Name | Type | Requirement | Description | Example case |
+|:-:|:-:|:-:|:-:|:-:|
+| description       | String | Mandatory | The main description of what the test does   | Check if vulnerability detector behaves as expected when importing Debian OVAL feed with extra tags. |
+| wazuh_min_version | String | Mandatory | Wazuh minimal version                        | 4.1                                                                                                  |
+| parameters        | List   | Optional  | List of pairs(name [type],brief) that describe the test parameters | type: fixture, brief: Modify the Debian OVAL feed, setting a test tag value.   |
+| assertions        | List   | Mandatory | A list of what the module checks              | Feeds URL's, download, fields content, extra and missing tags                                       |
+| test_input        | String | Mandatory | Input values evaluated by the test           | Multiple feeds in XML format with extra tags added.                                                  |       
+| logging           | List   | Mandatory | List of pairs(file_name,message) with the output data the test expects | ossec.log, "INFO: \(\d+\): The update of the Debian Buster feed finished successfully." |
+| tags              | List   | Optional  | Pre-defined labels to help identify the test | debian                                                                                               |
