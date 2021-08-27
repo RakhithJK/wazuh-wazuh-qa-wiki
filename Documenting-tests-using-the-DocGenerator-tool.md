@@ -3,6 +3,9 @@
 This section describes the steps to add the documentation code to the Python modules containing the developed tests. From this code, it will be possible to generate the documentation in different formats through `DocGenerator` tool. Thanks to this solution, it will be possible to standardize the documentation for all tests and, at the same time, fit the project's requirements.
 
 
+&nbsp;
+
+
 ### Structure
 
 The documentation code is organized in two parts:
@@ -114,21 +117,26 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
 </p>
 </details>
 
+
+&nbsp;
+
+
 The below tables show the allowed fields for these blocks along with the data type and example values for these fields:
 #### Module block
 
 | Name | Type | Requirement | Description | Example case |
 |:-:|:-:|:-:|:-:|:-:|
 | copyright    | String | Mandatory | Module copyright                                                 | Copyright (C) 2015-2021...                                                         |
-| type         | String | Mandatory | Type of tests included in the module                             | integration                                                                        |
+| type *       | String | Mandatory | Type of tests included in the module                             | integration                                                                        |
 | description  | String | Mandatory | Overview of what the module does   	                       | Checks the components involved in feed management of Vulnerability Detector module |
 | tiers        | List   | Mandatory | Tiers covered by the module                                      | 0, 1, 2                                                                            |
-| component    | String | Mandatory | Wazuh component used by the module (server/agent)                | server                                                                             |
-| path         | String | Mandatory | Relative path to the test                                        | tests/integration/test_vulnerability_detector/test_scan_results/ |
-| daemons      | List   | Mandatory | Daemons running during the test	                               | wazuh-db, modulesd                                                                 |
-| os_support   | List   | Mandatory | List of pairs(os_name,os_version) that that identifies the operating system | Linux, Debian Buster                                                    |
-| coverage     | Int    | Optional  | % coverage, represented as an integer                            | 33                                        |
-| tags         | List   | Optional  | Pre-defined labels to help identify the module                   | NVD, feeds, mock                                                                   |
+| component *  | String | Mandatory | Wazuh component used by the module (server/agent)                | server                                                                             |
+| path         | String | Mandatory | Relative path to the test                                        | tests/integration/test_vulnerability_detector/test_scan_results/                   |
+| daemons *    | List   | Mandatory | Daemons running during the test	                               | wazuh-db, modulesd                                                                 |
+| os_support * | List   | Mandatory | List of pairs(os_name,os_version) that that identifies the operating system | Linux, Debian Buster                                                    |
+| coverage     | Int    | Optional  | % coverage, represented as an integer                            | 33                                                                                 |
+| pytest_args  | List   | Optional  | PyTest arguments that should be used to run the module.          | --fim_mode="realtime", --fim_mode="whodata"                                        |
+| tags *       | List   | Optional  | Pre-defined labels to help identify the module                   | NVD, feeds, mock                                                                   |
 
 
 #### Test block
@@ -136,12 +144,36 @@ The below tables show the allowed fields for these blocks along with the data ty
 | Name | Type | Requirement | Description | Example case |
 |:-:|:-:|:-:|:-:|:-:|
 | description       | String | Mandatory | The main description of what the test does   | Check if vulnerability detector behaves as expected when importing Debian OVAL feed with extra tags. |
-| wazuh_min_version | String | Mandatory | Wazuh minimal version                        | 4.1                                                                                                  |
+| wazuh_min_version * | String | Mandatory | Wazuh minimal version                        | 4.1                                                                                                  |
 | parameters        | List   | Optional  | List of pairs(name (type),brief) that describe the test parameters | type: fixture, brief: Modify the Debian OVAL feed, setting a test tag value.   |
 | assertions        | List   | Mandatory | A list of what the module checks              | Feeds URL's, download, fields content, extra and missing tags                                       |
 | test_input        | String | Mandatory | Input values evaluated by the test           | Multiple feeds in XML format with extra tags added.                                                  |       
 | logging           | List   | Mandatory | List of pairs(file_name,message) with the output data the test expects | ossec.log, "INFO: \(\d+\): The update of the Debian Buster feed finished successfully." |
-| tags              | List   | Optional  | Pre-defined labels to help identify the test | debian                                                                                               |
+| tags *             | List   | Optional  | Pre-defined labels to help identify the test | debian                                                                                               |
 
 #### Pre-defined values
 
+To avoid duplicating the content of some fields with slightly different values (use of capital letters, hyphens, etc.), the fields marked with **(*)** accept a set of predefined values:
+
+| Field name | Allowed values |
+|:-:|:-:|
+| type               | unit, integration, system |
+| os_support         | Linux, RHEL5; Linux, RHEL6; Linux, RHEL7; Linux, RHEL8; Linux, Amazon Linux 1; Linux, Amazon Linux 2; Linux, Debian BUSTER; Linux, Debian STRETCH; Linux, Debian WHEEZY; Linux, Ubuntu BIONIC; Linux, Ubuntu XENIAL; Linux, Ubuntu TRUSTY; Linux, Arch Linux; Windows, 7; Windows, 8; Windows, 10; Windows, Server 2003; Windows, Server 2012; Windows, Server 2016; MacOS, Catalina; MacOS, Server |
+| component          | agent, server |
+| daemons            | agentd, agentlessd, analysisd, authd, apid, clusterd, csyslogd, db, dbd, execd, integratord, logcollector, maild, monitord, modules, remoted, reportd, syscheckd |
+| wazuh_min_version  | 2.1, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 4.0, 4.1, 4.2, 4.3 |
+| tags               | active_response, alert, api, aws, cpe, download, enrollment, feeds, fim, gcloud, github, integrity, keys, logs, mitre, msu, nvd, oval, rules, scan, simulator, ssl, vulnerability |
+
+
+&nbsp;
+
+
+### Basic use of `DocGenerator.py`
+
+This tool is found in `wazuh-qa/docs/DocGenerator/`, and to run it, you must first install the requirements found in the `requirements.txt` file in the same directory:
+
+```
+pip install -r requirements.txt
+```
+
+The `DocGenerator` configuration can be found in the `config.yaml` file. This already contains a pre-established configuration for generating test documentation. For more details about the configuration options see `README.md`.
