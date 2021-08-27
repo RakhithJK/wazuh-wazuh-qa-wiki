@@ -157,7 +157,7 @@ To avoid duplicating the content of some fields with slightly different values (
 
 | Field name | Allowed values |
 |:-:|:-:|
-| type               | unit, integration, system |
+| type               | integration, performance, system, unit |
 | os_support         | Linux, RHEL5; Linux, RHEL6; Linux, RHEL7; Linux, RHEL8; Linux, Amazon Linux 1; Linux, Amazon Linux 2; Linux, Debian BUSTER; Linux, Debian STRETCH; Linux, Debian WHEEZY; Linux, Ubuntu BIONIC; Linux, Ubuntu XENIAL; Linux, Ubuntu TRUSTY; Linux, Arch Linux; Windows, 7; Windows, 8; Windows, 10; Windows, Server 2003; Windows, Server 2012; Windows, Server 2016; MacOS, Catalina; MacOS, Server |
 | component          | agent, server |
 | daemons            | agentd, agentlessd, analysisd, authd, apid, clusterd, csyslogd, db, dbd, execd, integratord, logcollector, maild, monitord, modules, remoted, reportd, syscheckd |
