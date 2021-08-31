@@ -8,8 +8,14 @@ This tool is found in `wazuh-qa/docs/DocGenerator/`, and to run it, you must fir
 pip install -r requirements.txt
 ```
 
-The `DocGenerator` configuration can be found in the `config.yaml` file. This already contains a pre-established configuration for generating test documentation. For more details about the configuration options see `README.md`.
+The `DocGenerator` configuration can be found in the `config.yaml` file. This already contains a pre-established configuration for generating test documentation. The settings to be considered when creating new documentation are as follows:
 
+  - Section `Include paths`: If they do not exist, the routes to the tests to be developed/migrated will be added here. 
+  - Section `Ignore paths`: This section contains paths to directories found in the `Include paths` hierarchy but does not contain tests with documentation, i. e. `data` folders.
+
+For more details about the configuration options see `README.md`.
+
+&nbsp;
 
 #### Build documentation
 
