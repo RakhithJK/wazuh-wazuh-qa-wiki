@@ -1,5 +1,3 @@
-# Wazuh QA development rules
-
 ## Development
 - An issue in Wazuh has directly an issue in QA, whether or not tests have to be implemented.
 - TDD
