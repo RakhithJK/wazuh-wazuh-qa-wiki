@@ -2,6 +2,7 @@
 
 This section describes the steps to add the documentation code to the Python modules containing the developed tests. From this code, it will be possible to generate the documentation in different formats through `DocGenerator` tool. Thanks to this solution, it will be possible to standardize the documentation for all tests and, at the same time, fit the project's requirements.
 
+DocGenerator uses the [third proposal](https://github.com/wazuh/wazuh-qa/issues/1694#issuecomment-906194448) from [QADOCS schema 2.0](https://github.com/wazuh/wazuh-qa/issues/1694), when we refine and get the definitive documentation schema, it will be updated.
 
 &nbsp;
 
