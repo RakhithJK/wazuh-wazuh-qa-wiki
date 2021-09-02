@@ -118,7 +118,7 @@ The documentation is generated in `Output path` from `config.yaml`.
 
 ---
 
-## Documentation generated examples
+## Examples of documentation generated
 
 - vulnerability detector
 
