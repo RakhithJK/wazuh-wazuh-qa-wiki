@@ -10,30 +10,6 @@ pip install -r requirements.txt
 
 The `DocGenerator` configuration can be found in the `config.yaml` file. This already contains a pre-established configuration for generating test documentation. The settings to be considered when creating new documentation are as follows:
 
-  - Section `Include paths`: If they do not exist, the routes to the tests to be developed/migrated will be added here. 
-  - Section `Ignore paths`: This section contains paths to directories found in the `Include paths` hierarchy but does not contain tests with documentation, i. e. `data` folders.
-
-For more details about the configuration options see `README.md`.
-
-&nbsp;
-
----
-
-#### Build documentation
-
-usage: `DocGenerator.py [-h] [-s] [-v] [-t] [-d] [-i INDEX_NAME] [-l LAUNCH_INDEX_NAME]`
-
-optional arguments:
- - `-h`, `--help`     show this help message and exit
- - `-s`             Run a sanity check
- - `-v`             Print version
- - `-t`             Test configuration
- - `-d`             Enable debug messages.
- - `-i` INDEX_NAME  Indexes the data to elasticsearch.
- - `-l` LAUNCH_INDEX_NAME  Indexes the data and launch the application.
-
-When you run it using `-i INDEX_NAME`, the JSONs previously generated are indexed in elasticsearch. You can index them and run SearchUI simultaneously using `-l INDEX_NAME`. If you want to generate the doc, you need to create a `config.yaml` file that is used when you parse the tests.
-
 ```yaml
 Project path: String with the project path
 
@@ -59,6 +35,12 @@ Output fields:
 
 Test cases field: Key to identify a Test Case list
 ```
+
+  - Section `Include paths`: If they do not exist, the routes to the tests to be developed/migrated will be added here. 
+  - Section `Ignore paths`: This section contains paths to directories found in the `Include paths` hierarchy but does not contain tests with documentation, i. e. `data` folders.
+
+
+For more details about the configuration options see `README.md`.
 
 <details><summary>`config.yaml` example</summary>
 
@@ -106,7 +88,26 @@ Output fields:
 Test cases field: test_cases
 
 ```
+
 </details>
+
+---
+
+#### Build documentation
+
+usage: `DocGenerator.py [-h] [-s] [-v] [-t] [-d] [-i INDEX_NAME] [-l LAUNCH_INDEX_NAME]`
+
+optional arguments:
+ - `-h`, `--help`     show this help message and exit
+ - `-s`             Run a sanity check
+ - `-v`             Print version
+ - `-t`             Test configuration
+ - `-d`             Enable debug messages.
+ - `-i` INDEX_NAME  Indexes the data to elasticsearch.
+ - `-l` LAUNCH_INDEX_NAME  Indexes the data and launch the application.
+
+When you run it using `-i INDEX_NAME`, the JSONs previously generated are indexed in elasticsearch. You can index them and run SearchUI simultaneously using `-l INDEX_NAME`. If you want to generate the doc, you need to use a `config.yaml` file that is used when you parse the tests.
+
 
 
 To generate the documentation in `YAML` and `JSON` formats, just run the tool without arguments:
