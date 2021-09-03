@@ -163,4 +163,4 @@ To avoid duplicating the content of some fields with slightly different values (
 | component          | agent, server |
 | daemons            | agentd, agentlessd, analysisd, authd, apid, clusterd, csyslogd, wazuh-db, dbd, execd, integratord, logcollector, maild, monitord, modules, remoted, reportd, syscheckd |
 | wazuh_min_version  | 2.1, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 4.0, 4.1, 4.2, 4.3 |
-| tags               | active_response, alert, api, aws, brute_force_attack, cache, cors, cpe, dos_attack, download, enrollment, feeds, fim, gcloud, github, integrity, keys, logs, mitre, msu, nvd, oval, rules, scan, simulator, ssl, stats_file, vulnerability |
+| tags               | active_response, alert, api, aws, brute_force_attack, cache, cors, cpe, dos_attack, download, enrollment, experimental, feeds, fim, gcloud, github, integrity, keys, logs, mitre, msu, nvd, oval, rules, scan, simulator, ssl, stats_file, vulnerability |
