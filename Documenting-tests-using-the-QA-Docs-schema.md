@@ -159,7 +159,7 @@ To avoid duplicating the content of some fields with slightly different values (
 | Field name | Allowed values |
 |:-:|:-:|
 | type               | `integration`, `performance`, `system`, `unit` |
-| os_support         | `linux, rhel5`; `linux, rhel6`; `linux, rhel7`; `linux, rhel8`; `linux, amazon linux 1`; `linux, amazon linux 2`; `linux, debian buster`; `linux, debian stretch`; `linux, debian wheezy`; `linux, ubuntu bionic`; `linux, ubuntu xenial`; `linux, ubuntu trusty`; `linux, arch linux`; `windows, 7`; `windows, 8`; `windows, 10`; `windows, server 2003`; `windows, server 2012`; `windows, server 2016`; `macos, catalina`; `macos, server` |
+| os_support         | `linux, centos 5`; `linux, centos 6`; `linux, centos 7`; `linux, centos 8`; `linux, rhel5`; `linux, rhel6`; `linux, rhel7`; `linux, rhel8`; `linux, amazon linux 1`; `linux, amazon linux 2`; `linux, debian buster`; `linux, debian stretch`; `linux, debian wheezy`; `linux, ubuntu bionic`; `linux, ubuntu xenial`; `linux, ubuntu trusty`; `linux, arch linux`; `windows, 7`; `windows, 8`; `windows, 10`; `windows, server 2003`; `windows, server 2012`; `windows, server 2016`; `macos, catalina`; `macos, server` |
 | component          | `agent`, `manager` |
 | daemons            | `agentd`, `agentlessd`, `analysisd`, `authd`, `apid`, `clusterd`, `csyslogd`, `wazuh-db`, `dbd`, `execd`, `integratord`, `logcollector`, `maild`, `monitord`, `modules`, `remoted`, `reportd`, `syscheckd` |
 | wazuh_min_version  | `2.1`, `3.0`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.12`, `3.13`, `4.0`, `4.1`, `4.2`, `4.3` |
