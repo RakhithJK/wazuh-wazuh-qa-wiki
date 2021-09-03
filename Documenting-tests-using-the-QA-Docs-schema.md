@@ -158,9 +158,9 @@ To avoid duplicating the content of some fields with slightly different values (
 
 | Field name | Allowed values |
 |:-:|:-:|
-| type               | integration, performance, system, unit |
-| os_support         | Linux, RHEL5; Linux, RHEL6; Linux, RHEL7; Linux, RHEL8; Linux, Amazon Linux 1; Linux, Amazon Linux 2; Linux, Debian BUSTER; Linux, Debian STRETCH; Linux, Debian WHEEZY; Linux, Ubuntu BIONIC; Linux, Ubuntu XENIAL; Linux, Ubuntu TRUSTY; Linux, Arch Linux; Windows, 7; Windows, 8; Windows, 10; Windows, Server 2003; Windows, Server 2012; Windows, Server 2016; MacOS, Catalina; MacOS, Server |
-| component          | agent, server |
-| daemons            | agentd, agentlessd, analysisd, authd, apid, clusterd, csyslogd, wazuh-db, dbd, execd, integratord, logcollector, maild, monitord, modules, remoted, reportd, syscheckd |
-| wazuh_min_version  | 2.1, 3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 4.0, 4.1, 4.2, 4.3 |
-| tags               | active_response, alert, api, aws, brute_force_attack, cache, cors, cpe, dos_attack, download, enrollment, experimental, feeds, fim, gcloud, github, integrity, keys, logs, mitre, msu, nvd, oval, rules, scan, simulator, ssl, stats_file, vulnerability |
+| type               | `integration`, `performance`, `system`, `unit` |
+| os_support         | `linux, rhel5`; `linux, rhel6`; `linux, rhel7`; `linux, rhel8`; `linux, amazon linux 1`; `linux, amazon linux 2`; `linux, debian buster`; `linux, debian stretch`; `linux, debian wheezy`; `linux, ubuntu bionic`; `linux, ubuntu xenial`; `linux, ubuntu trusty`; `linux, arch linux`; `windows, 7`; `windows, 8`; `windows, 10`; `windows, server 2003`; `windows, server 2012`; `windows, server 2016`; `macos, catalina`; `macos, server` |
+| component          | `agent`, `manager` |
+| daemons            | `agentd`, `agentlessd`, `analysisd`, `authd`, `apid`, `clusterd`, `csyslogd`, `wazuh-db`, `dbd`, `execd`, `integratord`, `logcollector`, `maild`, `monitord`, `modules`, `remoted`, `reportd`, `syscheckd` |
+| wazuh_min_version  | `2.1`, `3.0`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.12`, `3.13`, `4.0`, `4.1`, `4.2`, `4.3` |
+| tags               | `active_response`, `alert`, `api`, `aws`, `brute_force_attack`, `cache`, `cors`, `cpe`, `dos_attack`, `download`, `enrollment`, `experimental`, `feeds`, `fim`, `gcloud`, `github`, `integrity`, `keys`, `logs`, `mitre`, `msu`, `nvd`, `oval`, `rules`, `scan`, `simulator`, `ssl`, `stats_file`, `vulnerability` |
