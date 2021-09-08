@@ -69,10 +69,12 @@ os_vendor:
     - microsoft
 
 os_version:
-    - rhel5
-    - rhel6
-    - rhel7
-    - rhel8
+    - rhel_6
+    - rhel_7
+    - rhel_8
+    - centos_6
+    - centos_7
+    - centos_8
     - buster
     - stretch
     - jessie
@@ -193,8 +195,8 @@ To avoid duplicating the content of some fields with slightly different values (
 | modules            | `active_response`, `agentd`, `analysisd`, `api`, `authd`, `cluster`, `fim`, `gcloud`, `github`, `logcollector`, `logtest`, `office365`, `remoted`, `rids`, `rootcheck`, `vulnerability_detector`, `wazuh_db`, `wpk` |
 | os_platform        | `aix`, `linux`, `hp-ux`, `macos`, `solaris`, `windows` |
 | os_vendor          | `amazon`, `archlinux`, `centos`, `debian`, `fedora`, `opensuse`, `oraclelinux`, `redhat`, `suse`, `ubuntu`, `raspbian` |
-| os_version         | `amazon_linux_1`, `amazon_linux_2`, `arch_linux`, `centos_6`, `centos_7`, `centos_8`,  `rhel_6`, `rhel_7`, `rhel_8`, `fedora_31`, `fedora_32`, `fedora_33`, `fedora_34`, `opensuse_42`, `oracle_6`, `oracle_7`, `oracle_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8`, `centos_8` |
-| component          | `agent`, `manager` |
+| os_version         | `amazon_linux_1`, `amazon_linux_2`, `arch_linux`, `centos_6`, `centos_7`, `centos_8`,  `rhel_6`, `rhel_7`, `rhel_8`, `fedora_31`, `fedora_32`, `fedora_33`, `fedora_34`, `opensuse_42`, `oracle_6`, `oracle_7`, `oracle_8`, `suse_12`, `suse_13`, `suse_14`, `suse_15`, `buster`, `stretch`, `jessie`, `wheezy`, `bionic`, `xenial`, `trusty`, `macos_server`, `macos_catalina`, `windows_8`, `windows_7`, `windows_10`, `windows_server_2003`, `windows_server_2012`, `windows_server_2016` |
+| components         | `agent`, `manager` |
 | daemons            | `ossec-agentd`, `ossec-agentlessd`, `ossec-analysisd`, `ossec-authd`, `ossec-csyslogd`, `ossec-dbd`, `ossec-execd`, `ossec-integratord`, `ossec-logcollector`, `ossec-maild`, `ossec-monitord`, `ossec-remoted`, `ossec-reportd`, `ossec-syscheckd`, `wazuh-agentd`, `wazuh-agentlessd`, `wazuh-analysisd`, `wazuh-authd`, `wazuh-csyslogd`, `wazuh-apid`, `wazuh-clusterd`, `wazuh-db`, `wazuh-dbd`, `wazuh-execd`, `wazuh-integratord`, `wazuh-logcollector`, `wazuh-maild`, `wazuh-monitord`, `wazuh-modulesd`, `wazuh-remoted`, `wazuh-reportd`, `wazuh-syscheckd` |
 | wazuh_min_version  | `2.1`, `3.0`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.12`, `3.13`, `4.0`, `4.1`, `4.2`, `4.3` |
-| tags               | `active_response`, `alert`, `api`, `aws`, `brute_force_attack`, `cache`, `cors`, `cpe`, `dos_attack`, `download`, `enrollment`, `experimental`, `feeds`, `fim`, `gcloud`, `github`, `integrity`, `keys`, `logs`, `mitre`, `msu`, `nvd`, `oval`, `rbac`, `rules`, `scan`, `simulator`, `ssl`, `stats_file`, `time_travel`, `vulnerability` |
+| tags               | `active_response`, `agentd`, `alert`, `analysisd`, `api`, `authd`, `aws`, `brute_force_attack`, `cache`, `cluster`, `cors`, `cpe`, `dos_attack`, `download`, `enrollment`, `experimental`, `feeds`, `fim`, `gcloud`, `github`, `integrity`, `keys`, `logcollector`, `logs`, `logtest`, `mitre`, `msu`, `nvd`, `office365`, `oval`, `rbac`, `remoted`, `rids`, `rootcheck`, `rules`, `scan`, `simulator`, `ssl`, `stats_file`, `time_travel`, `vulnerability`, `vulnerability_detector`, `wazuh_db`, `wpk` |
