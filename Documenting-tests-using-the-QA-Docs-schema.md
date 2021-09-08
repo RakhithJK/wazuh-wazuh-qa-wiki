@@ -1,4 +1,4 @@
-### Introduction
+# Introduction
 
 This section describes the steps to add the documentation code to the Python modules containing the developed tests. From this code, it will be possible to generate the documentation in different formats through `DocGenerator` tool. Thanks to this solution, it will be possible to standardize the documentation for all tests and, at the same time, fit the project's requirements.
 
@@ -8,7 +8,7 @@ To build the documentation, `DocGenerator` uses the schema defined in the issue:
 &nbsp;
 
 
-### Documentation structure
+# Documentation structure
 
 The documentation code is organized in two parts:
   - **Module block**: It will be placed at the top of the Python module, and it will contain the common information for all the tests that may be in that module. 
@@ -146,11 +146,11 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
 &nbsp;
 
 
-### Schema blocks
+# Schema blocks
 
 The below tables show the fields allowed for the blocks discussed above, along with the data type and example values for these fields:
 
-#### Module block
+## Module block
 
 | Name | Type | Requirement | Description | Example case |
 |:-:|:-:|:-:|:-:|:-:|
@@ -173,7 +173,7 @@ The below tables show the fields allowed for the blocks discussed above, along w
 &nbsp;
 
 
-#### Test block
+## Test block
 
 | Name | Type | Requirement | Description | Example case |
 |:-:|:-:|:-:|:-:|:-:|
@@ -190,7 +190,7 @@ The below tables show the fields allowed for the blocks discussed above, along w
 &nbsp;
 
 
-##### Remarks
+### Remarks
 
 There are two fields whose `requirement` field contains the value `auto`:
 
@@ -201,7 +201,7 @@ There are two fields whose `requirement` field contains the value `auto`:
 &nbsp;
 
 
-#### Pre-defined values
+## Pre-defined values
 
 To avoid duplicating the content of some fields with slightly different values (use of capital letters, hyphens, etc.), certain fields should only include values that are previously defined:
 
