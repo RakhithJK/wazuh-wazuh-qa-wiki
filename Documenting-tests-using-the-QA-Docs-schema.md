@@ -166,7 +166,7 @@ The below tables show the fields allowed for the blocks discussed above, along w
 | os_vendor    | List   | Mandatory | Platform's vendor (**predefined list**).	                       | debian, arch, ...                                                                  |
 | os_version   | List   | Mandatory | Platform's version (**predefined list**).	                       | wheezy, bionic, ...                                                                |
 | references   | List   | Optional  | URLs with additional information.                                | documentation, issues, ...                                                         |
-| pytest_args  | List   | Optional  | List of dictionaries(name: value, brief) explaining the PyTest arguments that should be used when running the module. | fim_mode: value:`"realtime"` brief: `Uses real-time file monitoring...` |
+| pytest_args  | List   | Optional  | List of dictionaries(name: value, brief) explaining the PyTest arguments that should be used when running the module. | **fim_mode**: <br/> value:`"realtime"` <br/> brief: `Uses real-time file monitoring...` |
 | tags         | List   | Optional  | Labels to help identify the module (**predefined list**).        | nvd, feeds, rbac, ...                                                              |
 
 
@@ -179,11 +179,11 @@ The below tables show the fields allowed for the blocks discussed above, along w
 |:-:|:-:|:-:|:-:|:-:|
 | description       | String | Mandatory | The main description of what the test does.             | Check if vulnerability detector behaves as expected when importing...                             |
 | wazuh_min_version | String | Mandatory | Wazuh minimal version (**predefined list**).            | 4.1                                                                                               |
-| parameters        | List   | Mandatory  | List of dictionaries(name: type, brief) that describe the test parameters. | **configure_environment**: type: `fixture` brief: `Configure a custom environment for testing.` |
+| parameters        | List   | Mandatory  | List of dictionaries(name: type, brief) that describe the test parameters. | **configure_environment**: <br/> type: `fixture` <br/> brief: `Configure a custom environment for testing.` |
 | assertions        | List   | Mandatory | A list of what the module checks.                       | Verify that the user-role relationship is removed.                                                |
 | inputs            | List   |  Auto/Manual | Automatically or manually generated list of objects containing the data received by the test. | `- tags: - experimental_enabled configuration: experimental_features: true`, `- tags: - experimental_disabled configuration: experimental_features: false` |
 | input_description | String | Mandatory | Description of the data received by the test.           | Different test cases are contained in an external `YAML` file (conf.yaml) which includes API configuration parameters (IPs and ports). |
-| expected_output   | List   | Mandatory | List of strings that the test expects to find in log files or other objects for successful finish. | `INFO: \(\d+\): The update of the Debian Buster feed finished successfully.` |
+| expected_output   | List   | Mandatory | List of strings that the test expects to find in log files or other objects for a successful finish. | `INFO: \(\d+\): The update of the Debian Buster feed finished successfully.` |
 | tags              | List   | Optional  | Labels to help identify the test (**predefined list**). | active_response, dos_attack, ...                                                                   |
 
 
