@@ -57,18 +57,18 @@ os_platform:
     - windows
 
 os_vendor:
-    - redhat
-    - debian
-    - ubuntu
-    - alas
+    - amazon
+    - archlinux
     - centos
-    - arch-linux
+    - debian
+    - redhat
+    - ubuntu
     - microsoft
 
 os_version:
-    - rhel_6
-    - rhel_7
-    - rhel_8
+    - amazon_linux_1
+    - amazon_linux_2
+    - arch_linux
     - centos_6
     - centos_7
     - centos_8
@@ -76,17 +76,18 @@ os_version:
     - stretch
     - jessie
     - wheezy
+    - rhel_6
+    - rhel_7
+    - rhel_8
     - bionic
     - xenial
     - trusty
-    - amazon-linux-1
-    - amazon-linux-2
-    - windows-10
-    - windows-8
-    - windows-7
-    - windows-server-2003
-    - windows-server-2012
-    - windows-server-2016
+    - windows_7
+    - windows_8
+    - windows_10
+    - windows_server_2003
+    - windows_server_2012
+    - windows_server_2016
 
 references:
     - https://documentation.wazuh.com/current/user-manual/registering/index.html#registering-wazuh-agents
@@ -104,7 +105,7 @@ tags:
 .
 def test_agentd_connection_retries_pre_enrollment(configure_authd_server, configure_environment, get_configuration):
     # Test block
-        '''
+    '''
     description:
         Check how the agent behaves when losing communication with remoted and a new enrollment is sent to authd.
         In this case, the agent starts with keys.
