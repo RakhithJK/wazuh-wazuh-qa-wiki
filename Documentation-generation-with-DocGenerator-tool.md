@@ -1,4 +1,4 @@
-### Basic use of `DocGenerator.py`
+### Basic use of `qa-docs` tool
 
 #### Setup
 
@@ -127,7 +127,7 @@ Test info:
 #### Build documentation
 
 ```
-usage: qa-docs [-h] [-s] [-v] [-t] [-d] [-i INDEX_NAME] [-l LAUNCH_APP] [-T TEST_INPUT] [-o OUTPUT_PATH] -I TEST_DIR [-e TEST_EXIST]
+usage: qa-docs [-h] [-s] [-v] [-t] [-d] [-i INDEX_NAME] [-l LAUNCH_APP] [-T TEST_INPUT] [-o OUTPUT_PATH] -I TEST_DIR
 
 optional arguments:
   -h, --help      show this help message and exit
@@ -140,7 +140,6 @@ optional arguments:
   -T TEST_INPUT   Test name to parse.
   -o OUTPUT_PATH  Output directory path.
   -I TEST_DIR     Path where tests are located
-  -e TEST_EXIST   Checks if test exists
 ```
 When you run it using `-i INDEX_NAME`, the JSONs previously generated are indexed in elasticsearch. You can index them and run SearchUI simultaneously using `-l INDEX_NAME`. If you want to generate the doc, you need to use a `config.yaml` file that is used when you parse the tests. Also, the `-I` option is mandatory, because you specify where are located the tests that you want to parse.
 
