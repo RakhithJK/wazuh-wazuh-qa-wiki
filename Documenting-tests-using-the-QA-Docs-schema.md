@@ -48,6 +48,9 @@ modules:
 components:
     - agent
 
+path:
+    tests/integration/test_agentd/test_agentd_reconnection.py
+
 daemons:
     - wazuh-agentd
     - wazuh-remoted
@@ -56,38 +59,29 @@ os_platform:
     - linux
     - windows
 
-os_vendor:
-    - amazon
-    - archlinux
-    - centos
-    - debian
-    - redhat
-    - ubuntu
-    - microsoft
-
 os_version:
-    - amazon_linux_1
-    - amazon_linux_2
-    - arch_linux
-    - centos_6
-    - centos_7
-    - centos_8
-    - buster
-    - stretch
-    - jessie
-    - wheezy
-    - rhel_6
-    - rhel_7
-    - rhel_8
-    - bionic
-    - xenial
-    - trusty
-    - windows_7
-    - windows_8
-    - windows_10
-    - windows_server_2003
-    - windows_server_2012
-    - windows_server_2016
+    - Amazon Linux 1
+    - Amazon Linux 2
+    - Arch Linux
+    - CentOS 6
+    - CentOS 7
+    - CentOS 8
+    - Debian Buster
+    - Debian Stretch
+    - Debian Jessie
+    - Debian Wheezy
+    - Red Hat 6
+    - Red Hat 7
+    - Red Hat 8
+    - Ubuntu Bionic
+    - Ubuntu Trusty
+    - Ubuntu Xenial
+    - Windows 7
+    - Windows 8
+    - Windows 10
+    - Windows Server 2003
+    - Windows Server 2012
+    - Windows Server 2016
 
 references:
     - https://documentation.wazuh.com/current/user-manual/registering/index.html#registering-wazuh-agents
@@ -107,8 +101,9 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
     # Test block
     '''
     description:
-        Check how the agent behaves when losing communication with remoted and a new enrollment is sent to authd.
-        In this case, the agent starts with keys.
+        Check how the agent behaves when Remoted is not available and performs multiple connection attempts to it.
+        For this, the agent starts with keys but `remoted` is not available for several seconds,
+        then the agent performs multiple connection retries before requesting a new enrollment.
 
     wazuh_min_version:
         4.2
@@ -131,7 +126,6 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
         An IP address and port are used for the server using the `TCP` and `UDP` protocols.
 
     expected_output:
-        - r"Valid key received"
         - r"Sending keep alive"
 
     tags:
@@ -163,8 +157,7 @@ The below tables show the fields allowed for the blocks discussed above, along w
 | path         | String | Auto      | Relative path to the module.                                     | tests/integration/test_api/test_config/test_rbac/test_rbac_mode.py                 |
 | daemons      | List   | Mandatory | Daemons running during the test (**predefined list**).           | wazuh-db, wazuh-modulesd, ...                                                      |
 | os_platform  | List   | Mandatory | Platform where the tests should be run (**predefined list**).    | linux, windows, ...                                                                |
-| os_vendor    | List   | Mandatory | Platform's vendor (**predefined list**).	                       | debian, arch, ...                                                                  |
-| os_version   | List   | Mandatory | Platform's version (**predefined list**).	                       | wheezy, bionic, ...                                                                |
+| os_version   | List   | Mandatory | Name and version of the operating system (**predefined list**).  | Ubuntu Trusty, Centos 5, Windows Server 2016, ...                                  |
 | references   | List   | Optional  | URLs with additional information.                                | documentation, issues, ...                                                         |
 | pytest_args  | List   | Optional  | List of dictionaries(name: value, brief) explaining the PyTest arguments that should be used when running the module. | **fim_mode**: <br/> value:`"realtime"` <br/> brief: `Uses real-time file monitoring...` |
 | tags         | List   | Optional  | Labels to help identify the module (**predefined list**).        | nvd, feeds, rbac, ...                                                              |
