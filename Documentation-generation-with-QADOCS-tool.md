@@ -2,7 +2,7 @@
 
 #### Setup
 
-This tool is located within wazuh-qa framework `wazuh-qa/deps/wazuh_testing/wazuh_testing/qa_docs/`, and to run it, you must first install the requirements found in the `requirements.txt` file in the same directory:
+This tool is located within the wazuh-qa framework `wazuh-qa/deps/wazuh_testing/wazuh_testing/qa_docs/`, and to run it, you must first install the requirements found in the `requirements.txt` file in the same directory:
 
 ```
 pip install -r requirements.txt
@@ -44,8 +44,7 @@ Test info:
   - Section `Include paths`: If they do not exist, the routes to the tests to be developed/migrated will be added here. 
   - Section `Ignore paths`: This section contains paths to directories found in the `Include paths` hierarchy but does not contain tests with documentation, i. e. `data` folders.
 
-
-For more details about the configuration options see `README.md`.
+For more related info, you can read more about [here](https://github.com/wazuh/wazuh-qa/wiki/Documenting-tests-using-the-QA-Docs-schema).
 
 <details><summary>`config.yaml` example</summary>
 
