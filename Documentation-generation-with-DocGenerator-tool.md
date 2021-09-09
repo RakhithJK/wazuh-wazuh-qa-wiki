@@ -2,19 +2,19 @@
 
 #### Setup
 
-This tool is found in `wazuh-qa/docs/DocGenerator/`, and to run it, you must first install the requirements found in the `requirements.txt` file in the same directory:
+This tool is located within wazuh-qa framework `wazuh-qa/deps/wazuh_testing/wazuh_testing/qa_docs/`, and to run it, you must first install the requirements found in the `requirements.txt` file in the same directory:
 
 ```
 pip install -r requirements.txt
 ```
+Then install the wazuh-qa framework in `deps/wazuh_testing`:
+```
+python3 setup.py install
+```
 
-The `DocGenerator` configuration can be found in the `config.yaml` file. This already contains a pre-established configuration for generating test documentation. The settings to be considered when creating new documentation are as follows:
+The `qa_docs/doc_generator` configuration can be found in the `config.yaml` file. This already contains a pre-established configuration for generating test documentation. The settings to be considered when creating new documentation are as follows:
 
 ```yaml
-Project path: String with the project path
-
-Output path: String with the path where you want to locate a folder with the doc parsed
-
 Include paths: List of folders to parse 
 
 Include regex: List of regular expressions to parse specific files
@@ -34,6 +34,11 @@ Output fields:
     Optional: List of optional fields
 
 Test cases field: Key to identify a Test Case list
+
+Module info:
+  - output_name_you_want: doc_field_you_want
+Test info:
+  - output_name_you_want: doc_field_you_want
 ```
 
   - Section `Include paths`: If they do not exist, the routes to the tests to be developed/migrated will be added here. 
@@ -45,13 +50,13 @@ For more details about the configuration options see `README.md`.
 <details><summary>`config.yaml` example</summary>
 
 ```yaml
-Project path: "../../tests/integration"
-
-Output path: "../output"
-
 Include paths:
-  - "../../tests/integration/test_wazuh_db"
-  - "../../tests/integration/test_vulnerability_detector"
+  - "integration/test_active_response"
+  - "integration/test_api"
+  - "integration/test_wazuh_db"
+  - "integration/test_vulnerability_detector"
+  - "integration/test_remoted"
+  - "integration/test_agentd"
 
 Include regex:
   - "^test_.*py$"
@@ -63,30 +68,56 @@ Function regex:
   - "^test_"
 
 Ignore paths:
-  - "../../tests/integration/test_wazuh_db/data"
+  - "integration/test_active_response/test_execd/data"
+  - "integration/test_api/test_config/test_cache/data"
+  - "integration/test_api/test_config/test_cors/data"
+  - "integration/test_api/test_config/test_DOS_blocking_system/data"
+  - "integration/test_api/test_config/test_drop_privileges/data"
+  - "integration/test_api/test_config/test_experimental_features/data"
+  - "integration/test_api/test_config/test_host_port/data"
+  - "integration/test_api/test_config/test_https/data"
+  - "integration/test_api/test_config/test_jwt_token_exp_timeout/data"
+  - "integration/test_api/test_config/test_logs/data"
+  - "integration/test_api/test_config/test_rbac/data" 
+  - "integration/test_api/test_config/test_request_timeout/data"
+  - "integration/test_api/test_config/test_use_only_authd/data"
+  - "integration/test_wazuh_db/data"
+  - "integration/test_api/test_config/test_bruteforce_blocking_system/data"
 
 Output fields:
   Module:
     Mandatory:
       - brief
-      - metadata:
-        - modules
-        - daemons
-        - component
-        - operating_system
-        - tiers
+      - category
+      - modules
+      - daemons
+      - component
+      - os_platform
+      - os_vendor
+      - os_version
+      - tiers
     Optional:
       - tags
   Test:
     Mandatory:
-      - test_logic
-      - checks
+      - description
+      - wazuh_min_version
+      - parameters
+      - behaviour
+      - expected_behaviour
     Optional:
-      - expected_result
-      - test_cases
+      - status 
 
 Test cases field: test_cases
 
+Module info:
+  - test_system: os_platform
+  - test_vendor: os_vendor
+  - test_version: os_version
+  - test_target: component
+
+Test info:
+  - test_wazuh_min_version: wazuh_min_version
 ```
 
 </details>
@@ -95,28 +126,52 @@ Test cases field: test_cases
 
 #### Build documentation
 
-usage: `DocGenerator.py [-h] [-s] [-v] [-t] [-d] [-i INDEX_NAME] [-l LAUNCH_INDEX_NAME]`
+```
+usage: qa-docs [-h] [-s] [-v] [-t] [-d] [-i INDEX_NAME] [-l LAUNCH_APP] [-T TEST_INPUT] [-o OUTPUT_PATH] -I TEST_DIR [-e TEST_EXIST]
 
 optional arguments:
- - `-h`, `--help`     show this help message and exit
- - `-s`             Run a sanity check
- - `-v`             Print version
- - `-t`             Test configuration
- - `-d`             Enable debug messages.
- - `-i` INDEX_NAME  Indexes the data to elasticsearch.
- - `-l` LAUNCH_INDEX_NAME  Indexes the data and launch the application.
-
-When you run it using `-i INDEX_NAME`, the JSONs previously generated are indexed in elasticsearch. You can index them and run SearchUI simultaneously using `-l INDEX_NAME`. If you want to generate the doc, you need to use a `config.yaml` file that is used when you parse the tests.
-
-
-
-To generate the documentation in `YAML` and `JSON` formats, just run the tool without arguments:
+  -h, --help      show this help message and exit
+  -s              Run a sanity check
+  -v              Print version
+  -t              Test configuration
+  -d              Enable debug messages.
+  -i INDEX_NAME   Indexes the data to elasticsearch.
+  -l LAUNCH_APP   Indexes the data and launch the application.
+  -T TEST_INPUT   Test name to parse.
+  -o OUTPUT_PATH  Output directory path.
+  -I TEST_DIR     Path where tests are located
+  -e TEST_EXIST   Checks if test exists
 ```
-python3 DocGenerator.py
+When you run it using `-i INDEX_NAME`, the JSONs previously generated are indexed in elasticsearch. You can index them and run SearchUI simultaneously using `-l INDEX_NAME`. If you want to generate the doc, you need to use a `config.yaml` file that is used when you parse the tests. Also, the `-I` option is mandatory, because you specify where are located the tests that you want to parse.
+
+### Examples:
+
+To generate the documentation in `YAML` and `JSON` formats, just run using the tests to parse:
+```
+qa-docs -I ../../tests
 ```
 
-The documentation is generated in `Output path` from `config.yaml`.
+Then, you can index them:
+```
+qa-docs -I ../../tests -i qa-doc
+```
 
+And run SearchUI so you can visualize the doc via web browser:
+```
+qa-docs -I ../../tests -l qa-doc
+```
+
+Also, test requirements can be parsed:
+```
+(docgen) luisgr@luisgr-pc:~/work/wazuh-qa/deps/wazuh_testing$ qa-docs -I ../../tests/ -T test_cache
+test_api/test_config/test_cache/test_cache.py: 4
+
+test_system: ['linux']
+test_vendor: ['redhat', 'debian', 'ubuntu', 'alas', 'arch-linux', 'centos']
+test_version: ['centos6', 'centos7', 'centos8', 'rhel6', 'rhel7', 'rhel8', 'buster', 'stretch', 'wheezy', 'bionic', 'xenial', 'trusty', 'amazon-linux-1', 'amazon-linux-2']
+test_target: ['manager']
+test_wazuh_min_version: 4.2
+``` 
 ---
 
 ## Examples of documentation generated
