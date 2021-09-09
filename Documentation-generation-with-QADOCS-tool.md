@@ -174,7 +174,7 @@ test_wazuh_min_version: 4.2
 
 ## Examples of documentation generated
 
-- vulnerability detector
+#### vulnerability detector
 
 <details><summary>test_scan_nvd_feed.json</summary>
 
@@ -331,7 +331,7 @@ test_wazuh_min_version: 4.2
 ```
 </details>
 
-- remoted
+#### remoted
 
 <details><summary> test_request_agent_info.json</summary>
 
