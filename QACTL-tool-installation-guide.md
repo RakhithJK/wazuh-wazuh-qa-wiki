@@ -30,6 +30,7 @@ In order to install `qa-ctl` tool, you must have the following dependencies inst
 ```bash
 git clone https://github.com/wazuh/wazuh-qa --depth 1 --branch=master $(pwd)/wazuh-qa && \
 cd wazuh-qa* && \
+python3 -m pip install --upgrade pip && \
 python3 -m pip install -r requirements.txt --no-cache-dir --upgrade --only-binary=:cryptography,grpcio: --ignore-installed && \
 cd deps/wazuh_testing && \
 python3 setup.py install
