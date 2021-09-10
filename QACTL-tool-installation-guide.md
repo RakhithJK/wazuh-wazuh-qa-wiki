@@ -11,6 +11,7 @@ In order to install `qa-ctl` tool, you must have the following dependencies inst
 
 **System dependencies**
 
+- `Build-Essentials`: [How to install](https://howtoprogram.xyz/2016/06/28/install-build-essentials-for-centos-rhel-and-ubuntu/)
 - `Python` (>=3.6.0): [How to install](https://docs.python-guide.org/starting/install3/linux/)
 - `Python-pip` (>=21.2.4): [How to install](https://www.tecmint.com/install-pip-in-linux/)
 - `Python3-devtools`: [How to install](https://py-generic-project.readthedocs.io/en/latest/installing.html)
