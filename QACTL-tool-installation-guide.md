@@ -1,5 +1,3 @@
-# QACTL tool installation guide
-
 ## Supported OS
 
 **This tool must be run on a linux host system**. We are working to add support for Windows and macOS systems.
