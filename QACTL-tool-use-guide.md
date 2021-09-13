@@ -13,6 +13,7 @@
 - [Setting up a configuration file](#setting-up-a-configuration-file)
   - [Infrastructure deployment module](#infrastructure-deployment-module)
   - [Provisioning module](#provisioning-module)
+  - [Test launch module](#test-launch-module)
   - [Configuration module](#configuration-module)
   - [YAML configuration file examples](#yaml-configuration-file-examples)
 
@@ -346,8 +347,13 @@ provision:
 - `wazuh_install_path`: Path where Wazuh will be installed. This field is not required and by
                         default the path defined will be `/var/ossec`.
 - `healt_check`: Boolean that determinates if health check is performed.
+  
+**QA framework section**
 
-**Test launch module**
+- `wazuh_qa_branch`: Branch containing the qa wazuh framework desired.
+- `qa_workdir`: Defines the path where the qa repo will be located.
+
+### Test launch module
 
 ```yaml
 tests:
