@@ -45,11 +45,11 @@ Check if it is installed with `qa-ctl -h`, you will see the help menu.
 
 This tool has the following parameters:
 
-- `-c, --config <file_path>`: Specifies the custom configuration file to be used in `qa-ctl`
+- `-c, --config <file_path>`: Specifies the custom configuration file to be used in `qa-ctl`.
 - `-d, --dry-run`: Mode to simulate and create the configuration file from one or a set of tests.
 - `-h, --help`: Show `qa-ctl` help menu.
 - `-p, --persistent`: If specified, the environment will not be destroyed after finishing.
-- `-r, --run <test_name_1> <test_name_2> ...`: Set automatic mode. Launches the tests and returns the results
+- `-r, --run <test_name_1> <test_name_2> ...`: Set automatic mode. Launches the tests and returns the results.
 - `-v, --version <version>`: Specify the version of wazuh to use. If not set, the latest released version will be used.
 
 ### Parameter restrictions
@@ -133,7 +133,7 @@ Hybrid mode that mixes automatic and manual. The objective is to automatically g
 the information of the tests, so that later the user can edit and use it.
 
 Useful when you want to change some small aspect of the default configuration. First the configuration file is
-generated with the information of the tests, it is modified and then it is launched in manual mode
+generated with the information of the tests, it is modified and then it is launched in manual mode.
 
 To use this mode, we have to specify the parameter `-d`, `--dry-run` along with `-r`, `--run`.
 
@@ -155,25 +155,25 @@ $ qa-ctl -d -r test_general_settings_enabled
 
 ### Examples
 
-- Launch a single test
+- Launch a single test.
 
 ```bash
 qa-ctl -r <test_name>
 ```
 
-- Launch multiple tests (In parallel using different environments)
+- Launch multiple tests (In parallel using different environments).
 
 ```bash
 qa-ctl -r <test_name_1> <test_name_2> ...
 ```
 
-- Launch a test with a specific version of Wazuh
+- Launch a test with a specific version of Wazuh.
 
 ```bash
 qa-ctl -r <test_name> -v <wazuh_version>
 ```
 
-- Launch tests with a custom `qa-ctl` configuration (tests are include in the configuration file)
+- Launch tests with a custom `qa-ctl` configuration (tests are include in the configuration file).
 
 ```bash
 qa-ctl -c <config_file_path>
@@ -252,7 +252,7 @@ deployment:
 - `ip`: Assign a static IP to the container. To do this, we need to create a docker network based on the
         specified network (to not create as many networks as containers specified in the dockerfile, only one network
         is allowed). The mask of the network is `/24`. If this option is not specified, the container won't have a
-        static IP
+        static IP.
 - `remove`: Remove the container. Defaults to `False`.
 - `Ports`: Ports to bind to the container. This field is a python dictionary where the keys are the ports to bind
            inside the container in the form port/protocol, and the values are integers corresponding to the ports we
