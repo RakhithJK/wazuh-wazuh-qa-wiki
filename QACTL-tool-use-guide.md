@@ -2,21 +2,19 @@
 
 ## Table of contents
 
-- [QACTL tool use guide](#qactl-tool-use-guide)
-  * [Table of contents](#table-of-contents)
-  * [Introduction](#introduction)
-  * [How to use it](#how-to-use-it)
-    + [Parameter restrictions](#parameter-restrictions)
-    + [Modes of use](#modes-of-use)
-      - [Automatic: Launch tests and get results](#automatic--launch-tests-and-get-results)
-      - [Manual: Specify configuration parameters to launch the tests](#manual--specify-configuration-parameters-to-launch-the-tests)
-      - [Simulated: Generate configuration file](#simulated--generate-configuration-file)
-    + [Examples](#examples)
-  * [Setting up a configuration file](#setting-up-a-configuration-file)
-    + [Infrastructure deployment module](#infrastructure-deployment-module)
-    + [Provisioning module](#provisioning-module)
-    + [Configuration module](#configuration-module)
-    + [YAML configuration file examples](#yaml-configuration-file-examples)
+- [Introduction](#introduction)
+- [How to use it](#how-to-use-it)
+  - [Parameter restrictions](#parameter-restrictions)
+  - [Modes of use](#modes-of-use)
+    - [Automatic: Launch tests and get results](#automatic-launch-tests-and-get-results)
+    - [Manual: Specify configuration parameters to launch the tests](#manual-specify-configuration-parameters-to-launch-the-tests)
+    - [Simulated: Generate configuration file](#simulated-generate-configuration-file)
+  - [Examples](#examples)
+- [Setting up a configuration file](#setting-up-a-configuration-file)
+  - [Infrastructure deployment module](#infrastructure-deployment-module)
+  - [Provisioning module](#provisioning-module)
+  - [Configuration module](#configuration-module)
+  - [YAML configuration file examples](#yaml-configuration-file-examples)
 
 ## Introduction
 
@@ -41,7 +39,7 @@ The next image shows a flow diagram of how the tool works:
 
 ## How to use it
 
-First, you have to [install]((https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-installation-guide)) the `qa-ctl` tool.
+First, you have to [install](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-installation-guide) the `qa-ctl` tool.
 
 Check if it is installed with `qa-ctl -h`, you will see the help menu.
 
@@ -211,7 +209,7 @@ deployment:
     host1:
       provider:
         vagrant:
-          enabled: True/False (Required)
+          enabled: Boolean (Required)
           vagrantfile_path: String (Required)
           vagrant_box: String (Required)
           vm_memory: Number(int) (Required)
@@ -224,15 +222,15 @@ deployment:
      host2:
         provider:
           docker:
-            enabled: True/False (Required)
+            enabled: Boolean (Required)
             dockerfile_path: String (Required)
             name: String (Required)
             ip: String (Optional) Default: None
-            remove: True/False (Optional) default: False
-            ports: Dict (optional) default: Empty
-            detach: True/False (Optional) default: True
-            stdout: True/False (Optional) default: False
-            stderr: True/False (Optional) default: False
+            remove: Boolean (Optional) Default: False
+            ports: Dict (optional) Default: Empty
+            detach: Boolean (Optional) Default: True
+            stdout: Boolean (Optional) Default: False
+            stderr: Boolean (Optional) Default: False
 ```
 
 **Vagrant deployment**
@@ -244,7 +242,7 @@ deployment:
 - `vm_cpu`: Number of CPUs assigned to the VM.
 - `vm_system`:  VM operative system.
 - `Label`: Assign a label to the VM.
-- `vm_ip`: assigned IP for the VM
+- `vm_ip`: assigned IP for the VM.
 
 **Docker deployment**
 
@@ -255,13 +253,13 @@ deployment:
         specified network (to not create as many networks as containers specified in the dockerfile, only one network
         is allowed). The mask of the network is `/24`. If this option is not specified, the container won't have a
         static IP
-- `remove`: Remove the container. Defaults to False.
+- `remove`: Remove the container. Defaults to `False`.
 - `Ports`: Ports to bind to the container. This field is a python dictionary where the keys are the ports to bind
            inside the container in the form port/protocol, and the values are integers corresponding to the ports we
            want to open in the host.
-- `detach`: Run the container in the background. Defaults to True.
-- `stdout`: Return logs from STDOUT when detach=False.
-- `stderr`: Return logs from STDERR when detach=False.
+- `detach`: Run the container in the background. Defaults to `True`.
+- `stdout`: Return logs from STDOUT when detach=`False`.
+- `stderr`: Return logs from STDERR when detach=`False`.
 
 ### Provisioning module
 
@@ -280,14 +278,15 @@ provision:
         wazuh_deployment:
           type: String(Required)
           target: String (Required)
-          manager_ip: String (conditional requirement)
-          wazuh_branch: String (conditional requirement)
-          s3_package_url: String (conditional requirement)
-          local_package_path: String (conditional requirement)
-          system: String (conditional requirement)
-          version: String (conditional requirement)
-          revision: String (conditional requirement)
-          repository: String (conditional requirement)
+          manager_ip: String (Optional)
+          wazuh_branch: String (Optional)
+          s3_package_url: String (Optional)
+          local_package_path: String (Optional)
+          system: String (Optional) Possible values: rpm, deb, windows, macos, solaris10, 
+          solaris11, rpm5, wpk-linux, wpk-windows
+          version: String (Optional)
+          revision: String (Optional)
+          repository: String (Optional)
           installation_files_path: String (Required)
           wazuh_install_path: String
           healt_check: Boolean
@@ -308,25 +307,27 @@ provision:
 
 **Wazuh deployment section**
 
-- `type`: Type of the installation method. This value can be either 'sources' or 'package'.
+- `type`: Type of the installation method. This value can be either `sources` or `package`.
 - `target`: Target of the Wazuh installation. This field can take only two different values:
   - `manager`: In case we want to install wazuh manager.
   - `agent`: In case we want to install wazuh agent.
-- `manager_ip`: It contains the manager IP to get connected. This field will be required only when the target
-                specified is 'agent'.
-- `wazuh_branch`: It contains the branch containing the desired wazuh installation files. This field is only
-                  required when `type` has the value 'sources'.
-- `s3_package_url`: It contains the url of a wazuh s3 package to download. This parameter is only required under
+- `manager_ip`: Manager IP to get connected. This field will be required only when the target
+                specified is `agent`.
+- `wazuh_branch`: Branch containing the desired wazuh installation files. This field is only
+                  required when `type` has the value `sources`.
+- `s3_package_url`: URL of a Wazuh s3 package to download. This parameter is only required under
                     two conditions:
   - `type` field has to have `package` selected as the parameter.
-  - The field `local_package_path` doesn't have to be defined.
-  - None of the fields `system`, `version`, `revision`, and `repository` are given.
-- `local_package_path`: It contains the local path where the wazuh package is located. As with s3_package_url,
+  - None of the fields, `local_package_path`,  `system`, `version`, `revision`, and `repository` are given.
+- `local_package_path`: Local path where the wazuh package is located. As with `s3_package_url`,
                         this field will also be required under two conditions:
   - The field `type` has to have `package` selected as the parameter.
-  - The field `s3_package_url` doesn't have to be defined.
-  - None of the fields `system`, `version`, `revision`, and `repository` are given.
-- `system`: System type of the machine where Wazuh is going to be installed. This parameter is only required under
+  - None of the fields, `s3_package_url`, `system`, `version`, `revision`, and `repository` are given.
+- `system`: System type of the machine where Wazuh is going to be installed. The available values for this parameter are: `rpm, deb, windows, macos, solaris10, 
+          solaris11, rpm5, wpk-linux, and wpk-windows`.
+    > **Note**:  If the fields `version, revision and repository` are not given along with this field itself, there will be a validation error.
+
+  This parameter is only required under
             two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
@@ -341,8 +342,8 @@ provision:
 - `repository`: S3 Repository where the Wazuh package is located. This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
-- `installation_files_path`: It contains the path where to place Wazuh repo.
-- `wazuh_install_path`: It contains the path where wazuh will be installed. This field is not required and by
+- `installation_files_path`: Path where to place all the downloaded Wazuh installation files.
+- `wazuh_install_path`: Path where Wazuh will be installed. This field is not required and by
                         default the path defined will be `/var/ossec`.
 - `healt_check`: Boolean that determinates if health check is performed.
 
@@ -399,22 +400,22 @@ tests:
 - `path`: This subsection field holds three different paths, all of them required:
   - `test_files_path`: The path pointing to the folder containing the desired tests to be launched.
   - `run_tests_dir_path`: The path to the folder from where we want to run the tests (can be different from
-                          test_files_path)
+                          `test_files_path`).
   - `test_results_path`: The path to the folder in the local machine where the test reports will be stored.
 
 **Parameters section**
 
-- `tiers`: a list containing all the tiers to launch.
-- `stop_after_first_failure`: -x option, stop the execution after the first failure. Default value set to false.
-- `keyword_expression`: it works along test_files_path, if this value is empty then run all the tests in test_file_path.
+- `tiers`: A list containing all the tiers to launch.
+- `stop_after_first_failure`: -x option, stop the execution after the first failure. Default value set to `false`.
+- `keyword_expression`: It works along `test_files_path`, if this value is empty then run all the tests in `test_file_path`.
                         If it’s not empty, then there must be a valid regex to select specific tests in that folder.
-                        By default is set to None.
-- `traceback`: modify the traceback printing of python [auto, long, short, native, line, no]. Default value set to auto.
-- `dry_run`: collects all the tests but doesn’t run them. By default is set to false.
-- `custom_args`: a list containing a string of space-separated values, corresponding to key-value pair.
-- `verbose_level`: add the option --verbose. By default is set to false.
-- `log_level`: sets the log level for the tests. By default is set to None.
-- `markers`: allow adding markers to pytest command. If the test has a decorator with the same marker, then it will
+                        By default is set to `None`.
+- `traceback`: Modify the traceback printing of python, its possible values are `auto, long, short, native, line, no`. Default value set to `auto`.
+- `dry_run`: Collects all the tests but doesn’t run them. By default is set to `false`.
+- `custom_args`: A list containing a string of space-separated values, corresponding to key-value pair.
+- `verbose_level`: Add the option `--verbose`. By default is set to `false`.
+- `log_level`: Sets the log level for the tests. By default is set to `None`.
+- `markers`: Allow adding markers to pytest command. If the test has a decorator with the same marker, then it will
              run. The format is a list of strings with each one desired marked.
 
 ### Configuration module
@@ -429,15 +430,15 @@ config:
         file: String
 ```
 
-- `vagrant_output`: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(true) or
-                    if they remain with the default outputs (false)
-- `ansible_output`: Field that defines if the ansible's outputs are going to be replaced by customized outputs(true) or
-                    if they remain with the default outputs (false)
+- `vagrant_output`: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(`true`) or
+                    if they remain with the default outputs (`false`).
+- `ansible_output`: Field that defines if the ansible's outputs are going to be replaced by customized outputs(`true`) or
+                    if they remain with the default outputs (`false`).
 - `logging`:
-  - `enable`: This field is used for enabling(true) or disabling(false) the logging outputs option
+  - `enable`: This field is used for enabling(`true`) or disabling(`false`) the logging outputs option.
   - `level`: This field defines the logging level for the outputs. Four options are
-             available: `DEBUG, INFO, WARNING, ERROR, CRITICAL`
-  - `file`: This field defines a path for a file where the outputs will be logged as well
+             available: `DEBUG, INFO, WARNING, ERROR, CRITICAL`.
+  - `file`: This field defines a path for a file where the outputs will be logged as well.
 
 > **Note**: It is recommended to set `vagrant_output` and `ansible_output` to `False`, and `logging/enable` to `True` \
 (default values) in order to get a clean detail and report on the status of the process.
@@ -486,7 +487,7 @@ config:
 </details>
 
 - Provisioning the vagrant machine created before with a wazuh manager using a S3 URL as a provider of the package and
-  selecting the wazuh qa framework from the `master` branch
+  selecting the wazuh qa framework from the `master` branch.
   <details>
     <summary>yaml configuration</summary>
 
