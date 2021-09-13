@@ -1,5 +1,3 @@
-# QACTL tool use guide
-
 ## Table of contents
 
 - [Introduction](#introduction)
