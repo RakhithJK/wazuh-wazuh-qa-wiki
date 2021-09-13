@@ -8,7 +8,8 @@ Welcome to the wazuh-qa wiki!
     * [Default configuration files](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Default-ossec.conf-files)
     * [Test workflow explanation and diagram](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Test-workflow-explanation-and-diagram)
     * [Example test execution record](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests:-Example-test-execution)
-* [QACTL tool installation guide](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-installation-guide)
-* [QACTL tool use guide](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-use-guide)
+* [QACTL tool](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool)
+  * [QACTL tool installation guide](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-installation-guide)
+  * [QACTL tool use guide](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-use-guide)
 
 
