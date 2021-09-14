@@ -72,12 +72,48 @@ The aim of this article is to show the necessary parameters to be able to launch
   <td>&nbsp;</td>
  </tr>
 
+ <tr>
+  <td>Remoted</td>
+  <td>Manager - Linux</td>
+  <td>remoted.debug=2<br/>wazuh_database.interval=1<br/>wazuh_db.commit_time=2<br/>wazuh_db.commit_time_max=3<br/>monitord.rotate_log=0</td>
+  <td>&nbsp;</td>
+ </tr>
 
+ <tr>
+  <td>Rids</td>
+  <td>Manager - Linux</td>
+  <td></td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>Rootcheck</td>
+  <td>Manager - Linux</td>
+  <td></td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>Vulnerability Detector</td>
+  <td>Manager - Linux</td>
+  <td>wazuh_modules.debug=2<br/>monitord.rotate_log=0</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>WazuhDB</td>
+  <td>Manager - Linux</td>
+  <td>wazuh_modules.debug=2<br/>monitord.rotate_log=0</td>
+  <td>--wpk_version=v4.x.x</td>
+ </tr>
 
-
-
-
-
+ <tr>
+  <td rowspan="2">WPK</td>
+  <td>(Manager, Agent) - Linux</td>
+  <td>wazuh_modules.debug=2</td>
+  <td>&nbsp;</td>
+ </tr>
+  <td>Agent - Windows</td>
+  <td>windows.debug=2</td>
+  <td>--wpk_version=v4.x.x</td>
+ </tr>
 
 </table>
 
