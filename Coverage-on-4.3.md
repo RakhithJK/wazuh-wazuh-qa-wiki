@@ -1,4 +1,4 @@
-## Coverage on 4.3
+## General 
 
 
 <table style="height: 306px;">
@@ -251,3 +251,4 @@ Details: [Here](https://github.com/wazuh/wazuh-qa/issues/1769)
 
 
 Details: [Here](https://github.com/wazuh/wazuh-qa/issues/1871)
+
