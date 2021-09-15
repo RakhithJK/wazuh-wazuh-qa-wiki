@@ -1,8 +1,9 @@
 # Index
 `Integration Tests` is the section that will allow you to know about:
- - [How to run tests](https://github.com/wazuh/wazuh-qa/wiki/Integration-Tests-Parameters-guide).
- - [Coverage of tests](https://github.com/wazuh/wazuh-qa/wiki/Coverage).
- - Releases Analysis.
+  * [How to run tests](https://github.com/wazuh/wazuh-qa/wiki/Integration-Tests-Parameters-guide).
+  * [Coverage of tests](https://github.com/wazuh/wazuh-qa/wiki/Coverage).
+  * Releases Analysis.
+
 
 # Parameters guide
 The aim of this article is to show the necessary parameters to be able to launch all the integration tests of the wazuh-qa repository.
