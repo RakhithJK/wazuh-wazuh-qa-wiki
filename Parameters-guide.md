@@ -116,5 +116,3 @@ The aim of this article is to show the necessary parameters to be able to launch
  </tr>
 
 </table>
-
-## Header 2
