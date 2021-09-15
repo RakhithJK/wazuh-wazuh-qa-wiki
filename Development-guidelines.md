@@ -39,4 +39,4 @@ f"{var}string"
 ## Documentation
 ### Docstring
 - Doctrings will follow google docstring style guide: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
-- QA Schema https://github.com/wazuh/wazuh-qa/wiki/Documenting-tests-using-the-QA-Docs-schema
+- QA Schema https://github.com/wazuh/wazuh-qa/wiki/Documenting-tests-using-the-qadocs-schema
