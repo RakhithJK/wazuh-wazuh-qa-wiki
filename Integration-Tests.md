@@ -3,5 +3,5 @@
  - [How to run tests](https://github.com/wazuh/wazuh-qa/wiki/Integration-Tests-Parameters-guide).
  - [Coverage of tests](https://github.com/wazuh/wazuh-qa/wiki/Coverage).
  - Releases Analysis.
- - [Test link](https://github.com/wazuh/wazuh-qa/wiki/Parameters-guide).
+ - [Test link](https://github.com/wazuh/wazuh-qa/wiki/Parameters-guide#header-2).
 
