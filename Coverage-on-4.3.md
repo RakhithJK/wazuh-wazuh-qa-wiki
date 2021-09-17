@@ -226,6 +226,8 @@
 
 Details: [Here](https://github.com/wazuh/wazuh-qa/issues/1769)
 
+------------------------------------------------------------------
+
 ## Coverage of Demo
 
 | Case  |  Covered  | Note |
