@@ -142,7 +142,7 @@ These tests should be run using tiers 0,1 and 2 : `--tier 0 --tier 1 --tier 2`
     wazuh_modules.debug=2
     monitord.rotate_log=0  
     ```
-  - Add credentials to `tests/integration/test_gcloud/data/configuration.yaml` with the following template:
+  - Add credentials to `tests/integration/test_gcloud/data/configuration.yaml` using the following format:
 
 ```
 ---
