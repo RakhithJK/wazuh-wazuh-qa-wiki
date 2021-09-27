@@ -135,12 +135,26 @@ These tests should be run using tiers 0,1 and 2 : `--tier 0 --tier 1 --tier 2`
 - **Target**: manager or agent (manager preferred)
 - **Self-configured tests**: No 
 - **Custom configuration**:
+  - `local_internal_options`:
+
     ``` 
     analysisd.debug=2
     wazuh_modules.debug=2
     monitord.rotate_log=0  
     ```
+  - Add credentials to `tests/integration/test_gcloud/data/configuration.yaml` with the following template:
 
+```
+---
+project_id: "your_project_id_here"
+topic: "your_topic_name_here"
+subscription: "your_subscription_name_here"
+credential_path: 'gcp_credentials.json'
+credentials: |
+  {
+  "credentials": "Your GCP credentials go here"
+  }
+```
 ---
 
 ## logcollector
