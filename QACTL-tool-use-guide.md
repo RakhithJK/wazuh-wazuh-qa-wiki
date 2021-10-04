@@ -563,14 +563,14 @@ config:
       provider:
         vagrant:
           enabled: True
-            vagrantfile_path: '/tmp'
-            vagrant_box: 'qactl/ubuntu_20_04'
-            vm_memory: 1024
-            vm_cpu: 2
-            vm_name: 'ubu20'
-            vm_system: 'Linux'
-            label: 'qactl'
-            vm_ip: '172.16.1.10'
+          vagrantfile_path: '/tmp'
+          vagrant_box: 'qactl/ubuntu_20_04'
+          vm_memory: 1024
+          vm_cpu: 2
+          vm_name: 'ubu20'
+          vm_system: 'Linux'
+          label: 'qactl'
+          vm_ip: '172.16.1.10'
 
   provision:
     hosts:
