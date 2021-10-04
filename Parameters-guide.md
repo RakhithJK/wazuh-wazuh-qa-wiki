@@ -101,18 +101,18 @@ The aim of this article is to show the necessary parameters to be able to launch
   <td>WazuhDB</td>
   <td>Manager - Linux</td>
   <td>wazuh_modules.debug=2<br/>monitord.rotate_log=0</td>
-  <td>--wpk_version=v4.x.x</td>
+  <td></td>
  </tr>
 
  <tr>
   <td rowspan="2">WPK</td>
   <td>(Manager, Agent) - Linux</td>
   <td>wazuh_modules.debug=2</td>
-  <td>&nbsp;</td>
+  <td>--wpk_version=v4.x.x --wpk_package_path='packages-dev.wazuh.com/folder_name/wpk/'</td>
  </tr>
   <td>Agent - Windows</td>
   <td>windows.debug=2</td>
-  <td>--wpk_version=v4.x.x</td>
+  <td>--wpk_version=v4.x.x  --wpk_package_path='packages-dev.wazuh.com/folder_name/wpk/'</td>
  </tr>
 
 </table>
