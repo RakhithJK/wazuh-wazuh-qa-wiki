@@ -2,18 +2,18 @@
 
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
-  - [Parameter restrictions](#parameter-restrictions)
-  - [Modes of use](#modes-of-use)
-    - [Automatic: Launch tests and get results](#automatic-launch-tests-and-get-results)
-    - [Manual: Specify configuration parameters to launch the tests](#manual-specify-configuration-parameters-to-launch-the-tests)
-    - [Simulated: Generate configuration file](#simulated-generate-configuration-file)
-  - [Examples](#examples)
+  * [Parameter restrictions](#parameter-restrictions)
+  * [Modes of use](#modes-of-use)
+    + [Automatic: Launch tests and get results](#automatic--launch-tests-and-get-results)
+    + [Manual: Specify configuration parameters to launch the tests](#manual--specify-configuration-parameters-to-launch-the-tests)
+    + [Mixed: generate an environment with automatic mode and then reused it in manual mode.](#mixed--generate-an-environment-with-automatic-mode-and-then-reused-it-in-manual-mode)
+  * [Examples](#examples)
 - [Setting up a configuration file](#setting-up-a-configuration-file)
-  - [Infrastructure deployment module](#infrastructure-deployment-module)
-  - [Provisioning module](#provisioning-module)
-  - [Test launch module](#test-launch-module)
-  - [Configuration module](#configuration-module)
-  - [YAML configuration file examples](#yaml-configuration-file-examples)
+  * [Infrastructure deployment module](#infrastructure-deployment-module)
+  * [Provisioning module](#provisioning-module)
+  * [Test launch module](#test-launch-module)
+  * [Configuration module](#configuration-module)
+  * [YAML configuration file examples](#yaml-configuration-file-examples)
 
 ## Introduction
 
@@ -45,17 +45,32 @@ Check if it is installed with `qa-ctl -h`, you will see the help menu.
 This tool has the following parameters:
 
 - `-c, --config <file_path>`: Specifies the custom configuration file to be used in `qa-ctl`.
-- `-d, --dry-run`: Mode to simulate and create the configuration file from one or a set of tests.
+- `-d, --debug`: Run in debug mode. You can increase the debug level with more [-d+]:
+   - `-d`: Show `qa-ctl` debug logs.
+   - `-dd`: Show `vagrant` and `ansible` output in logs.
 - `-h, --help`: Show `qa-ctl` help menu.
 - `-p, --persistent`: If specified, the environment will not be destroyed after finishing.
 - `-r, --run <test_name_1> <test_name_2> ...`: Set automatic mode. Launches the tests and returns the results.
 - `-v, --version <version>`: Specify the version of wazuh to use. If not set, the latest released version will be used.
+- `--dry-run`: Config generation mode. The test data will be processed and the configuration will be generated without running anything.
+- `--no-validation`: Disable the script parameters validation.
+- `--no-validation-logging`: Disable parameters validation logging. Useful when it is run inside a docker container.
+- `--qa-branch <repository_branch>`:  Set a custom wazuh-qa branch to use in the run and provisioning. This has higher priority than the specified in the configuration file.
+- `--skip-deployment`: Flag to skip the deployment phase. Set it only if `-c` or `--config` (manual mode) was specified.
+- `--skip-provisioning`: Flag to skip the provisioning phase. Set it only if `-c` or `--config` (manual mode) was specified. 
+- `--skip-testing`: Flag to skip the testing phase. Set it only if `-c` or `--config` (manual mode) was specified.
 
 ### Parameter restrictions
 
 - `-r`, `--run` cannot be launched with the `-c`, `--config` parameter. They represent independent modes.
-- `-d`, `--dry-run` only can be launch with `r`, `--run` mode (incompatible with `-c`, `--config`).
+- `-d`, `--dry-run` can only be launched with `r`, `--run` (automatic mode).
 - `-v`, `--version` parameter has to be in `x.y.z` format. For example `4.2.1`.
+- `-v`, `--version` can only be launched with `r`, `--run` (automatic mode).
+- `-v`, `--version` value has to correspond to a released version of Wazuh.
+- `--skip-deployment`, `--skip-provisioning`, `--skip-testing` can only be launched with `-c`, `--config` (manual mode).
+- `--qa-branch` value must exist.
+- `-r`, `--run` values has to correspond to existing and documented tests of the specified branch of the wazuh-qa repository.
+
 
 ### Modes of use
 
@@ -76,7 +91,7 @@ qa-ctl -r <test_name_1> <test_name_2> ...
 <summary>For example:</summary>
 
 ```
-$ qa-ctl -r test_general_settings_enabled
+qa-ctl -r test_general_settings_enabled
 
 2021-09-08 16:35:31,651 - INFO - Starting 1 instances deployment
 2021-09-08 16:38:01,214 - INFO - The instances deployment has finished sucessfully
@@ -126,65 +141,148 @@ To use this mode, we have to specify the parameter `-c`, `--config`.
 qa-ctl -c <configuration_file_path>
 ```
 
-#### Simulated: Generate configuration file
+#### Mixed: generate an environment with automatic mode and then reused it in manual mode
 
-Hybrid mode that mixes automatic and manual. The objective is to automatically generate the configuration file from
-the information of the tests, so that later the user can edit and use it.
+The purpose of this mode is to generate a configuration file automatically, to modify it later and use it in qa-ctl.
 
-Useful when you want to change some small aspect of the default configuration. First the configuration file is
-generated with the information of the tests, it is modified and then it is launched in manual mode.
+We can generate a configuration file automatically in the following ways:
 
-To use this mode, we have to specify the parameter `-d`, `--dry-run` along with `-r`, `--run`.
+- Perform a run as simulated `--dry-run`, in this way instead of executing the different phases corresponding to one or 
+a set of tests, the corresponding configuration file is generated and its path is indicated so that it can be modified 
+and used later.
 
-```
-qa-ctl -d <test_name_1> <test_name_2> ...
+- After a `qa-ctl` run, if the `-p`, or `--persistent` parameter was specified, then the environment and the 
+corresponding generated files will not be deleted, so we can use the auto-generated configuration file again.
 
-```
+The usefulness of this mode is to be able to specify specifically the environment we want to deploy, or in case it 
+is already deployed, to reuse it and directly use it to speed up the whole testing process and obtain results.
+
+**For example**
 
 <details>
-<summary>For example:</summary>
+<summary>Generate a configuration file from test information</summary>
 
 ```bash
-$ qa-ctl -d -r test_general_settings_enabled
+qa-ctl --dry-run -r test_general_settings_enabled
+    2021-09-08 16:53:40,179 - INFO - Run as dry-run mode. Configuration file saved in /tmp/config_1631112820.17649.yaml
+```
 
-2021-09-08 16:53:40,179 - INFO - Run as dry-run mode. Configuration file saved in /tmp/config_1631112820.17649.yaml
+</details>
+
+<details>
+<summary>Perform a run with persistent environment, and then re-launch the test in the same environment</summary>
+
+```bash
+qa-ctl -r test_general_settings_enabled --persistent
+    ......
+    INFO - Configuration file saved in /tmp/qa_ctl/config_1633608335.685262.yaml
+    ......
+qa-ctl -c  /tmp/qa_ctl/config_1633608335.685262.yaml --skip-deployment --skip-provisioning
 ```
 
 </details>
 
 ### Examples
 
-- Launch a single test.
+<details>
+<summary>Launch a single test.</summary>
 
 ```bash
 qa-ctl -r <test_name>
 ```
 
-- Launch multiple tests (In parallel using different environments).
+</details>
+
+
+<details>
+<summary>Launch multiple tests (In parallel using different environments).</summary>
 
 ```bash
 qa-ctl -r <test_name_1> <test_name_2> ...
 ```
 
-- Launch a test with a specific version of Wazuh.
+</details>
+
+<details>
+<summary>Launch a test with a specific version of Wazuh.</summary>
 
 ```bash
 qa-ctl -r <test_name> -v <wazuh_version>
 ```
 
-- Launch tests with a custom `qa-ctl` configuration (tests are include in the configuration file).
+</details>
+
+<details>
+<summary>Launch tests with a custom <code>qa-ctl</code> configuration (tests are include in the configuration file).</summary>
 
 ```bash
 qa-ctl -c <config_file_path>
 ```
 
-- Generate tests configuration, update it and run it.
+</details>
+
+<details>
+<summary>Generate tests configuration, update it and run it.</summary>
 
 ```bash
-qa-ctl -d -r <test_name>
-<Update configuration file generated in showed path>
+qa-ctl --dry-run -r <test_name>
+    ...
+    <Update configuration file generated in showed path>
+    ...
 qa-ctl -c <config_file_path>
 ```
+
+</details>
+
+<details>
+<summary>Launch a test, without destroying the environment.</summary>
+
+```bash
+qa-ctl -r <test_name> -p
+```
+
+</details>
+
+<details>
+<summary>Launching a test using a custom branch of wazuh-qa.</summary>
+
+```bash
+qa-ctl -r <test_name> --qa-branch <wazuh_qa_branch>
+```
+
+</details>
+
+<details>
+<summary>Launch <code>qa-ctl</code> in debug mode</summary>
+
+```bash
+qa-ctl -r <test_name> -d
+```
+
+</details>
+
+<details>
+<summary>Launch <code>qa-ctl</code> in debug 2 mode</summary>
+
+```bash
+qa-ctl -r <test_name> -dd
+```
+
+</details>
+
+<details>
+<summary>Launch an execution without destroying the environment, and then relaunch the test again.</summary>
+
+```bash
+qa-ctl -r test_general_settings_enabled --persistent
+    ......
+    INFO - Configuration file saved in /tmp/qa_ctl/config_1633608335.685262.yaml
+    ......
+
+qa-ctl -c /tmp/qa_ctl/config_1633608335.685262.yaml --skip-deployment --skip-provisioning
+```
+
+</details>
 
 ## Setting up a configuration file
 
