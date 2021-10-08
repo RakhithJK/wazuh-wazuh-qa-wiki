@@ -13,9 +13,8 @@ In order to install `qa-ctl` tool, you must have the following dependencies inst
 - `Python` (>=3.6.0): [How to install](https://docs.python-guide.org/starting/install3/linux/)
 - `Python-pip` (>=21.2.4): [How to install](https://www.tecmint.com/install-pip-in-linux/)
 - `Python3-devtools`: [How to install](https://py-generic-project.readthedocs.io/en/latest/installing.html)
-- `Vagrant` (>=2.2.6): [How to install](https://www.vagrantup.com/docs/installation)
 - `VirtualBox` (>=6.0.18): [How to install](https://www.virtualbox.org/wiki/Linux_Downloads)
-- `Ansible` (>=3.1.0): [How to install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- `Vagrant` (>=2.2.6): [How to install](https://www.vagrantup.com/docs/installation)
 - `sshpass` (>=1.0.6): [How to install](https://www.tecmint.com/sshpass-non-interactive-ssh-login-shell-script-ssh-password/)
 
 
