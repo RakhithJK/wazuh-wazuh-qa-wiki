@@ -26,7 +26,7 @@ In order to install `qa-ctl` tool, you must have the following dependencies inst
 - `Git` (>=2.33) [How to install](https://github.com/git-guides/install-git#install-git-on-windows)
 - `Python` (>=3.6.0): [How to install](https://realpython.com/installing-python/#how-to-install-from-the-full-installer)
 - `Python-pip` (>=21.2.3): [How to install](https://www.liquidweb.com/kb/install-pip-windows/)
-- `WSL2` : [How to install](https://github.com/wazuh/wazuh-qa/wiki/install-wsl2-on-windows)
+- `WSL2` : [How to install](https://github.com/wazuh/wazuh-qa/wiki/installing-wsl2-on-windows)
 - `Vagrant` (>=2.2.6): [How to install](https://www.vagrantup.com/docs/installation)
 - `VirtualBox` (>=6.0.18): [How to install](https://www.virtualbox.org/manual/ch02.html#installation_windows)
 - `Docker Desktop`: [How to install](https://docs.docker.com/desktop/windows/install/#wsl-2-backend)
