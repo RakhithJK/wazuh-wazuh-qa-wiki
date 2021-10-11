@@ -52,7 +52,7 @@ In order to install `qa-ctl` tool, you must have the following dependencies inst
 
     Open `Windows Powershell` and run the next commands:
     ```bash
-    git clone https://github.com/wazuh/wazuh-qa --depth 1 --branch=1533-qa-ctl
+    git clone https://github.com/wazuh/wazuh-qa --depth 1 --branch=master
     cd wazuh-qa*
     python -m pip install --upgrade pip
     python -m pip install -r requirements.txt --no-cache-dir --upgrade --only-binary=:cryptography,grpcio: --ignore-installed
