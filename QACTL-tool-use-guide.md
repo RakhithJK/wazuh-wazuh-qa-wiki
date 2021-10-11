@@ -1,6 +1,6 @@
 ## Table of contents
 
-- [Table of contents](#table-of-contents)
+
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
   - [Parameter restrictions](#parameter-restrictions)
