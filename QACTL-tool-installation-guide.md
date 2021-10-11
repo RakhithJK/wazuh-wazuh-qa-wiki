@@ -1,7 +1,7 @@
 
 ## Supported OS
 
-This tool has support for Linux systems and for Windows systems.
+This tool has support for Linux systems and Windows systems.
 
 
 ## Linux systems required dependencies
@@ -38,6 +38,7 @@ In order to install `qa-ctl` tool, you must have the following dependencies inst
 2. Download the `wazuh-qa` repository, install python dependencies and the `wazuh-qa` framework
 
 - For Linux
+
 In `Linux Terminal`, run the next commands:
 ```bash
 git clone https://github.com/wazuh/wazuh-qa --depth 1 --branch=master $(pwd)/wazuh-qa && \
@@ -48,6 +49,7 @@ cd deps/wazuh_testing && \
 python3 setup.py install
 ```
 - For Windows
+
 Open `Windows Powershell` and run the next commands:
 ```bash
 git clone https://github.com/wazuh/wazuh-qa --depth 1 --branch=1533-qa-ctl
