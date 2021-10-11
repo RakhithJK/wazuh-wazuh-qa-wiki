@@ -56,7 +56,7 @@ This tool has the following parameters:
 - `--dry-run`: Config generation mode. The test data will be processed and the configuration will be generated without running anything.
 - `--no-validation`: Disable the script parameters validation.
 - `--no-validation-logging`: Disable parameters validation logging. Useful when it is run inside a docker container.
-- `--qa-branch <repository_branch>`:  Set a custom wazuh-qa branch to use in the run and provisioning. This has higher priority than the specified in the configuration file.
+- `--qa-branch <repository_branch>`:  Set a custom wazuh-qa branch to use in the run and provisioning. This has a higher priority than the specified in the configuration file.
 - `--skip-deployment`: Flag to skip the deployment phase. Set it only if `-c` or `--config` (manual mode) was specified.
 - `--skip-provisioning`: Flag to skip the provisioning phase. Set it only if `-c` or `--config` (manual mode) was specified. 
 - `--skip-testing`: Flag to skip the testing phase. Set it only if `-c` or `--config` (manual mode) was specified.
@@ -70,14 +70,14 @@ This tool has the following parameters:
 - `-v`, `--version` value has to correspond to a released version of Wazuh.
 - `--skip-deployment`, `--skip-provisioning`, `--skip-testing` can only be launched with `-c`, `--config` (manual mode).
 - `--qa-branch` value must exist.
-- `-r`, `--run` values has to correspond to existing and documented tests of the specified branch of the wazuh-qa repository.
+- `-r`, `--run` values have to correspond to existing and documented tests of the specified branch of the wazuh-qa repository.
 
 
 ### Modes of use
 
 #### Automatic: Launch tests and get results
 
-Quick and simple way to run a test and obtain the results using default parameters. In this mode the documentation of
+A quick and simple way to run a test and obtain the results using default parameters. In this mode the documentation of
 each test is parsed and the necessary environment is built, provisioning it with the specific Wazuh version
 (with the `-v` or` --version` parameter), or else using the latest released version of Wazuh and using the equivalent
 version for `wazuh-qa` framework and testing.
@@ -128,7 +128,7 @@ ss.                                                                      [100%]
 
 #### Manual: Specify configuration parameters to launch the tests
 
-Mode in which we will specify the execution flow of `qa-ctl` according to a custom configuration file.
+A mode in which we will specify the execution flow of `qa-ctl` according to a custom configuration file.
 
 In this configuration file we can specify information about deployment, provisioning and test executions.
 
@@ -460,7 +460,7 @@ tests:
         host: String (Required)
         user: String (Required)
         password: String (Required)
-        ssh_private_key_file_path: String
+        ssh_private_key_file_path: String (Optional)
         connection_port: Integer (Required)
         ansible_python_interpreter: String (Required)
 
