@@ -59,7 +59,7 @@ swap=0
 localhostForwarding=true
 ```
 
-## Setting up Ubuntu distro system
+## Setting up Ubuntu subsystem
 
 Once WSL2 has been installed and configured, you need to configure the downloaded Ubuntu subsystem for Windows. In order to do so, follow the next steps:
   1. Open the Ubuntu application.
