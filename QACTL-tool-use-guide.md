@@ -1,19 +1,20 @@
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
-  * [Parameter restrictions](#parameter-restrictions)
-  * [Modes of use](#modes-of-use)
-    + [Automatic: Launch tests and get results](#automatic--launch-tests-and-get-results)
-    + [Manual: Specify configuration parameters to launch the tests](#manual--specify-configuration-parameters-to-launch-the-tests)
-    + [Mixed: generate an environment with automatic mode and then reused it in manual mode.](#mixed--generate-an-environment-with-automatic-mode-and-then-reused-it-in-manual-mode)
-  * [Examples](#examples)
+  - [Parameter restrictions](#parameter-restrictions)
+  - [Modes of use](#modes-of-use)
+    - [Automatic: Launch tests and get results](#automatic-launch-tests-and-get-results)
+    - [Manual: Specify configuration parameters to launch the tests](#manual-specify-configuration-parameters-to-launch-the-tests)
+    - [Mixed: generate an environment with automatic mode and then reused it in manual mode](#mixed-generate-an-environment-with-automatic-mode-and-then-reused-it-in-manual-mode)
+  - [Examples](#examples)
 - [Setting up a configuration file](#setting-up-a-configuration-file)
-  * [Infrastructure deployment module](#infrastructure-deployment-module)
-  * [Provisioning module](#provisioning-module)
-  * [Test launch module](#test-launch-module)
-  * [Configuration module](#configuration-module)
-  * [YAML configuration file examples](#yaml-configuration-file-examples)
+  - [Infrastructure deployment module](#infrastructure-deployment-module)
+  - [Provisioning module](#provisioning-module)
+  - [Test launch module](#test-launch-module)
+  - [Configuration module](#configuration-module)
+  - [YAML configuration file examples](#yaml-configuration-file-examples)
 
 ## Introduction
 
@@ -385,8 +386,8 @@ provision:
           revision: String (Optional)
           repository: String (Optional)
           installation_files_path: String (Required)
-          wazuh_install_path: String
-          healt_check: Boolean
+          wazuh_install_path: String (Optional)
+          healt_check: Boolean (Optional)
 
         qa_framework:
           wazuh_qa_branch: String (Required)
@@ -464,22 +465,22 @@ tests:
         ansible_python_interpreter: String (Required)
 
       test:
-        hosts: String
-        type: String
+        hosts: String (Required)
+        type: String (Required)
         path: (required)
           test_files_path: String (required)
           run_tests_dir_path: String (required)
           test_results_path: String (required)
       parameters:
-        tier: String
-        stop_after_first_failure: Boolean
-        keyword_expression: Srting
-        traceback: String
-        dry_run: Boolean Default value: False
-        custom_args: String
-        verbose_level: Boolean
-        log_level: String
-        markers: List
+        tier: String (Optional)
+        stop_after_first_failure: Boolean (Optional)
+        keyword_expression: String (Optional)
+        traceback: String (Optional)
+        dry_run: Boolean (Optional) Default value: False
+        custom_args: String (Optional)
+        verbose_level: Boolean (Optional)
+        log_level: String (Optional)
+        markers: List (Optional)
 ```
 
 **Host info section**
@@ -524,12 +525,12 @@ tests:
 
 ```yaml
 config:
-    vagrant_output: Boolean
-    ansible_output: Boolean
+    vagrant_output: Boolean (Optional)
+    ansible_output: Boolean (Optional
     logging:
-        enable: Boolean
-        level: String
-        file: String
+        enable: Boolean (Optional)
+        level: String (Optional)
+        file: String (Optional)
 ```
 
 - `vagrant_output`: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(`true`) or
