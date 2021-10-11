@@ -39,7 +39,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 ```
 After running the command above, reboot your PC.
 
-#### 3. Downloading and installing WSL2
+#### 3. Downloading and installing `WSL2`
   - Download the [WSL2 Kernel update](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) and run the installer. When prompted for elevated permissions, click `yes`. Once the installer process is over you'll have `WSL2` successfully installed on your PC. 
   - Now you have to set WSL2 as your default version. That can be done by running the next command:
 ```
@@ -50,7 +50,7 @@ the `Ubuntu on Windows` application on the [store](https://www.microsoft.com/en-
 ).
 
 ## Creating the `wslconfig` file
-You can add a file named .wslconfig to your Windows home directory to control global WSL options across Linux distributions. 
+You can add a file named `.wslconfig` to your Windows home directory to control global WSL options across Linux distributions. 
 
 In our case, this file is created to limit the resources that `wls` consumes for the Virtual machines, mainly the assigned memory. We can specify the amount of memory that `wsl` is allowed to take from Windows. The lines specified below forces `wsl` to consume 3GB as a max memory value, without a swap memory and allowing forwarding localhost ports connection. If you can learn more about the allowed parameters in this file, check this [link](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#options-for-wslconfig)
 
@@ -63,7 +63,7 @@ localhostForwarding=true
 
 ## Setting up Ubuntu subsystem
 
-Once WSL2 has been installed and configured, you need to configure the downloaded Ubuntu subsystem for Windows. To do so, follow the next steps:
+Once `WSL2` has been installed and configured, you need to configure the downloaded Ubuntu subsystem for Windows. To do so, follow the next steps:
   1. Open `Windows Powershell` and type `wsl`
   2. Enter the desired `username` and `password` for your subsystem.
 
