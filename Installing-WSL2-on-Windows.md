@@ -52,7 +52,7 @@ the `Ubuntu on Windows` application on the [store](https://www.microsoft.com/en-
 ## Creating the `wslconfig` file
 You can add a file named `.wslconfig` to your Windows home directory to control global WSL options across Linux distributions. 
 
-In our case, this file is created to limit the resources that `wls` consumes for the Virtual machines, mainly the assigned memory. We can specify the amount of memory that `wsl` is allowed to take from Windows. The lines specified below forces `wsl` to consume 3GB as a max memory value, without a swap memory and allowing forwarding localhost ports connection. If you can learn more about the allowed parameters in this file, check this [link](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#options-for-wslconfig)
+In our case, this file is created to limit the resources that `wls` consumes for the Virtual machines, mainly the assigned memory. We can specify the amount of memory that `wsl` is allowed to take from Windows. The lines specified below forces `wsl` to consume 3GB as a max memory value, without a swap memory and allowing forwarding localhost ports connection. You can learn more about the allowed parameters in this file, check this [link](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#options-for-wslconfig)
 
 ```
 [wsl2]
