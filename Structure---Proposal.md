@@ -31,8 +31,13 @@
             - mitre_event.json
             - syscheck_event_windows.json
             - syscheck_event.json
+            - syscollector.py                           `Cambiaria el nombre - Nose si esta bien ubicado`     
+            - winevt.py                                 `Cambiaria el nombre - Nose si esta bien ubicado`    
     - custom-config
         - agent.conf
+    - simulator
+        - keepalives.txt
+        - rootcheck.txt
     - qa-ctl
     - setup.py 
 - docs
