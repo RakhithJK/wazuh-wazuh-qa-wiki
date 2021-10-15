@@ -5,9 +5,47 @@ This tool has support for Linux and Windows(only parsing behavior tested) system
 
 ### System dependencies
 
+- `Build-Essentials`: [How to install](https://howtoprogram.xyz/2016/06/28/install-build-essentials-for-centos-rhel-and-ubuntu/)
+- `Python` (>=3.6.0): [How to install](https://docs.python-guide.org/starting/install3/linux/)
+- `Python-pip` (>=21.2.3): [How to install](https://www.tecmint.com/install-pip-in-linux/)
+- `Python3-devtools`: [How to install](https://py-generic-project.readthedocs.io/en/latest/installing.html)
+- `ElasticSearch`: [How to install](https://www.elastic.co/downloads/elasticsearch)
+Also, you can:
+```
+$ curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
+    echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list && \
+    apt update && \
+    apt install -y elasticsearch
+```
+- `npm (>=6.14.4)`:
+
+To install npm on Ubuntu, Debian, and Linux Mint:
+
+```
+$ sudo apt install npm
+```
+
+To install npm on CentOS 8 (and newer), Fedora, and Red Hat:
+```
+$ sudo dnf install npm	# also installs nodejs
+```
+
+To install npm on Arch Linux and Manjaro:
+
+```
+$ sudo pacman -S npm # also installs nodejs
+```
+
 ## Windows dependencies
 
 ### System dependencies
+
+- `Git` (>=2.33) [How to install](https://github.com/git-guides/install-git#install-git-on-windows)
+- `Python` (>=3.6.0): [How to install](https://realpython.com/installing-python/#how-to-install-from-the-full-installer)
+- `Python-pip` (>=21.2.3): [How to install](https://www.liquidweb.com/kb/install-pip-windows/)
+- `Docker Desktop`: [How to install](https://docs.docker.com/desktop/windows/install/#install-docker-desktop-on-windows)
+- `ElasticSearch`: [How to install](https://www.elastic.co/downloads/elasticsearch)
+- `npm (>=6.14.4)`: [How to install](https://nodejs.org/en/download/)
 
 ## How to install qa-docs
 
