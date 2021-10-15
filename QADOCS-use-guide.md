@@ -1,17 +1,5 @@
 ### Basic use of `qa-docs` tool
 
-#### Setup
-
-This tool is located within the wazuh-qa framework `wazuh-qa/deps/wazuh_testing/wazuh_testing/qa_docs/`, and to run it, you must first install the requirements found in the `requirements.txt` file in the same directory:
-
-```
-pip install -r requirements.txt
-```
-Then install the wazuh-qa framework in `deps/wazuh_testing`:
-```
-python3 setup.py install
-```
-
 The `qa_docs/doc_generator` configuration can be found in the `config.yaml` file. This already contains a pre-established configuration for generating test documentation. The settings to be considered when creating new documentation are as follows:
 
 ```yaml
