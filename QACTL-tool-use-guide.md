@@ -126,6 +126,8 @@ ss.                                                                      [100%]
 
 </details>
 
+> **Important note**: To use the automatic mode, the test/s must be previously documented according to the documentation schema (proposed by `qa-docs` team), in order to obtain the necessary information for the run. For example https://github.com/wazuh/wazuh-qa/blob/master/tests/integration/test_vulnerability_detector/test_general_settings/test_general_settings_enabled.py#L1-L55
+
 #### Manual: Specify configuration parameters to launch the tests
 
 A mode in which we will specify the execution flow of `qa-ctl` according to a custom configuration file.
