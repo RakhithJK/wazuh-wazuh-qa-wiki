@@ -17,6 +17,13 @@ $ curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - 
     apt update && \
     apt install -y elasticsearch
 ```
+
+Also, you need to specify the RAM limit:
+```
+echo "-Xms1g" >> /etc/elasticsearch/jvm.options
+echo "-Xmx1g" >> /etc/elasticsearch/jvm.options
+```
+
 - `npm (>=6.14.4)`:
 
 To install npm on Ubuntu, Debian, and Linux Mint:
@@ -45,6 +52,13 @@ $ sudo pacman -S npm # also installs nodejs
 - `Python-pip` (>=21.2.3): [How to install](https://www.liquidweb.com/kb/install-pip-windows/)
 - `Docker Desktop`: [How to install](https://docs.docker.com/desktop/windows/install/#install-docker-desktop-on-windows)
 - `ElasticSearch`: [How to install](https://www.elastic.co/downloads/elasticsearch)
+
+For the RAM limit, add the following lines to config/jvm.options:
+```
+-Xms1g
+-Xmx1g
+```
+
 - `npm (>=6.14.4)`: [How to install](https://nodejs.org/en/download/)
 
 ## How to install qa-docs
