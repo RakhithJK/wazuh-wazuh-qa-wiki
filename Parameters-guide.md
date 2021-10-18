@@ -5,7 +5,7 @@ The aim of this article is to show the necessary parameters to be able to launch
   <td><strong>CAPABILITIES</strong></td>
   <td><strong>TARGET</strong></td>
   <td><strong>LOCAL INTERNAL OPTIONS</strong></td>
-  <td><strong>Pytest ARGS</strong></td>
+  <td><strong>Pytest ARGS - Local </strong></td>
  </tr>
  <tr>
   <td rowspan="2">Active Response</td>
@@ -48,17 +48,21 @@ The aim of this article is to show the necessary parameters to be able to launch
  </tr>
 
  <tr>
-  <td rowspan="2">FIM</td>
+  <td rowspan="3">FIM</td>
   <td>Manager - Linux</td>
   <td>syscheck.debug=2<br/>analysisd.debug=2<br/>monitord.rotate_log=0</td>
-  <td> --tier 0 --tier 1 --tier 2 --fim_mode="realtime" --fim_mode="whodata"</td>
+  <td> --tier 0 --tier 1 --tier 2 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
  </tr>
  <tr>
-  <td>Agent - (Linux, Windows, MacOS, Solaris) </td>
+  <td>Agent - (Linux, MacOS, Solaris) </td>
   <td>syscheck.debug=2<br/>agent.debug=2<br/>monitord.rotate_log=0</td>
-  <td>--tier 0 --tier 1 --tier 2 --fim_mode="realtime" --fim_mode="whodata"</td>
+  <td>--tier 0 --tier 1 --tier 2 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
  </tr>
-
+ <tr>
+  <td>Agent - (Windows) </td>
+  <td>syscheck.debug=2<br/>agent.debug=2<br/>monitord.rotate_log=0<br/>windows.debug=2</td>
+  <td>--tier 0 --tier 1 --tier 2 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
+ </tr>
  <tr>
   <td>GCloud</td>
   <td>Manager - Linux</td>
