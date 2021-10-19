@@ -610,7 +610,7 @@ config:
 
 - Provisioning the single `qactl/ubuntu_20_04` vagrant machine created before with a wazuh manager using a S3 URL as a provider of the package and selecting the wazuh qa framework from the `master` branch.
 
-  > **Note**: This YAML file configuration will only work properly if the first example has been done first.
+  > **Note**: This YAML file configuration will only work properly if the first example has been done already.
 
   <details>
     <summary>yaml configuration</summary>
