@@ -75,7 +75,12 @@ The aim of this article is to show the necessary parameters to be able to launch
   <td>analysisd.debug=2</td>
   <td>&nbsp;</td>
  </tr>
-
+ <tr>
+  <td>Office365</td>
+  <td> Agent - Linux</td>
+  <td></td>
+  <td>&nbsp;</td>
+ </tr>
  <tr>
   <td>Remoted</td>
   <td>Manager - Linux</td>
