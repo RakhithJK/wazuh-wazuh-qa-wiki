@@ -48,9 +48,6 @@ modules:
 components:
     - agent
 
-path:
-    tests/integration/test_agentd/test_agentd_reconnection.py
-
 daemons:
     - wazuh-agentd
     - wazuh-remoted
@@ -87,9 +84,6 @@ references:
     - https://documentation.wazuh.com/current/user-manual/registering/index.html#registering-wazuh-agents
     - https://documentation.wazuh.com/current/user-manual/reference/tools/agent-auth.html#agent-auth
 
-pytest_args:
-    -
-
 tags:
     - enrollment
     - keys
@@ -106,7 +100,7 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
         then the agent performs multiple connection retries before requesting a new enrollment.
 
     wazuh_min_version:
-        4.2
+        4.2.0
 
     parameters:
         - configure_authd_server:
@@ -126,7 +120,7 @@ def test_agentd_connection_retries_pre_enrollment(configure_authd_server, config
         An IP address and port are used for the server using the `TCP` and `UDP` protocols.
 
     expected_output:
-        - r"Sending keep alive"
+        - "Sending keep alive"
 
     tags:
         - enrollment
