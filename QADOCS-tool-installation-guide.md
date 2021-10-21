@@ -12,10 +12,10 @@ This tool has support for Linux and Windows(only parsing behavior tested) system
 - `ElasticSearch`: [How to install](https://www.elastic.co/downloads/elasticsearch)
 Also, you can:
 ```
-$ curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
-    echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list && \
-    apt update && \
-    apt install -y elasticsearch
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list && \
+apt update && \
+apt install -y elasticsearch
 ```
 
 Also, you need to specify the RAM limit:
