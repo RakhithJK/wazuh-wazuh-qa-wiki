@@ -77,6 +77,7 @@ For the RAM limit, add the following lines to config/jvm.options:
     cd wazuh-qa* && \
     python3 -m pip install --upgrade pip && \
     python3 -m pip install -r requirements.txt --no-cache-dir --upgrade --only-binary=:cryptography,grpcio: --ignore-installed && \
+    python3 -m pip install -r deps/wazuh_testing/wazuh_testing/qa_docs/requirements.txt && \
     cd deps/wazuh_testing && \
     python3 setup.py install
     ```
@@ -88,6 +89,7 @@ For the RAM limit, add the following lines to config/jvm.options:
     cd wazuh-qa*
     python -m pip install --upgrade pip
     python -m pip install -r requirements.txt --no-cache-dir --upgrade --only-binary=:cryptography,grpcio: --ignore-installed
+    python -m pip install -r deps/wazuh_testing/wazuh_testing/qa_docs/requirements.txt
     cd deps\wazuh_testing
     python setup.py install
     ```
