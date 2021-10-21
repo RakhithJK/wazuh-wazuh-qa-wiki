@@ -47,6 +47,7 @@ $ sudo pacman -S npm # also installs nodejs
 
 ### System dependencies
 
+- `Microsoft Visual C++ 14` (or higher versions) : [How to install](https://newbedev.com/how-to-install-visual-c-build-tools)
 - `Git` (>=2.33) [How to install](https://github.com/git-guides/install-git#install-git-on-windows)
 - `Python` (>=3.6.0): [How to install](https://realpython.com/installing-python/#how-to-install-from-the-full-installer)
 - `Python-pip` (>=21.2.3): [How to install](https://www.liquidweb.com/kb/install-pip-windows/)
