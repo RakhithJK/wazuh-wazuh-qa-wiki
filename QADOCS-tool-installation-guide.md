@@ -51,6 +51,7 @@ $ sudo pacman -S npm # also installs nodejs
 - `Git` (>=2.33) [How to install](https://github.com/git-guides/install-git#install-git-on-windows)
 - `Python` (>=3.6.0): [How to install](https://realpython.com/installing-python/#how-to-install-from-the-full-installer)
 - `Python-pip` (>=21.2.3): [How to install](https://www.liquidweb.com/kb/install-pip-windows/)
+- `WSL2` : [How to install](https://github.com/wazuh/wazuh-qa/wiki/installing-wsl2-on-windows)
 - `Docker Desktop`: [How to install](https://docs.docker.com/desktop/windows/install/#install-docker-desktop-on-windows)
 - `ElasticSearch`: [How to install](https://www.elastic.co/downloads/elasticsearch)
 
