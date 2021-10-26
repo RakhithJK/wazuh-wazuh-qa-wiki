@@ -26,7 +26,7 @@ yum install elasticsearch-oss.x86_64
 
 ## Windows
 
-You can use the official [download page](https://www.elastic.co/downloads/elasticsearch) to download it or using [Chocolatey](https://chocolatey.org/install).
+You can use the official [download page](https://www.elastic.co/downloads/elasticsearch) to download it or use [Chocolatey](https://chocolatey.org/install).
 
 ```
 choco install elasticsearch
