@@ -78,8 +78,9 @@ The aim of this article is to show the necessary parameters to be able to launch
   <td>Manager </td>
   <td>analysisd.debug=2<br/>wazuh_modules.debug=2<br/>monitord.rotate_log=0</td>
   <td></td>
-  <td> It requires creating on "test_gcloud/data/" a file with name "configuration.yaml" that will contain the credentials.</td>
- </tr>
+  <td><ul><li> It requires creating on "test_gcloud/data/" a file with name "configuration.yaml" that will contain the credentials.</li> 
+           <li>This execution cannot be launched simultaneously. It is necessary to launch one execution first, and when you finish launching the next one since they share a license, and that usually causes failures in the executions. </li> 
+ </ul></td></tr>
  <tr>
   <td>Github</td>
   <td> Manager - Agent (Linux)</td>
