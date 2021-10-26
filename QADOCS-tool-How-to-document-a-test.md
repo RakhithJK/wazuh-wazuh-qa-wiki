@@ -14,7 +14,7 @@ The documentation code is organized in two parts:
   - **Module block**: It will be placed at the top of the Python module, and it will contain the common information for all the tests that may be in that module. 
   - **Test block**: It will be located just after the definition of each test, before its code, and will contain the information related to that test. 
 
-Here is an example of how the `test_agentd_reconnection.py` is documented:
+Here is an example of how the `test_basic_usage_changes.py` is documented:
 
 
 <details><summary>Show documentation code</summary>
@@ -23,108 +23,142 @@ Here is an example of how the `test_agentd_reconnection.py` is documented:
 ```python
 # Module block
 '''
-copyright:
-    Copyright (C) 2015-2021, Wazuh Inc.
+copyright: Copyright (C) 2015-2021, Wazuh Inc.
 
-    Created by Wazuh, Inc. <info@wazuh.com>.
+           Created by Wazuh, Inc. <info@wazuh.com>.
 
-    This program is free software; you can redistribute it and/or modify it under the terms of GPLv2
+           This program is free software; you can redistribute it and/or modify it under the terms of GPLv2
 
-type:
-    integration
+type: integration
 
-brief:
-    These tests will check if, during enrollment, the agent re-establishes communication with
-    the manager under different situations that interrupt it. The objective is to check that,
-    with different states in the `clients.key` file, the agent successfully
-    enrolls after losing connection with remoted.
+brief: File Integrity Monitoring (FIM) system watches selected files and triggering alerts when
+       these files are modified. In particular, these tests will check if common operations
+       ('add', 'modify', and 'delete') on monitored directories are correctly detected.
+       The FIM capability is managed by the 'wazuh-syscheckd' daemon, which checks configured
+       files for changes to the checksums, permissions, and ownership.
 
-tier:
-    0
+tier: 0
 
 modules:
-    - agentd
+    - fim
 
 components:
     - agent
+    - manager
 
 daemons:
-    - wazuh-agentd
-    - wazuh-remoted
+    - wazuh-syscheckd
 
 os_platform:
     - linux
     - windows
+    - macos
+    - solaris
 
 os_version:
-    - Amazon Linux 1
-    - Amazon Linux 2
     - Arch Linux
-    - CentOS 6
-    - CentOS 7
+    - Amazon Linux 2
+    - Amazon Linux 1
     - CentOS 8
+    - CentOS 7
+    - CentOS 6
+    - Ubuntu Focal
+    - Ubuntu Bionic
+    - Ubuntu Xenial
+    - Ubuntu Trusty
     - Debian Buster
     - Debian Stretch
     - Debian Jessie
     - Debian Wheezy
-    - Red Hat 6
-    - Red Hat 7
     - Red Hat 8
-    - Ubuntu Bionic
-    - Ubuntu Trusty
-    - Ubuntu Xenial
-    - Windows 7
-    - Windows 8
+    - Red Hat 7
+    - Red Hat 6
     - Windows 10
-    - Windows Server 2003
-    - Windows Server 2012
+    - Windows 8
+    - Windows 7
+    - Windows Server 2019
     - Windows Server 2016
+    - Windows Server 2012
+    - Windows Server 2003
+    - Windows XP
+    - macOS Catalina
+    - Solaris 10
+    - Solaris 11
 
 references:
-    - https://documentation.wazuh.com/current/user-manual/registering/index.html#registering-wazuh-agents
-    - https://documentation.wazuh.com/current/user-manual/reference/tools/agent-auth.html#agent-auth
+    - https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/index.html
+    - https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/syscheck.html
+
+pytest_args:
+    - fim_mode:
+        realtime: Enable real-time monitoring on Linux (using the 'inotify' system calls) and Windows systems.
+        whodata: Implies real-time monitoring but adding the 'who-data' information.
+    - tier:
+        0: Only level 0 tests are performed, they check basic functionalities and are quick to perform.
+        1: Only level 1 tests are performed, they check functionalities of medium complexity.
+        2: Only level 2 tests are performed, they check advanced functionalities and are slow to perform.
 
 tags:
-    - enrollment
-    - keys
+    - fim_basic_usage
 '''
 .
 .
 .
-def test_agentd_connection_retries_pre_enrollment(configure_authd_server, configure_environment, get_configuration):
-    # Test block
+def test_regular_file_changes(folder, name, encoding, checkers, tags_to_apply,
+                              get_configuration, configure_environment,
+                              restart_syscheckd, wait_for_fim_start):
     '''
-    description:
-        Check how the agent behaves when Remoted is not available and performs multiple connection attempts to it.
-        For this, the agent starts with keys but `remoted` is not available for several seconds,
-        then the agent performs multiple connection retries before requesting a new enrollment.
+    description: Check if the 'wazuh-syscheckd' daemon detects regular file changes (add, modify, delete).
+                 For this purpose, the test uses different character encodings in the names of the testing
+                 directories and files and performs operations on them. Finally, it verifies that
+                 the FIM events have been generated properly.
 
-    wazuh_min_version:
-        4.2.0
+    wazuh_min_version: 4.2.0
 
     parameters:
-        - configure_authd_server:
-            type: fixture
-            brief: Initializes a simulated authd connection.
-        - configure_environment:
-            type: fixture
-            brief: Configure a custom environment for testing.
+        - folder:
+            type: str
+            brief: Path to the monitored testing directory.
+        - name:
+            type: str
+            brief: Name used for the testing files.
+        - encoding:
+            type: str
+            brief: Character encoding used for the directory and testing files.
+        - checkers:
+            type: dict
+            brief: Syscheck checkers (check_all).
+        - tags_to_apply:
+            type: set
+            brief: Run test if match with a configuration identifier, skip otherwise.
         - get_configuration:
             type: fixture
             brief: Get configurations from the module.
+        - configure_environment:
+            type: fixture
+            brief: Configure a custom environment for testing.
+        - restart_syscheckd:
+            type: fixture
+            brief: Clear the 'ossec.log' file and start a new monitor.
+        - wait_for_fim_start:
+            type: fixture
+            brief: Wait for realtime start, whodata start, or end of initial FIM scan.
 
     assertions:
-        - Verify that the agent enrollment is successful.
+        - Verify that all FIM events are generated for the operations performed,
+          and these contain all 'check_' fields specified in the configuration.
 
-    input_description:
-        An IP address and port are used for the server using the `TCP` and `UDP` protocols.
+    input_description: A test case (ossec_conf) is contained in external YAML file (wazuh_conf.yaml)
+                       which includes configuration settings for the 'wazuh-syscheckd' daemon and, it
+                       is combined with the testing directories to be monitored defined in this module.
 
     expected_output:
-        - "Sending keep alive"
+        - r'.*Sending FIM event: (.+)$' (Initial scan when restarting Wazuh)
+        - Multiple FIM events logs of the monitored directories.
 
     tags:
-        - enrollment
-        - simulator
+        - scheduled
+        - time_travel
     '''
 ```
 </p>
