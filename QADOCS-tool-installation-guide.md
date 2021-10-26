@@ -29,7 +29,7 @@ This tool has support for Linux and Windows systems.
 
 1. Install and check the necessary dependencies for your current OS (mentioned above).
 
-2. Download the `wazuh-qa` repository, install python dependencies and the `wazuh-qa` framework
+2. Download the `wazuh-qa` repository, install python dependencies, the `wazuh-qa` framework, `wget` and `unzip`.
 
 - For Linux
 
