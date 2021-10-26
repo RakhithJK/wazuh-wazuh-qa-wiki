@@ -1,4 +1,4 @@
-### How to use `qa-docs` tool
+## How to use `qa-docs` tool
 
 After installing `qa-docs`(you can follow the [installation guide](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool-installation-guide)  steps), you can check the `qa-docs` help.
 
@@ -16,7 +16,7 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 - `-l`: Launch `search-ui`with the data previously indexed.
 - `-il`: Index the data previously parsed and launch `search-ui` 
 
-### Parameter restrictions
+## Parameter restrictions
 
 - `-t` and `-e` cannot be launched with `--types` and `--modules` parameters. They store the parsed data into /output and `-t` save it where the user specifies with `-o`.
 - `-t`, `--types, `--modules`, `-t`, `-e` and `-s` need the `-I` parameter.
@@ -24,7 +24,7 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 - `-t` and `e` cannot be launched with `-i`, `-l` and `-il`.
 - `-s` only allows a run with the `-I` parameter.
 
-### Examples:
+## Examples:
 
 
 <details>
@@ -120,7 +120,7 @@ qa-docs -I /path/to/tests/ -e test_cache test_general_settings_enabled
 
 More details and examples can be found in the `qa-docs` [README.MD](https://github.com/wazuh/wazuh-qa/tree/1864-qa-docs-fixes/deps/wazuh_testing/wazuh_testing/qa_docs).
 
-### Docker deployment
+## Docker deployment
 
 By running a script you can parse the types/modules tests that you want, just need a branch as input. Optionally, you can pass the types or types and modules that you want to parse using the tests allocated in that branch.
 
