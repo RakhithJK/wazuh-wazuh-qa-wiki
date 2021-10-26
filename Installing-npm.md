@@ -1,5 +1,5 @@
 # Installing npm
-First of all, this is the main [download page](https://nodejs.org/en/download/).
+First of all, this is the official [download page](https://nodejs.org/en/download/).
 
 ## Debian
 
