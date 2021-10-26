@@ -53,6 +53,6 @@ or add these lines to `etc/elasticsearch/jvm.options` or `/configjvm.options`:
 -Xmx1g
 ```
 
-`-XmsAm` defines the max allocation of RAM to ES JVM Heap, where A is the amount of MBs it uses. It is possible to use `-XmsAg` to specify GBs. It is recommended to use 1GB as the limit. In some cases, it can raise a time out if 256MB/512MB is used.
+`-XmsAm` defines the max allocation of RAM to ES JVM Heap, where A is the amount of MBs that it uses. It is possible to use `-XmsAg` to specify GBs. It is recommended to use 1GB as the limit. In some cases, it can raise a time out if 256MB/512MB is used.
 
 When the size is set, start the ES service by `systemctl start elasticsearch.service` or `bin/elasticsearch.bat` within the ES installation in windows.
