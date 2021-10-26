@@ -14,7 +14,7 @@ The documentation code is organized in two parts:
   - **Module block**: It will be placed at the top of the Python module, and it will contain the common information for all the tests that may be in that module. 
   - **Test block**: It will be located just after the definition of each test, before its code, and will contain the information related to that test. 
 
-Here is an example of how the `test_basic_usage_changes.py` is documented:
+Here is an example of how the `test_basic_usage_changes.py` from `test_fim` is documented:
 
 
 <details><summary>Show documentation code</summary>
@@ -187,7 +187,7 @@ The below tables show the fields allowed for the blocks discussed above, along w
 | os_platform  | List   | Mandatory | Platform where the tests should be run (**predefined list**).    | linux, windows, ...                                                                |
 | os_version   | List   | Mandatory | Name and version of the operating system (**predefined list**).  | Ubuntu Trusty, Centos 5, Windows Server 2016, ...                                  |
 | references   | List   | Optional  | URLs with additional information.                                | documentation, issues, ...                                                         |
-| pytest_args  | List   | Optional  | List of dictionaries(name: value, brief) explaining the PyTest arguments that should be used when running the module. | **fim_mode**: <br/> value:`"realtime"` <br/> brief: `Uses real-time file monitoring...` |
+| pytest_args  | List   | Optional  | List of dictionaries(name: value: brief) explaining the PyTest arguments that should be used when running the module. | **- fim_mode**: <br/> `realtime`: `Uses real-time file monitoring...`  <br/> `whodata`: `Implies real-time monitoring but...` |
 | tags         | List   | Optional  | Labels to help identify the module (**predefined list**).        | nvd, feeds, rbac, ...                                                              |
 
 
