@@ -1,5 +1,5 @@
 ## Supported OS
-This tool has support for Linux and Windows(only parsing behavior tested) systems.
+This tool has support for Linux and Windows systems.
 
 ## Linux dependencies
 
@@ -9,39 +9,8 @@ This tool has support for Linux and Windows(only parsing behavior tested) system
 - `Python` (>=3.6.0): [How to install](https://docs.python-guide.org/starting/install3/linux/)
 - `Python-pip` (>=21.2.3): [How to install](https://www.tecmint.com/install-pip-in-linux/)
 - `Python3-devtools`: [How to install](https://py-generic-project.readthedocs.io/en/latest/installing.html)
-- `ElasticSearch`: [How to install](https://www.elastic.co/downloads/elasticsearch)
-Also, you can:
-```
-curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list && \
-apt update && \
-apt install -y elasticsearch
-```
-
-Also, you need to specify the RAM limit:
-```
-echo "-Xms1g" >> /etc/elasticsearch/jvm.options
-echo "-Xmx1g" >> /etc/elasticsearch/jvm.options
-```
-
-- `npm (>=6.14.4)`:
-
-To install npm on Ubuntu, Debian, and Linux Mint:
-
-```
-$ sudo apt install npm
-```
-
-To install npm on CentOS 8 (and newer), Fedora, and Red Hat:
-```
-$ sudo dnf install npm	# also installs nodejs
-```
-
-To install npm on Arch Linux and Manjaro:
-
-```
-$ sudo pacman -S npm # also installs nodejs
-```
+- `ElasticSearch`: [How to install](https://github.com/wazuh/wazuh-qa/wiki/Installing-ElasticSearch)
+- `npm (>=6.14.4)`: [How to install](https://github.com/wazuh/wazuh-qa/wiki/Installing-npm)
 
 ## Windows dependencies
 
@@ -53,15 +22,8 @@ $ sudo pacman -S npm # also installs nodejs
 - `Python-pip` (>=21.2.3): [How to install](https://www.liquidweb.com/kb/install-pip-windows/)
 - `WSL2` : [How to install](https://github.com/wazuh/wazuh-qa/wiki/installing-wsl2-on-windows)
 - `Docker Desktop`: [How to install](https://docs.docker.com/desktop/windows/install/#install-docker-desktop-on-windows)
-- `ElasticSearch`: [How to install](https://www.elastic.co/downloads/elasticsearch)
-
-For the RAM limit, add the following lines to config/jvm.options:
-```
--Xms1g
--Xmx1g
-```
-
-- `npm (>=6.14.4)`: [How to install](https://nodejs.org/en/download/)
+- `ElasticSearch`: [How to install](https://github.com/wazuh/wazuh-qa/wiki/Installing-ElasticSearch#windows)
+- `npm (>=6.14.4)`: [How to install](https://github.com/wazuh/wazuh-qa/wiki/Installing-npm#windows)
 
 ## How to install qa-docs
 
