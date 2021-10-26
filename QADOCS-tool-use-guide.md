@@ -19,7 +19,7 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 ## Parameter restrictions
 
 - `-t` cannot be launched with `--types` and `--modules`, `-e`, `--exist`, `-i`, `-l` and `-il` options.
-- `-t`, `--types, `--modules`, `-t`, `-e` and `-s` need the `-I` option.
+- `-t`, `--types`, `--modules`, `-t`, `-e` and `-s` need the `-I` option.
 - `-e` cannot be launched with `--types` and `--modules`, `-i`, `-l` and `-il` options.
 - `-o` cannot be launched with `--types` or `--modules`, `-e`, `--exist`, `-i`, `-l` and `-il` options.
 - `-s` only allows a run with the `-I` option.
