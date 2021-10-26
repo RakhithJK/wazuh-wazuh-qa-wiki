@@ -204,7 +204,7 @@ The below tables show the fields allowed for the blocks discussed above, along w
 | assertions        | List   | Mandatory | A list of what the module checks.                       | Verify that the user-role relationship is removed.                                                |
 | inputs            | List   |  Auto/Manual | Automatically or manually generated list of objects containing the data received by the test. | `- tags: - experimental_enabled configuration: experimental_features: true`, `- tags: - experimental_disabled configuration: experimental_features: false` |
 | input_description | String | Mandatory | Description of the data received by the test.           | Different test cases are contained in an external `YAML` file (conf.yaml) which includes API configuration parameters (IPs and ports). |
-| expected_output   | List   | Mandatory | List of strings that the test expects to find in log files or other objects for a successful finish. | `INFO: \(\d+\): The update of the Debian Buster feed finished successfully.` |
+| expected_output   | List   | Mandatory | List of strings that the test expects to find in log files or other objects for a successful finish. | `r'.*Sending FIM event: (.+)$' (Initial scan when restarting Wazuh)` |
 | tags              | List   | Optional  | Labels to help identify the test (**predefined list**). | active_response, dos_attack, ...                                                                   |
 
 
