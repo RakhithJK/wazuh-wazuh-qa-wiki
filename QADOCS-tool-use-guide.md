@@ -110,6 +110,15 @@ qa-docs -I /path/to/tests/ -t test_cache test_general_settings_enabled
 </details>
 
 <details>
+<summary>Parse a list of tests and give a custom output directory</summary>
+
+```bash
+qa-docs -I /path/to/tests/ -t test_cache test_general_settings_enabled -o /tmp
+```
+
+</details>
+
+<details>
 <summary>Check if a list of tests exists</summary>
 
 ```bash
