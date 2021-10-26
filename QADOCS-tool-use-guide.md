@@ -11,18 +11,18 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 - `--types`: Parse the tests from type(s) that it is passed as an argument. Some types examples are `integration`, `system`, etc.
 - `--modules`: Parse the tests from module(s) that it is passed as an argument. Some module examples are `test_active_response`, `test_fim`, etc.
 - `-o`: Select the output directory. `python -m site --user-site` as default, where the `setup.py` installs the framework.
-- `-e`: Check if the test(s) exist(s).
+- `-e`: Check if the given test(s) exist(s).
 - `-i`: Index the data previously parsed.
 - `-l`: Launch `search-ui`with the data previously indexed.
 - `-il`: Index the data previously parsed and launch `search-ui` 
 
 ## Parameter restrictions
 
-- `-t` and `-e` cannot be launched with `--types` and `--modules` parameters. They store the parsed data into /output and `-t` save it where the user specifies with `-o`.
-- `-t`, `--types, `--modules`, `-t`, `-e` and `-s` need the `-I` parameter.
-- `-o` cannot be launched with `--types` or `--modules`.
-- `-t` and `e` cannot be launched with `-i`, `-l` and `-il`.
-- `-s` only allows a run with the `-I` parameter.
+- `-t` cannot be launched with `--types` and `--modules`, `-e`, `--exist`, `-i`, `-l` and `-il` options.
+- `-t`, `--types, `--modules`, `-t`, `-e` and `-s` need the `-I` option.
+- `-e` cannot be launched with `--types` and `--modules`, `-i`, `-l` and `-il` options.
+- `-o` cannot be launched with `--types` or `--modules`, `-e`, `--exist`, `-i`, `-l` and `-il` options.
+- `-s` only allows a run with the `-I` option.
 
 ## Examples:
 
