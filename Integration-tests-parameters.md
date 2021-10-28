@@ -168,10 +168,7 @@ credentials: |
 - **Health-check**: :green_circle:
 - **Target**: manager
 - **Self-configured tests**: No 
-- **Custom configuration**:
-    ``` 
-    analysisd.debug=2 
-    ```
+- **Custom configuration**: No
 
 ---
 
