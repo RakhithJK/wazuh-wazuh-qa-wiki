@@ -91,7 +91,7 @@ The aim of this article is to show the necessary parameters to be able to launch
  <tr>
   <td>Logtest</td>
   <td>Manager </td>
-  <td>&nbsp;</td>
+  <td>analysisd.debug=2</td>
   <td>&nbsp;</td>
   <td></td>
  </tr>
