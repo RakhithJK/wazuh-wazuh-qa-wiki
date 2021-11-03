@@ -4,7 +4,7 @@
 
 <center><img src="https://github.com/wazuh/wazuh-qa/wiki/images/qadocs_tool_imgs/qa_docs_diagram.png"></center>
 
-When it performs a parse, it creates an internal `output/` directory, which is used to create the index and then visualize it.
+When it performs a parse, it generates the documentation within the temporal directory, which could be used to create the index and then visualize it.
 
 ## Table of contents
 
