@@ -11,6 +11,9 @@ This tool has support for Linux and Windows systems.
 - `Python3-devtools`: [How to install](https://py-generic-project.readthedocs.io/en/latest/installing.html)
 - `ElasticSearch`: [How to install](https://github.com/wazuh/wazuh-qa/wiki/Installing-ElasticSearch)
 - `npm (>=6.14.4)`: [How to install](https://github.com/wazuh/wazuh-qa/wiki/Installing-npm)
+- `Docker`: [How to install](https://docs.docker.com/engine/install/)
+- `wget`: [How to install](https://www.tecmint.com/install-wget-in-linux/)
+- `unzip`: [How to install](https://www.tecmint.com/install-zip-and-unzip-in-linux/)
 
 ## Windows dependencies
 
@@ -41,7 +44,6 @@ This tool has support for Linux and Windows systems.
     cd wazuh-qa* && \
     python3 -m pip install --upgrade pip && \
     python3 -m pip install -r requirements.txt --no-cache-dir --upgrade --only-binary=:cryptography,grpcio: --ignore-installed && \
-    python3 -m pip install -r deps/wazuh_testing/wazuh_testing/qa_docs/requirements.txt && \
     cd deps/wazuh_testing && \
     python3 setup.py install
     ```
@@ -53,7 +55,6 @@ This tool has support for Linux and Windows systems.
     cd wazuh-qa*
     python -m pip install --upgrade pip
     python -m pip install -r requirements.txt --no-cache-dir --upgrade --only-binary=:cryptography,grpcio: --ignore-installed
-    python -m pip install -r deps/wazuh_testing/wazuh_testing/qa_docs/requirements.txt
     cd deps\wazuh_testing
     python setup.py install
     ```
