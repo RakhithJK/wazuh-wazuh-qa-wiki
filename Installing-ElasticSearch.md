@@ -35,12 +35,14 @@ choco install elasticsearch
 
 ### Set the JVM heap size
 
-By default, ES sets the JVM heap size, so it is necessary to modify it using these options:
+The JVM itself requires some memory, so it is normal for ELasticSearch to use more memory than the limit configured with the options below. To set 1GB, `- Xms1g` and `- Xmx1g` must be written in `jvm.options`. It is located in `etc/elasticsearch` and `/config` for windows inside the ES installation.
 
+#### Windows
+By default, ES sets the JVM heap size, so it is necessary to modify it using these options:
 - `Xms`
 - `Xmx`
 
-The JVM itself requires some memory, so it is normal for ELasticSearch to use more memory than the limit configured with the options below. To set 1GB, `- Xms1g` and `- Xmx1g` must be written in `jvm.options`. It is located in `etc/elasticsearch` and `/config` for windows inside the ES installation.
+#### Linux
 
 ```
 echo "-Xms1g" >> /etc/elasticsearch/jvm.options
