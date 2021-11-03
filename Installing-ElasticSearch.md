@@ -33,16 +33,18 @@ You can use the official [download page](https://www.elastic.co/downloads/elasti
 choco install elasticsearch
 ```
 
-### Set the JVM heap size
+# Configurate ElasticSearch
+
+## Set the JVM heap size
 
 The JVM itself requires some memory, so it is normal for ELasticSearch to use more memory than the limit configured with the options below. To set 1GB, `- Xms1g` and `- Xmx1g` must be written in `jvm.options`. It is located in `etc/elasticsearch` and `/config` for windows inside the ES installation.
 
-#### Windows
+### Windows
 By default, ES sets the JVM heap size, so it is necessary to modify it using these options:
 - `Xms`
 - `Xmx`
 
-#### Linux
+### Linux
 
 ```
 echo "-Xms1g" >> /etc/elasticsearch/jvm.options
@@ -60,15 +62,15 @@ or add these lines to `etc/elasticsearch/jvm.options` or `/configjvm.options`:
 
 When the size is set, start the ES service by `systemctl start elasticsearch.service` or `bin/elasticsearch.bat` within the ES installation in windows.
 
-### Remove ES security warnings
+## Remove ES security warnings
 
-#### Windows
+### Windows
 Add to the `elasticsearch.yml` within the installation directory `/config`:
 ```
 xpack.security.enabled: false
 ```
 
-### Linux
+## Linux
 ```
 echo "xpack.security.enabled: false" >> /etc/elasticsearch/elasticsearch.yml
 ```
