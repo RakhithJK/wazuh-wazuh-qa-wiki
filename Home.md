@@ -4,6 +4,7 @@ Welcome to the wazuh-qa wiki!
   * [Installation guide](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-installation-guide)
   * [Use guide](https://github.com/wazuh/wazuh-qa/wiki/QACTL-tool-use-guide)
 * [QA-DOCS tool](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool)
+  * [Introduction](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool#introduction)
   * [Installation guide](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool-installation-guide)
   * [Use guide](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool-use-guide)
   * [How to document a test](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool-How-to-document-a-test)
