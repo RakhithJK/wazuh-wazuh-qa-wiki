@@ -1,6 +1,7 @@
 ## Table of contents
 
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
   - [Parameter restrictions](#parameter-restrictions)
@@ -15,6 +16,13 @@
   - [Test launch module](#test-launch-module)
   - [Configuration module](#configuration-module)
   - [YAML configuration file examples](#yaml-configuration-file-examples)
+  - [Deployment section](#deployment-section)
+  - [Provision section](#provision-section)
+    - [Host info section](#host-info-section)
+    - [Wazuh deployment section](#wazuh-deployment-section)
+    - [QA framework section](#qa-framework-section)
+  - [Testing section](#testing-section)
+  - [Complete YAML configuration files examples](#complete-yaml-configuration-files-examples)
 
 ## Introduction
 
@@ -352,7 +360,7 @@ deployment:
 - `ip`: Assign a static IP to the container. To do this, we need to create a docker network based on the
         specified network (to not create as many networks as containers specified in the dockerfile, only one network
         is allowed). The mask of the network is `/24`. If this option is not specified, the container won't have a
-        static IP.
+        static IP.guide
 - `remove`: Remove the container. Defaults to `False`.
 - `Ports`: Ports to bind to the container. This field is a python dictionary where the keys are the ports to bind
            inside the container in the form port/protocol, and the values are integers corresponding to the ports we
@@ -551,8 +559,15 @@ config:
 
 ### YAML configuration file examples
 
-- Create a vagrant provider with the deployment module with 1024MB memory given, a single cpu assigned, and with the box imported as `qactl/ubuntu_20_04`.
+Now, there are going to be shown some examples of YAML files separated by use cases.
 
+### Deployment section 
+
+The most mentionable fields for the deployment section are `vagrant_box` and `vagrantfile_path`.
+These fields are used to determine the name of the box and the location of the vagrantfile that is going to be used. As for the `vagrant_box` field, any available box can be used, but `qa-ctl` provides some boxes that are ready to use with this tool. The name of these boxes are: `qactl/ubuntu_20_04`, `qactl/centos_8` and `qactl/windows_2019`
+
+
+- Deploying a single virtual machine instance:
   <details>
     <summary>yaml configuration</summary>
 
@@ -563,8 +578,8 @@ config:
         vagrant:
           enabled: true
           vagrantfile_path: /tmp/wazuh_qa_ctl
-          vagrant_box: qactl/ubuntu_20_04
-          vm_memory: 1024
+          vagrant_box: qactl/ubuntu_20_04  # Any vagrant box can be used
+          vm_memory: 512
           vm_cpu: 1
           vm_name: test1
           vm_system: linux
@@ -573,51 +588,228 @@ config:
   ```
 </details>
 
-- Create two vagrant providers with the deployment module and with the same resources as the previous example but one with the `qa-ctl/ubuntu_20_04` and the other with `qactl/centos_8` box
-  
+- Deploying multiple virtual machines at once:
   <details>
     <summary>yaml configuration</summary>
 
   ```yaml
   deployment:
-  host_1:
-    provider:
-      vagrant:
-        enabled: true
-        vagrantfile_path: /tmp/wazuh_qa_ctl
-        vagrant_box: qactl/ubuntu_20_04
-        vm_memory: 1024
-        vm_cpu: 1
-        vm_name: test2
-        vm_system: linux
-        label: test2
-        vm_ip: 10.150.50.3
-  host_2:
-    provider:
-      vagrant:
-        enabled: true
-        vagrantfile_path: /tmp/wazuh_qa_ctl
-        vagrant_box: qactl/centos_8
-        vm_memory: 1024
-        vm_cpu: 1
-        vm_name: test3
-        vm_system: linux
-        label: test3
-        vm_ip: 10.150.50.4
+    host_1:
+      provider:
+        vagrant:
+          enabled: true
+          vagrantfile_path: /tmp/wazuh_qa_ctl
+          vagrant_box: qactl/centos_8
+          vm_memory: 1024
+          vm_cpu: 1
+          vm_name: test2
+          vm_system: linux
+          label: test2
+          vm_ip: 10.150.50.10
+    host_2:
+      provider:
+        vagrant:
+          enabled: true
+          vagrantfile_path: /tmp/wazuh_qa_ctl
+          vagrant_box: windows_server
+          vm_memory: 2048
+          vm_cpu: 2
+          vm_name: test3
+          vm_system: windows
+          label: test3
+          vm_ip: 10.150.50.11
+  ```
+</details>
+
+> **Important note**: The `vm_name` can not be repeated, every deployed instance has to have a different name. The IP declared in the field `vm_ip` cannot be used by two VMs at the same time.
+
+### Provision section
+
+This yaml section has three different sub-sections: `host_info`, `wazuh_deployment` and `qa_framework`
+
+#### Host info section
+This section contains the necessary information for being able to make a connection with the host where the provisioning stage is going to be made. The `host_info` section is always required and its absence will make the `qa-ctl` validation parameters stage fail.
+
+<details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    host_info:
+      connection_method: ssh  # Or winrm for windows virtual machines
+      user: vagrant
+      password: vagrant
+      connection_port: 22
+      ansible_python_interpreter: /usr/bin/python3
+      system: deb # This field changes depending on the system of the VM
+      installation_files_path: /tmp
+      host: 10.150.50.2 # IP from the VM
+
   ```
 </details>
 
 
-- Provisioning the single `qactl/ubuntu_20_04` vagrant machine created before with a wazuh manager using a S3 URL as a provider of the package and selecting the wazuh qa framework from the `master` branch.
+#### Wazuh deployment section
 
-  > **Note**: This YAML file configuration will only work properly if the first example has been done already.
+
+This section handles all the info needed for provisioning the VM host with `Wazuh manager or agent`. There are several ways to install Wazuh: using an `S3 URL`, from a `local downloaded package`, from the `file sources` available on the `wazuh repository` and by using a specific `system`, `version`, `revision` and `repository`.
+
+
+- Provisioning an instance with `Wazuh manager` using an `S3 URL`:
 
   <details>
     <summary>yaml configuration</summary>
 
   ```yaml
-  provision:
-    hosts:
+    wazuh_deployment:
+      type: package
+      target: manager
+      s3_package_url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-manager/wazuh-manager_4.2.3-1_amd64.deb
+      installation_files_path: /tmp
+      wazuh_install_path: /var/ossec # This is an optional field
+      health_check: true # This is an optional field
+  ```
+</details>
+
+- Provisioning an instance with a `Wazuh manager` using a `local existent package`:
+
+  <details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    wazuh_deployment:
+      type: package
+      target: manager
+      local_package_path: /tmp/wazuh-manager_4.2.3-1_amd64.deb
+      installation_files_path: /tmp
+  ```
+</details>
+
+- Provisioning an instance with a `Wazuh manager` obtained from the `sources of the Wazuh repository`:
+
+  <details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    wazuh_deployment:
+      type: sources
+      target: manager
+      wazuh_branch: master # Will be used for obtaining the wazuh installation files
+      installation_files_path: /tmp
+  ```
+</details>
+
+
+- Provisioning an instance with a `Wazuh manager` using a specific `system`, `version`, `revision` and `repository`:
+
+  <details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    wazuh_deployment:
+      type: package
+      target: manager
+      system: deb
+      version: 4.2.4
+      revision: 0.10557
+      repository: test
+      installation_files_path: /tmp
+  ```
+</details>
+
+- Provisioning an instance with `Wazuh agent`:
+
+  <details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    wazuh_deployment:
+      type: package
+      target: agent
+      manager_ip: 10.150.50.2
+      s3_package_url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-manager/wazuh-agent.2.3-1_amd64.deb
+      installation_files_path: /tmp
+  ```
+</details>
+
+> **Important note**: For provisioning, a host with a Wazuh agent, the field `target` needs to be changed to `agent` and there will be a new field required called `manager_ip` that indicates the IP of the manager that the new agent will be connected with.
+
+#### QA framework section
+
+This section is used for provisioning the host with the Framework of QA. The example given below is a generic one that will use the `master` branch for getting the repository files, and locate them in the path specified in the `qa_workdir` field.
+
+  <details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    qa_framework:
+      wazuh_qa_branch: master
+      qa_workdir: /tmp/wazuh_qa_ctl
+  ```
+</details>
+
+### Testing section
+The Testing is composed with an always required [`host_info` section](#host-info-section) that contains the same fields as the `Provisioning` stage `host_info` section. Plus, there is a section called `test` with the fields needed for launching a test.
+
+- Run `test cors`
+   <details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    test:
+      type: pytest # As for now, this is the only available type
+      path:
+        test_files_path: /wazuh-qa/tests/integration/test_api/test_config/test_cors/test_cors.py # Full location path of the test 
+        run_tests_dir_path: /wazuh-qa/test/integration                                           # Path to the folder where to run the tests
+        test_results_path: /tmp/wazuh_qa_ctl/test_general_settings_enabled_resutls/              # Path where the results of the tests will be stored
+  ```
+</details>
+
+> **Note**: The fields `test_files_path` and `run_test_dir_path` are paths that are going to be used in the VM instance, whereas the `test_results_path` is a path that is going to be used in the host machine where qa-ctl was launched.
+
+
+### Complete YAML configuration files examples
+Here you can find some examples of YAML configuration files that are fully completed on every section and ready to use.
+
+- Run `test cache`
+   <details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    deployment:
+      host_1:
+        provider:
+          vagrant:
+            enabled: true
+            vagrantfile_path: /tmp/wazuh_qa_ctl
+            vagrant_box: qactl/ubuntu_20_04
+            vm_memory: 1024
+            vm_cpu: 1
+            vm_name: manager_test_cache_1635415018.925661
+            vm_system: linux
+            label: manager_test_cache_1635415018.925661
+            vm_ip: 10.150.50.2
+    provision:
+      hosts:
+        host_1:
+          host_info:
+            connection_method: ssh
+            user: vagrant
+            password: vagrant
+            connection_port: 22
+            ansible_python_interpreter: /usr/bin/python3
+            system: deb
+            installation_files_path: /tmp
+            host: 10.150.50.2
+          wazuh_deployment:
+            type: package
+            target: manager
+            s3_package_url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-manager/wazuh-manager_4.2.4-1_amd64.deb
+            installation_files_path: /tmp
+            health_check: true
+          qa_framework:
+            wazuh_qa_branch: 2023-qa-ctl-documented-test-validation
+            qa_workdir: /tmp/wazuh_qa_ctl
+    tests:
       host_1:
         host_info:
           connection_method: ssh
@@ -628,72 +820,91 @@ config:
           system: deb
           installation_files_path: /tmp
           host: 10.150.50.2
-        wazuh_deployment:
-          type: package
-          target: manager
-          s3_package_url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-manager/wazuh-manager_4.2.3-1_amd64.deb
-          installation_files_path: /tmp
-          health_check: true
-        qa_framework:
-          wazuh_qa_branch: master
-          qa_workdir: /tmp/wazuh_qa_ctl
-  ```
-</details>
-
-
-- Run the `general settings enabled` test in the already provisioned machine.
-
-  > **Note**: For running this example, the provisioning file example must be run first.
-
-  <details>
-    <summary>yaml configuration</summary>
-
-  ```yaml
-  tests:
-    host_1:
-      host_info:
-        connection_method: ssh
-        user: vagrant
-        password: vagrant
-        connection_port: 22
-        ansible_python_interpreter: /usr/bin/python3
-        system: deb
-        installation_files_path: /tmp
-        host: 10.150.50.2
-      test:
-        type: pytest
-        path:
-          test_files_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_vulnerability_detector/test_general_settings/test_general_settings_enabled.py
-          run_tests_dir_path: /tmp/wazuh_qa_ctl/wazuh-qa/test/integration
-          test_results_path: /tmp/wazuh_qa_ctl/test_general_settings_enabled_resutls/
+        test:
+          type: pytest
+          path:
+            test_files_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_api/test_config/test_cache/test_cache.py
+            run_tests_dir_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration
+            test_results_path: /tmp/wazuh_qa_ctl/test_cache_1635415018.92588
 
   ```
 </details>
 
 
-- This is an example of a yaml configuration with all the modules given. In this case, this configuration will
-  create an `Ubuntu` vagrant instance with the vagrantfile located in the `/tmp/wazuh_qa_ctl` folder, with two assigned CPUs
-  and the ip `10.150.50.5`. For the provisioning module, it will install a wazuh-manager from an S3 package URL and use the `master` branch as `wazuh_qa_branch`, and will run the cors test on the created machine. Lastly, the config section will configure custom outputs.
 
-  <details>
+
+- Run `test execd restart`
+   <details>
     <summary>yaml configuration</summary>
 
   ```yaml
-  deployment:
-    host_1:
-      provider:
-        vagrant:
-          enabled: true
-          vagrantfile_path: /tmp/wazuh_qa_ctl
-          vagrant_box: qactl/ubuntu_20_04
-          vm_memory: 1024
-          vm_cpu: 2
-          vm_name: test5
-          vm_system: linux
-          label: test5
-          vm_ip: 10.150.50.5
-  provision:
-    hosts:
+    deployment:
+      host_1:
+        provider:
+          vagrant:
+            enabled: true
+            vagrantfile_path: /tmp/wazuh_qa_ctl
+            vagrant_box: qactl/ubuntu_20_04
+            vm_memory: 1024
+            vm_cpu: 1
+            vm_name: agent_test_execd_restart_1635415139.489418
+            vm_system: linux
+            label: agent_test_execd_restart_1635415139.489418
+            vm_ip: 10.150.50.3
+      host_2:
+        provider:
+          vagrant:
+            enabled: true
+            vagrantfile_path: /tmp/wazuh_qa_ctl
+            vagrant_box: qactl/ubuntu_20_04
+            vm_memory: 1024
+            vm_cpu: 1
+            vm_name: manager_test_execd_restart_1635415139.489418
+            vm_system: linux
+            label: manager_test_execd_restart_1635415139.489418
+            vm_ip: 10.150.50.4
+    provision:
+      hosts:
+        host_1:
+          host_info:
+            connection_method: ssh
+            user: vagrant
+            password: vagrant
+            connection_port: 22
+            ansible_python_interpreter: /usr/bin/python3
+            system: deb
+            installation_files_path: /tmp
+            host: 10.150.50.3
+          wazuh_deployment:
+            type: package
+            target: agent
+            s3_package_url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.2.4-1_amd64.deb
+            installation_files_path: /tmp
+            health_check: true
+            manager_ip: 10.150.50.4
+          qa_framework:
+            wazuh_qa_branch: 2023-qa-ctl-documented-test-validation
+            qa_workdir: /tmp/wazuh_qa_ctl
+        host_2:
+          host_info:
+            connection_method: ssh
+            user: vagrant
+            password: vagrant
+            connection_port: 22
+            ansible_python_interpreter: /usr/bin/python3
+            system: deb
+            installation_files_path: /tmp
+            host: 10.150.50.4
+          wazuh_deployment:
+            type: package
+            target: manager
+            s3_package_url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-manager/wazuh-manager_4.2.4-1_amd64.deb
+            installation_files_path: /tmp
+            health_check: true
+          qa_framework:
+            wazuh_qa_branch: 2023-qa-ctl-documented-test-validation
+            qa_workdir: /tmp/wazuh_qa_ctl
+    tests:
       host_1:
         host_info:
           connection_method: ssh
@@ -703,42 +914,14 @@ config:
           ansible_python_interpreter: /usr/bin/python3
           system: deb
           installation_files_path: /tmp
-          host: 10.150.50.5
-        wazuh_deployment:
-          type: package
-          target: manager
-          s3_package_url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-manager/wazuh-manager_4.2.3-1_amd64.deb
-          installation_files_path: /tmp
-          health_check: true
-        qa_framework:
-          wazuh_qa_branch: master
-          qa_workdir: /tmp/wazuh_qa_ctl
-  tests:
-    host_1:
-      host_info:
-        connection_method: ssh
-        user: vagrant
-        password: vagrant
-        connection_port: 22
-        ansible_python_interpreter: /usr/bin/python3
-        system: deb
-        installation_files_path: /tmp
-        host: 10.150.50.5
-      test:
-        type: pytest
-        path:
-          test_files_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_api/test_config/test_cors/test_cors.py
-          run_tests_dir_path: /tmp/wazuh_qa_ctl/wazuh-qa/test/integration
-          test_results_path: /tmp/wazuh_qa_ctl/test_cors_results/
-  config:
-    vagrant_output: true
-    ansible_output: true
-    logging:
-      enable: true
-      level: INFO
+          host: 10.150.50.3
+        test:
+          type: pytest
+          path:
+            test_files_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_active_response/test_execd/test_execd_restart.py
+            run_tests_dir_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration
+            test_results_path: /tmp/wazuh_qa_ctl/test_execd_restart_1635415139.489715
+
 
   ```
 </details>
-
-
-
