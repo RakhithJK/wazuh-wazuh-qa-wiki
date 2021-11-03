@@ -1,6 +1,6 @@
 # Installing ElasticSearch
 
-First of all, this is the official [download page](https://www.elastic.co/downloads/elasticsearch).
+First of all, this is the official [download page](https://www.elastic.co/downloads/elasticsearch) where you can find the official documentation to install ES for all systems.
 
 ## Debian
 
@@ -13,14 +13,15 @@ apt install -y elasticsearch
 ```
 
 ## ArchLinux
-
+You can get the ES package within the [community repo](https://archlinux.org/packages/?name=elasticsearch) or:
 ```
 pacman -S elasticsearch
 ```
 
 ## CentOS
-
+You can follow the official [installation page](https://www.elastic.co/guide/en/elasticsearch/reference/7.15/rpm.html#rpm-repo)
 ```
+rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 yum install elasticsearch-oss.x86_64
 ```
 
@@ -56,3 +57,16 @@ or add these lines to `etc/elasticsearch/jvm.options` or `/configjvm.options`:
 `-XmsAm` defines the max allocation of RAM to ES JVM Heap, where A is the amount of MBs that it uses. It is possible to use `-XmsAg` to specify GBs. It is recommended to use 1GB as the limit. In some cases, it can raise a time out if 256MB/512MB is used.
 
 When the size is set, start the ES service by `systemctl start elasticsearch.service` or `bin/elasticsearch.bat` within the ES installation in windows.
+
+### Remove ES security warnings
+
+#### Windows
+Add to the `elasticsearch.yml` within the installation directory `/config`:
+```
+xpack.security.enabled: false
+```
+
+### Linux
+```
+echo "xpack.security.enabled: false" >> /etc/elasticsearch/elasticsearch.yml
+```
