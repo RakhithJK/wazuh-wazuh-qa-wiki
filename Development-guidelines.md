@@ -130,7 +130,7 @@ for i in $(seq 1 $n_report)
     fi
     tar -czvf PS${i}${revision}.tar.gz ./assets PS${i}${revision}.html
     rm -rf ./assets
-    rm -rf ./PS${i}.html
+    rm -rf ./PS${i}${revision}.html
   done
 }
 
