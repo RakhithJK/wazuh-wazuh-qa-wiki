@@ -79,7 +79,7 @@ This tool has the following parameters:
 - `--skip-deployment`, `--skip-provisioning`, `--skip-testing` can only be launched with `-c`, `--config` (manual mode).
 - `--qa-branch` must exist in the wazuh-qa repository on github.
 - `-r`, `--run` values have to correspond to existing and documented tests of the specified branch of the wazuh-qa repository.
-- '-o`, '--os` can only be specified with `r`, `--run` (automatic mode).
+- `-o`, '--os` can only be specified with `r`, `--run` (automatic mode).
 
 **Allowed values**
 
