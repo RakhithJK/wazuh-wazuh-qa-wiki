@@ -424,7 +424,7 @@ provision:
   - The field `type` has to have `package` selected as the parameter.
   - None of the fields, `s3_package_url`, `system`, `version`, `revision`, and `repository` are given.
 - `system`: System type of the machine where Wazuh is going to be installed. The available values for this parameter are: `rpm, deb, windows, macos, solaris10, solaris11, rpm5, wpk-linux, and wpk-windows`.
-    > **Note**:  If the fields `version, revision and repository` are not given along with this field itself, there will be a validation error.
+> **Note**:  If the fields `version, revision and repository` are not given along with this field itself, there will be a validation error.
 
   This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
