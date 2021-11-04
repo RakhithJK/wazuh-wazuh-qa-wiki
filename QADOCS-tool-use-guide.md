@@ -5,7 +5,7 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 - `-h, --help`: Print the `qa-docs` help message.
 - `-s, --sanity-check`: Perform a sanity check using the data previously parsed. Tests coverage, errors, and tests count.
 - `-v, --version`: Print the `qa-docs` version.
-- `--no-logging`: The `qa-docs` tool run is not logged when specified.
+- `--no-logging`: Disable `qa-docs` logging.
 - `-d, --debug`: Run in debug mode.
 - `--tests-path`: Specify the path of the tests to be parsed. Set it when you want to parse or run a sanity check.
 - `-t, --tests`: Parse the test(s) you specify as an argument.
