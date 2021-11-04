@@ -126,15 +126,6 @@ qa-docs -I /path/to/tests/ -t test_cache test_general_settings_enabled
 </details>
 
 <details>
-<summary>Check if `test_day_wday` is documented</summary>
-
-```bash
-qa-docs -I /path/to/tests/ -t test_day_wday --check-documentation
-```
-
-</details>
-
-<details>
 <summary>Parse a list of tests and give a custom output directory</summary>
 
 ```bash
@@ -156,7 +147,7 @@ qa-docs -I /path/to/tests/ -e test_cache test_general_settings_enabled
 <summary>Check if a test is properly documented</summary>
 
 ```bash
-qa-docs -I /path/to/tests/ -t test_cache --check-documentation
+qa-docs -I /path/to/tests/ -t test_day_wday --check-documentation
 ```
 
 </details>
