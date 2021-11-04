@@ -7,11 +7,11 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 - `-v, --version`: Print the `qa-docs` version.
 - `--no-logging`: The `qa-docs` tool run is not logged when specified.
 - `-d, --debug`: Run in debug mode.
-- `-I, --tests-path`: Specify the path of the tests to be parsed. Set it when you want to parse or run a sanity check.
+- `--tests-path`: Specify the path of the tests to be parsed. Set it when you want to parse or run a sanity check.
 - `-t, --tests`: Parse the test(s) you specify as an argument.
-- `--types`: Parse the tests from type(s) that it is passed as an argument. Some types of examples are `integration`, `system`, etc.
-- `--modules`: Parse the tests from module(s) that it is passed as an argument. Some module examples are `test_active_response`, `test_fim`, etc.
-- `-o`: Select the output directory. `python -m site --user-site` as default, where the `setup.py` installs the framework.
+- `--types`: Parse the tests from type(s) that it is passed as an argument.
+- `--modules`: Parse the tests from module(s) that it is passed as an argument.
+- `-o`: Select the output directory where the documentation will be generated.
 - `-e`: Check if the given test(s) exist(s).
 - `--check-documentation`: Check if the test(s) passed with `-t` is(are) documented following the current `qa-docs` schema.
 - `-i`: Index the data previously parsed.
@@ -19,6 +19,7 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 - `-il`: Index the data previously parsed and launch `search-ui` 
 - `--docker-run`: Run a docker container that runs `qa-docs` with the same arguments that it receives. This allows you to run `qa-docs` as you would do in a local environment.
 - `--qa-branch`: Specifies the branch that allocates the tests input when `--docker-run` is passed.
+- `--format`: Select the generated files format. Set as JSON by default.
 
 ## Parameter restrictions
 
@@ -34,7 +35,7 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 
 
 <details>
-<summary>Generate the documentation in <code>YAML</code> and <code>JSON</code> formats in the framework installation directory</summary>
+<summary>Parse all the tests within the path.</summary>
 
 ```bash
 qa-docs -I /path/to/tests/
@@ -98,6 +99,15 @@ qa-docs -I /path/to/tests/ --types integration --modules test_active_response te
 </details>
 
 <details>
+<summary>Parse integration tests modules, index the data and launch <code>search-ui</code> to visualize it via web browser(using YAML format)</summary>
+
+```bash
+qa-docs -I /path/to/tests/ --types integration --modules test_active_response test_agentd -il index_name --format yaml
+```
+
+</details>
+
+<details>
 <summary>Perform a sanity check after a previous parse run</summary>
 
 ```bash
@@ -147,6 +157,17 @@ qa-docs -I /path/to/tests/ -t test_cache --check-documentation
 
 ```bash
 qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --modules test_active_response
+```
+
+</details>
+
+</details>
+
+<details>
+<summary>Parse <code>test_fim</code> tests and generate the documentation in custom output path using Docker</summary>
+
+```bash
+qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --modules test_fim -o /custom/path
 ```
 
 </details>
