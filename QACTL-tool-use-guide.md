@@ -1,7 +1,6 @@
 ## Table of contents
 
 
-- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
   - [Parameter restrictions](#parameter-restrictions)
@@ -583,7 +582,7 @@ config:
         level: String (Optional)
         file: String (Optional)
 ```
-
+- `qa_ctl_launcher_branch`: Field that defines the branch that will be used to launch `qa-ctl`. This field is optional an only required when `qa-ctl` is being used in Windows.
 - `vagrant_output`: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(`true`) or
                     if they remain with the default outputs (`false`).
 - `ansible_output`: Field that defines if the ansible's outputs are going to be replaced by customized outputs(`true`) or
