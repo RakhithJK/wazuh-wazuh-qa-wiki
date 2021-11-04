@@ -40,7 +40,7 @@ The next image shows a flow diagram of how the tool works:
     <img width="576px" "height="538px" src="https://github.com/wazuh/wazuh-qa/wiki/images/qactl_tool_imgs/diagram.png">
 </p>
 
-- The `infrastructure` module is in charge of creating the needed VMs or containers.
+- The `infrastructure` module is in charge of creating the needed VMs.
 - The `provisioning` module is in charge of installing Wazuh and the QA framework.
 - The `run` test module is responsible for launching the tests and collect the results.
 
@@ -60,6 +60,7 @@ This tool has the following parameters:
 - `-p, --persistent`: If specified, the environment will not be destroyed after finishing.
 - `-r, --run <test_name_1> <test_name_2> ...`: Set automatic mode. Launches the tests and returns the results.
 - `-v, --version <version>`: Specify the version of wazuh to use. If not set, the latest released version will be used.
+- `-o, --os <os_system>`: Specify the system(s) with which to launch each test.
 - `--dry-run`: Config generation mode. The test data will be processed and the configuration will be generated without running anything.
 - `--no-validation`: Disable the script parameters validation.
 - `--no-validation-logging`: Disable parameters validation logging. Useful when it is run inside a docker container.
@@ -71,14 +72,18 @@ This tool has the following parameters:
 ### Parameter restrictions
 
 - `-r`, `--run` cannot be launched with the `-c`, `--config` parameter. They represent independent modes.
-- `-d`, `--dry-run` can only be launched with `r`, `--run` (automatic mode).
+- `-d`, `--dry-run` can only be specified with `r`, `--run` (automatic mode).
 - `-v`, `--version` parameter has to be in `x.y.z` format. For example `4.2.1`.
-- `-v`, `--version` can only be launched with `r`, `--run` (automatic mode).
+- `-v`, `--version` can only be specified with `r`, `--run` (automatic mode).
 - `-v`, `--version` value has to correspond to a released version of Wazuh.
 - `--skip-deployment`, `--skip-provisioning`, `--skip-testing` can only be launched with `-c`, `--config` (manual mode).
-- `--qa-branch` value must exist.
+- `--qa-branch` must exist in the wazuh-qa repository on github.
 - `-r`, `--run` values have to correspond to existing and documented tests of the specified branch of the wazuh-qa repository.
+- '-o`, '--os` can only be specified with `r`, `--run` (automatic mode).
 
+**Allowed values**
+
+- `-o`, `--os`: [`centos`, `ubuntu`, `windows`]
 
 ### Modes of use
 
@@ -205,6 +210,15 @@ qa-ctl -r <test_name>
 
 
 <details>
+<summary>Launch a single test for a specified system (in this case windows).</summary>
+
+```bash
+qa-ctl -r <test_name> -o windows
+```
+
+</details>
+
+<details>
 <summary>Launch multiple tests (In parallel using different environments).</summary>
 
 ```bash
@@ -212,6 +226,16 @@ qa-ctl -r <test_name_1> <test_name_2> ...
 ```
 
 </details>
+
+<details>
+<summary>Launch two tests for multiple systems (cross product).</summary>
+
+```bash
+qa-ctl -r <test_name_1> <test_name_2> -o centos windows
+```
+
+</details>
+
 
 <details>
 <summary>Launch a test with a specific version of Wazuh.</summary>
@@ -281,7 +305,7 @@ qa-ctl -r <test_name> -dd
 </details>
 
 <details>
-<summary>Launch an execution without destroying the environment, and then relaunch the test again.</summary>
+<summary>Launch a test run without destroying the environment, and then relaunch the test again.</summary>
 
 ```bash
 qa-ctl -r test_general_settings_enabled --persistent
