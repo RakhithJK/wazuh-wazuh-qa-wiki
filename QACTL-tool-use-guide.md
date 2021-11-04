@@ -1,6 +1,7 @@
 ## Table of contents
 
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
   - [Parameter restrictions](#parameter-restrictions)
@@ -79,7 +80,7 @@ This tool has the following parameters:
 - `--skip-deployment`, `--skip-provisioning`, `--skip-testing` can only be launched with `-c`, `--config` (manual mode).
 - `--qa-branch` must exist in the wazuh-qa repository on github.
 - `-r`, `--run` values have to correspond to existing and documented tests of the specified branch of the wazuh-qa repository.
-- `-o`, '--os` can only be specified with `r`, `--run` (automatic mode).
+- `-o`, `--os` can only be specified with `r`, `--run` (automatic mode).
 
 **Allowed values**
 
@@ -399,12 +400,14 @@ provision:
   hosts:
     host1:
       host_info:
-        connection_method: String (Required)
-        host: String (Required)
-        user: String (Required)
-        password: String (Required)
-        connection_port: Integer (Required)
+        ansible_connection: String (Required)
+        ansible_user: String (Required)
+        ansible_password: String (Required)
+        ansible_port: Integer (Required)
         ansible_python_interpreter: String (Required)
+        system: String (Required)
+        installation_files_path: String (Required)
+        host: String (Required)
 
         wazuh_deployment:
           type: String(Required)
@@ -419,7 +422,7 @@ provision:
           revision: String (Optional)
           repository: String (Optional)
           installation_files_path: String (Required)
-          wazuh_install_path: String (Optional)
+          wazuh_install_path: String (Required)
           healt_check: Boolean (Optional)
 
         qa_framework:
@@ -429,12 +432,14 @@ provision:
 
 **Host info section**
 
-- `connection_method`: This field defines the connection method selected.
-- `host`: String with the IP or DNS of the host.
-- `user`: String with the existing username in the host.
-- `password`: String with the password of the user.
-- `connection_port`: The port number that will be used to establish the connection.
+- `ansible_connection`: This field defines the connection method selected.
+- `ansible_user`: String with the existing username in the host.
+- `ansible_password`: String with the password of the user.
+- `ansible_port`: The port number that will be used to establish the connection.
 - `ansible_python_interpreter`: String with the Python path.
+- `system`:  System type of the machine where qa-ctl is going to be launched.
+- `installation_files_path`: Path where qa-ctl is going to be installed
+- `host`: String with the IP or DNS of the host.
 
 **Wazuh deployment section**
 
@@ -489,21 +494,27 @@ provision:
 tests:
   host1:
     host_info:
-        connection_method: String (Required)
-        host: String (Required)
-        user: String (Required)
-        password: String (Required)
-        ssh_private_key_file_path: String (Optional)
-        connection_port: Integer (Required)
+        ansible_connection: String (Required)
+        ansible_user: String (Required)
+        ansible_password: String (Required)
+        ansible_port: Integer (Required)
         ansible_python_interpreter: String (Required)
+        system: String (Required)
+        installation_files_path: String (Required)
+        host: String (Required)
+        ssh_private_key_file_path: String (Optional)
 
       test:
         hosts: String (Required)
         type: String (Required)
-        path: (required)
-          test_files_path: String (required)
-          run_tests_dir_path: String (required)
-          test_results_path: String (required)
+        path: (Required)
+          test_files_path: String (Required)
+          run_tests_dir_path: String (Required)
+          test_results_path: String (Required)
+        wazuh_install_path: String (Required)
+        system: String (Required)
+        component: String(Required)
+        modules: List (Required)
       parameters:
         tier: String (Optional)
         stop_after_first_failure: Boolean (Optional)
@@ -518,12 +529,14 @@ tests:
 
 **Host info section**
 
-- `connection_method`: This field defines the connection method selected.
-- `host`: String with the IP or DNS of the host.
-- `user`: String with the existing username in the host.
-- `password`: String with the password of the user.
-- `connection_port`: The port number that will be used to establish the connection.
+- `ansible_connection`: This field defines the connection method selected.
+- `ansible_user`: String with the existing username in the host.
+- `ansible_password`: String with the password of the user.
+- `ansible_port`: The port number that will be used to establish the connection.
 - `ansible_python_interpreter`: String with the Python path.
+- `system`:  System type of the machine where qa-ctl is going to be launched.
+- `installation_files_path`: Path where qa-ctl is going to be installed
+- `host`: String with the IP or DNS of the host.
 - `ssh_private_key_file_path`: This field is optional and contains the path of an ssh private key in case the user
                                wants to log into the host with a different method.
 
@@ -538,6 +551,10 @@ tests:
   - `run_tests_dir_path`: The path to the folder from where we want to run the tests (can be different from
                           `test_files_path`).
   - `test_results_path`: The path to the folder in the local machine where the test reports will be stored.
+- `wazuh_install_path`: Path where wazuh is going to be installed in the virtual machine
+- `system`: System of the host where the test is going to be launched
+- `component`: Wazuh component target of the test.
+- `modules`: The correspondent modules of the test.
 
 **Parameters section**
 
@@ -558,6 +575,7 @@ tests:
 
 ```yaml
 config:
+    qa_ctl_launcher_branch: String (Required when qa-ctl is launched on Windows)
     vagrant_output: Boolean (Optional)
     ansible_output: Boolean (Optional
     logging:
@@ -658,14 +676,14 @@ This section contains the necessary information for being able to make a connect
 
   ```yaml
     host_info:
-      connection_method: ssh  # Or winrm for windows virtual machines
-      user: vagrant
-      password: vagrant
-      connection_port: 22
+      ansible_connection: ssh # Or winrm for windows virtual machines
+      ansible_user: vagrant
+      ansible_password: vagrant
+      ansible_port: 22
       ansible_python_interpreter: /usr/bin/python3
       system: deb # This field changes depending on the system of the VM
       installation_files_path: /tmp
-      host: 10.150.50.2 # IP from the VM
+      host: 10.150.50.4 # IP from the VM
 
   ```
 </details>
@@ -784,6 +802,11 @@ The Testing is composed with an always required [`host_info` section](#host-info
         test_files_path: /wazuh-qa/tests/integration/test_api/test_config/test_cors/test_cors.py # Full location path of the test 
         run_tests_dir_path: /wazuh-qa/test/integration                                           # Path to the folder where to run the tests
         test_results_path: /tmp/wazuh_qa_ctl/test_general_settings_enabled_resutls/              # Path where the results of the tests will be stored
+      wazuh_install_path: /var/ossec
+      systen: linux
+      component: manager
+      modules:
+      - api
   ```
 </details>
 
@@ -815,14 +838,14 @@ Here you can find some examples of YAML configuration files that are fully compl
       hosts:
         host_1:
           host_info:
-            connection_method: ssh
-            user: vagrant
-            password: vagrant
-            connection_port: 22
+            ansible_connection: ssh
+            ansible_user: vagrant
+            ansible_password: vagrant
+            ansible_port: 22
             ansible_python_interpreter: /usr/bin/python3
             system: deb
             installation_files_path: /tmp
-            host: 10.150.50.2
+            host: 10.150.50.6
           wazuh_deployment:
             type: package
             target: manager
@@ -835,20 +858,25 @@ Here you can find some examples of YAML configuration files that are fully compl
     tests:
       host_1:
         host_info:
-          connection_method: ssh
-          user: vagrant
-          password: vagrant
-          connection_port: 22
+          ansible_connection: ssh
+          ansible_user: vagrant
+          ansible_password: vagrant
+          ansible_port: 22
           ansible_python_interpreter: /usr/bin/python3
           system: deb
           installation_files_path: /tmp
-          host: 10.150.50.2
+          host: 10.150.50.6
         test:
           type: pytest
           path:
             test_files_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_api/test_config/test_cache/test_cache.py
             run_tests_dir_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration
             test_results_path: /tmp/wazuh_qa_ctl/test_cache_1635415018.92588
+          wazuh_install_path: /var/ossec
+          system: linux
+          component: manager
+          modules:
+          - api
 
   ```
 </details>
@@ -890,10 +918,10 @@ Here you can find some examples of YAML configuration files that are fully compl
       hosts:
         host_1:
           host_info:
-            connection_method: ssh
-            user: vagrant
-            password: vagrant
-            connection_port: 22
+            ansible_connection: ssh
+            ansible_user: vagrant
+            ansible_password: vagrant
+            ansible_port: 22
             ansible_python_interpreter: /usr/bin/python3
             system: deb
             installation_files_path: /tmp
@@ -910,12 +938,12 @@ Here you can find some examples of YAML configuration files that are fully compl
             qa_workdir: /tmp/wazuh_qa_ctl
         host_2:
           host_info:
-            connection_method: ssh
-            user: vagrant
-            password: vagrant
-            connection_port: 22
+            ansible_connection: ssh
+            ansible_user: vagrant
+            ansible_password: vagrant
+            ansible_port: 22
             ansible_python_interpreter: /usr/bin/python3
-            system: deb
+            system: rpm
             installation_files_path: /tmp
             host: 10.150.50.4
           wazuh_deployment:
