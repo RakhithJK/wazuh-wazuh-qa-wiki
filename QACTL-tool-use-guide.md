@@ -1,6 +1,7 @@
 ## Table of contents
 
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
   - [Parameter restrictions](#parameter-restrictions)
@@ -21,7 +22,7 @@
     - [Wazuh deployment section](#wazuh-deployment-section)
     - [QA framework section](#qa-framework-section)
   - [Testing section](#testing-section)
-  - [Complete YAML configuration files examples](#complete-yaml-configuration-files-examples)
+  - [Full YAML configuration files examples](#full-yaml-configuration-files-examples)
 
 ## Introduction
 
@@ -138,7 +139,7 @@ ss.                                                                      [100%]
 
 </details>
 
-> **Important note**: To use the automatic mode, the test/s must be previously documented according to the documentation schema (proposed by `qa-docs` team), in order to obtain the necessary information for the run. For example https://github.com/wazuh/wazuh-qa/blob/master/tests/integration/test_vulnerability_detector/test_general_settings/test_general_settings_enabled.py#L1-L55
+> **Important note**: To use the automatic mode, the test/s must be previously documented according to the documentation schema (proposed by `qa-docs` team), in order to obtain the necessary information for the run. You can see an example of a documented test in [this piece of code](https://github.com/wazuh/wazuh-qa/blob/master/tests/integration/test_vulnerability_detector/test_general_settings/test_general_settings_enabled.py#L1-L55).
 
 #### Manual: Specify configuration parameters to launch the tests
 
@@ -337,7 +338,7 @@ given. In the next points of this guide, every field will be explained so the us
 
 ```yaml
 deployment:
-    host1:
+    host_1:
       provider:
         vagrant:
           enabled: Boolean (Required)
@@ -349,21 +350,7 @@ deployment:
           vm_system: String (Required)
           label: String (Required)
           vm_ip: IP address (Required)
-
-     host2:
-        provider:
-          docker:
-            enabled: Boolean (Required)
-            dockerfile_path: String (Required)
-            name: String (Required)
-            ip: String (Optional) Default: None
-            remove: Boolean (Optional) Default: False
-            ports: Dict (optional) Default: Empty
-            detach: Boolean (Optional) Default: True
-            stdout: Boolean (Optional) Default: False
-            stderr: Boolean (Optional) Default: False
 ```
-
 **Vagrant deployment**
 
 - `enabled`: If False, the VM won’t be created.
@@ -374,23 +361,6 @@ deployment:
 - `vm_system`:  VM operative system.
 - `Label`: Assign a label to the VM.
 - `vm_ip`: assigned IP for the VM.
-
-**Docker deployment**
-
-- `enabled`: If False, the VM won’t be created.
-- `dockerfile_path`: Path to an existing dockerfile.
-- `name`: Name assigned to the container.
-- `ip`: Assign a static IP to the container. To do this, we need to create a docker network based on the
-        specified network (to not create as many networks as containers specified in the dockerfile, only one network
-        is allowed). The mask of the network is `/24`. If this option is not specified, the container won't have a
-        static IP.guide
-- `remove`: Remove the container. Defaults to `False`.
-- `Ports`: Ports to bind to the container. This field is a python dictionary where the keys are the ports to bind
-           inside the container in the form port/protocol, and the values are integers corresponding to the ports we
-           want to open in the host.
-- `detach`: Run the container in the background. Defaults to `True`.
-- `stdout`: Return logs from STDOUT when detach=`False`.
-- `stderr`: Return logs from STDERR when detach=`False`.
 
 ### Provisioning module
 
@@ -446,40 +416,31 @@ provision:
 - `target`: Target of the Wazuh installation. This field can take only two different values:
   - `manager`: In case we want to install wazuh manager.
   - `agent`: In case we want to install wazuh agent.
-- `manager_ip`: Manager IP to get connected. This field will be required only when the target
-                specified is `agent`.
-- `wazuh_branch`: Branch containing the desired wazuh installation files. This field is only
-                  required when `type` has the value `sources`.
-- `s3_package_url`: URL of a Wazuh s3 package to download. This parameter is only required under
-                    two conditions:
+- `manager_ip`: Manager IP to get connected. This field will be required only when the target specified is `agent`.
+- `wazuh_branch`: Branch containing the desired wazuh installation files. This field is only required when `type` has the value `sources`.
+- `s3_package_url`: URL of a Wazuh s3 package to download. This parameter is only required under two conditions:
   - `type` field has to have `package` selected as the parameter.
   - None of the fields, `local_package_path`,  `system`, `version`, `revision`, and `repository` are given.
-- `local_package_path`: Local path where the wazuh package is located. As with `s3_package_url`,
-                        this field will also be required under two conditions:
+- `local_package_path`: Local path where the wazuh package is located. As with `s3_package_url`, this field will also be required under two conditions:
   - The field `type` has to have `package` selected as the parameter.
   - None of the fields, `s3_package_url`, `system`, `version`, `revision`, and `repository` are given.
-- `system`: System type of the machine where Wazuh is going to be installed. The available values for this parameter are: `rpm, deb, windows, macos, solaris10, 
-          solaris11, rpm5, wpk-linux, and wpk-windows`.
+- `system`: System type of the machine where Wazuh is going to be installed. The available values for this parameter are: `rpm, deb, windows, macos, solaris10, solaris11, rpm5, wpk-linux, and wpk-windows`.
     > **Note**:  If the fields `version, revision and repository` are not given along with this field itself, there will be a validation error.
 
-  This parameter is only required under
-            two conditions:
+  This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
-- `version`: Version of the Wazuh package that is going to be installed. This parameter is only required under
-             two conditions:
+- `version`: Version of the Wazuh package that is going to be installed. This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
-- `revision`: Revision of the Wazuh package that is going to be installed. This parameter is only required
-              under two conditions:
+- `revision`: Revision of the Wazuh package that is going to be installed. This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
 - `repository`: S3 Repository where the Wazuh package is located. This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
 - `installation_files_path`: Path where to place all the downloaded Wazuh installation files.
-- `wazuh_install_path`: Path where Wazuh will be installed. This field is not required and by
-                        default the path defined will be `/var/ossec`.
+- `wazuh_install_path`: Path where Wazuh will be installed. This field is not required and by default the path defined will be `/var/ossec`.
 - `healt_check`: Boolean that determinates if health check is performed.
   
 **QA framework section**
@@ -541,14 +502,11 @@ tests:
 
 **Test section**
 
-- `hosts`: A list of desired hosts where the test must be launched. Every host in this list is represented by
-           the same ip address used in every particular host under the provision module. If this field is empty,
-           then the test will be launched in every host defined in ansible inventory.
+- `hosts`: A list of desired hosts where the test must be launched. Every host in this list is represented by the same ip address used in every particular host under the provision module. If this field is empty then the test will be launched in every host defined in ansible inventory.
 - `type`: Tool used to run the tests. As for now, pytest is the only tool available in this field.
 - `path`: This subsection field holds three different paths, all of them required:
   - `test_files_path`: The path pointing to the folder containing the desired tests to be launched.
-  - `run_tests_dir_path`: The path to the folder from where we want to run the tests (can be different from
-                          `test_files_path`).
+  - `run_tests_dir_path`: The path to the folder from where we want to run the tests (can be different from `test_files_path`).
   - `test_results_path`: The path to the folder in the local machine where the test reports will be stored.
 - `wazuh_install_path`: Path where wazuh is going to be installed in the virtual machine
 - `system`: System of the host where the test is going to be launched
@@ -559,16 +517,13 @@ tests:
 
 - `tiers`: A list containing all the tiers to launch.
 - `stop_after_first_failure`: -x option, stop the execution after the first failure. Default value set to `false`.
-- `keyword_expression`: It works along `test_files_path`, if this value is empty then run all the tests in `test_file_path`.
-                        If it’s not empty, then there must be a valid regex to select specific tests in that folder.
-                        By default is set to `None`.
+- `keyword_expression`: It works along `test_files_path`, if this value is empty then run all the tests in `test_file_path`. If it’s not empty, then there must be a valid regex to select specific tests in that folder. By default is set to `None`.
 - `traceback`: Modify the traceback printing of python, its possible values are `auto, long, short, native, line, no`. Default value set to `auto`.
 - `dry_run`: Collects all the tests but doesn’t run them. By default is set to `false`.
 - `custom_args`: A list containing a string of space-separated values, corresponding to key-value pair.
 - `verbose_level`: Add the option `--verbose`. By default is set to `false`.
 - `log_level`: Sets the log level for the tests. By default is set to `None`.
-- `markers`: Allow adding markers to pytest command. If the test has a decorator with the same marker, then it will
-             run. The format is a list of strings with each one desired marked.
+- `markers`: Allow adding markers to pytest command. If the test has a decorator with the same marker, then it will run. The format is a list of strings with each one desired marked.
 
 ### Configuration module
 
@@ -582,15 +537,12 @@ config:
         level: String (Optional)
         file: String (Optional)
 ```
-- `qa_ctl_launcher_branch`: Field that defines the branch that will be used to launch `qa-ctl`. This field is optional an only required when `qa-ctl` is being used in Windows.
-- `vagrant_output`: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(`true`) or
-                    if they remain with the default outputs (`false`).
-- `ansible_output`: Field that defines if the ansible's outputs are going to be replaced by customized outputs(`true`) or
-                    if they remain with the default outputs (`false`).
+- `qa_ctl_launcher_branch`:Field that defines the branch that will be used to launch `qa-ctl` in the Docker container. This field is optional an only required when `qa-ctl` is being used in Windows and using `Docker` for the `provisioning` or `testing` modules.
+- `vagrant_output`: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(`true`) or if they remain with the default outputs (`false`).
+- `ansible_output`: Field that defines if the ansible's outputs are going to be replaced by customized outputs(`true`) or if they remain with the default outputs (`false`).
 - `logging`:
   - `enable`: This field is used for enabling(`true`) or disabling(`false`) the logging outputs option.
-  - `level`: This field defines the logging level for the outputs. Four options are
-             available: `DEBUG, INFO, WARNING, ERROR, CRITICAL`.
+  - `level`: This field defines the logging level for the outputs. Four options are available: `DEBUG, INFO, WARNING, ERROR, CRITICAL`.
   - `file`: This field defines a path for a file where the outputs will be logged as well.
 
 > **Note**: It is recommended to set `vagrant_output` and `ansible_output` to `False`, and `logging/enable` to `True` \
@@ -651,7 +603,7 @@ These fields are used to determine the name of the box and the location of the v
         vagrant:
           enabled: true
           vagrantfile_path: /tmp/wazuh_qa_ctl
-          vagrant_box: windows_server
+          vagrant_box: my_custom_box
           vm_memory: 2048
           vm_cpu: 2
           vm_name: test3
@@ -771,7 +723,7 @@ This section handles all the info needed for provisioning the VM host with `Wazu
   ```
 </details>
 
-> **Important note**: For provisioning, a host with a Wazuh agent, the field `target` needs to be changed to `agent` and there will be a new field required called `manager_ip` that indicates the IP of the manager that the new agent will be connected with.
+> **Important note**: For provisioning a host with a Wazuh agent, the `target` field needs to be changed to `agent` and there will be a new field required called `manager_ip` that indicates the IP of the manager that the new agent will be connected with.
 
 #### QA framework section
 
@@ -788,9 +740,9 @@ This section is used for provisioning the host with the Framework of QA. The exa
 </details>
 
 ### Testing section
-The Testing is composed with an always required [`host_info` section](#host-info-section) that contains the same fields as the `Provisioning` stage `host_info` section. Plus, there is a section called `test` with the fields needed for launching a test.
+The Testing is composed with an always required [`host_info`](#host-info-section) section that contains the same fields as the `Provisioning` stage `host_info` section. Plus, there is a section called `test` with the fields needed for launching a test.
 
-- Run `test cors`
+- Run a pytest module test called `test_cors`
    <details>
     <summary>yaml configuration</summary>
 
@@ -812,10 +764,10 @@ The Testing is composed with an always required [`host_info` section](#host-info
 > **Note**: The fields `test_files_path` and `run_test_dir_path` are paths that are going to be used in the VM instance, whereas the `test_results_path` is a path that is going to be used in the host machine where qa-ctl was launched.
 
 
-### Complete YAML configuration files examples
+### Full YAML configuration files examples
 Here you can find some examples of YAML configuration files that are fully completed on every section and ready to use.
 
-- Run `test cache`
+- Run  a pytest test module called `test cache`. This test aims for Wazuh manager.
    <details>
     <summary>yaml configuration</summary>
 
@@ -883,7 +835,7 @@ Here you can find some examples of YAML configuration files that are fully compl
 
 
 
-- Run `test execd restart`
+- Run a pytest test called `test execd restart`. This test is designed for testing a `Wazuh agent`. For this purpose, `qa-ctl` will generate two VMs, one of them will be provisioned with `wazuh manager` and the other will be provisioned with `wazuh agent`.
    <details>
     <summary>yaml configuration</summary>
 
