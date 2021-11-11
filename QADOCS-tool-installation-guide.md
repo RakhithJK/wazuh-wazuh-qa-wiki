@@ -59,7 +59,7 @@ This tool has support for Linux and Windows systems.
     python setup.py install
     ```
 
-3. Check `qa-docs` command tool [use guide](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-use-guide) or run the following line:
+3. Check `qa-docs` command tool [use guide](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool-use-guide) or run the following line:
 
 ```
 $ qa-docs -h
