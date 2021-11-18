@@ -38,7 +38,7 @@ After installing `qa-docs`(you can follow the [installation guide](https://githu
 <summary>Parse all the tests within the path.</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/
+qa-docs --tests-path /tmp/wazuh-qa/tests
 ```
 
 </details>
@@ -48,7 +48,7 @@ qa-docs --tests-path /path/to/tests/
 <summary>Parse <code>integration</code> tests</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ --types integration
+qa-docs --tests-path /tmp/wazuh-qa/tests --types integration
 ```
 
 </details>
@@ -57,7 +57,7 @@ qa-docs --tests-path /path/to/tests/ --types integration
 <summary>Parse <code>test_active_response</code> and <code>test_agentd</code> tests</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ --types integration --modules test_active_response test_agentd
+qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --modules test_active_response test_agentd
 ```
 
 </details>
@@ -93,7 +93,7 @@ qa-docs -il index_name
 <summary>Parse integration tests modules, index the data and launch <code>search-ui</code> to visualize it via web browser</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ --types integration --modules test_active_response test_agentd -il index_name
+qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --modules test_active_response test_agentd -il index_name
 ```
 
 </details>
@@ -102,7 +102,7 @@ qa-docs --tests-path /path/to/tests/ --types integration --modules test_active_r
 <summary>Parse integration tests modules, index the data and launch <code>search-ui</code> to visualize it via web browser(using YAML format)</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ --types integration --modules test_active_response test_agentd -il index_name --format yaml
+qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --modules test_active_response test_agentd -il index_name --format yaml
 ```
 
 </details>
@@ -111,7 +111,7 @@ qa-docs --tests-path /path/to/tests/ --types integration --modules test_active_r
 <summary>Perform a sanity check after a previous parse run</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ -s
+qa-docs --tests-path /tmp/wazuh-qa/tests -s
 ```
 
 </details>
@@ -120,7 +120,7 @@ qa-docs --tests-path /path/to/tests/ -s
 <summary>Parse a list of tests</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ -t test_cache test_general_settings_enabled
+qa-docs --tests-path /tmp/wazuh-qa/tests -t test_cache test_general_settings_enabled
 ```
 
 </details>
@@ -129,7 +129,7 @@ qa-docs --tests-path /path/to/tests/ -t test_cache test_general_settings_enabled
 <summary>Parse a list of tests and give a custom output directory</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ -t test_cache test_general_settings_enabled -o /tmp
+qa-docs --tests-path /tmp/wazuh-qa/tests -t test_cache test_general_settings_enabled -o /tmp
 ```
 
 </details>
@@ -138,7 +138,7 @@ qa-docs --tests-path /path/to/tests/ -t test_cache test_general_settings_enabled
 <summary>Check if a list of tests exists</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ -e test_cache test_general_settings_enabled
+qa-docs --tests-path /tmp/wazuh-qa/tests -e test_cache test_general_settings_enabled
 ```
 
 </details>
@@ -147,7 +147,7 @@ qa-docs --tests-path /path/to/tests/ -e test_cache test_general_settings_enabled
 <summary>Check if a test is properly documented</summary>
 
 ```bash
-qa-docs --tests-path /path/to/tests/ -t test_day_wday --check-documentation
+qa-docs --tests-path /tmp/wazuh-qa/tests -t test_day_wday --check-documentation
 ```
 
 </details>
