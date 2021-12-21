@@ -1,5 +1,6 @@
-## Table of contents
+[![version](https://img.shields.io/badge/version-v0.2-blue)]()
 
+## Table of contents
 
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
