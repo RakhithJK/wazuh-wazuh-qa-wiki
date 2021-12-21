@@ -1,4 +1,6 @@
 [![version](https://img.shields.io/badge/version-v0.2-blue)]()
+[![status](https://img.shields.io/badge/status-needs%20updating-yellow)]()
+
 
 ## Table of contents
 
