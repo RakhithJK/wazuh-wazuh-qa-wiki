@@ -1,51 +1,53 @@
-[![version](https://img.shields.io/badge/version-v0.2-blue)]()
-[![status](https://img.shields.io/badge/status-needs%20updating-yellow)]()
+[![version](https://img.shields.io/badge/version-v0.3-blue)]()
+[![status](https://img.shields.io/badge/status-latest-green)]()
 
 
 ## Table of contents
 
 - [Introduction](#introduction)
 - [How to use it](#how-to-use-it)
-  - [Parameter restrictions](#parameter-restrictions)
-  - [Modes of use](#modes-of-use)
-    - [Automatic: Launch tests and get results](#automatic-launch-tests-and-get-results)
-    - [Manual: Specify configuration parameters to launch the tests](#manual-specify-configuration-parameters-to-launch-the-tests)
-    - [Mixed: generate an environment with automatic mode and then reused it in manual mode](#mixed-generate-an-environment-with-automatic-mode-and-then-reused-it-in-manual-mode)
-  - [Examples](#examples)
+  * [Parameter restrictions](#parameter-restrictions)
+  * [Modes of use](#modes-of-use)
+    + [Automatic: Launch tests and get results](#automatic--launch-tests-and-get-results)
+    + [Manual: Specify configuration parameters to launch the tests](#manual--specify-configuration-parameters-to-launch-the-tests)
+    + [Mixed: generate an environment with automatic mode and then reused it in manual mode](#mixed--generate-an-environment-with-automatic-mode-and-then-reused-it-in-manual-mode)
+  * [Examples](#examples)
 - [Setting up a configuration file](#setting-up-a-configuration-file)
-  - [Infrastructure deployment module](#infrastructure-deployment-module)
-  - [Provisioning module](#provisioning-module)
-  - [Test launch module](#test-launch-module)
-  - [Configuration module](#configuration-module)
-  - [YAML configuration file examples](#yaml-configuration-file-examples)
-  - [Deployment section](#deployment-section)
-  - [Provision section](#provision-section)
-    - [Host info section](#host-info-section)
-    - [Wazuh deployment section](#wazuh-deployment-section)
-    - [QA framework section](#qa-framework-section)
-  - [Testing section](#testing-section)
-  - [Full YAML configuration files examples](#full-yaml-configuration-files-examples)
+  * [Infrastructure deployment module](#infrastructure-deployment-module)
+  * [Provisioning module](#provisioning-module)
+  * [Run tasks module](#run-tasks-module)
+  * [Test launch module](#test-launch-module)
+  * [Configuration module](#configuration-module)
+  * [YAML configuration file examples](#yaml-configuration-file-examples)
+  * [Deployment section](#deployment-section)
+  * [Provision section](#provision-section)
+    + [Host info section](#host-info-section)
+    + [Wazuh deployment section](#wazuh-deployment-section)
+    + [QA framework section](#qa-framework-section)
+  * [Run tasks section](#run-tasks-section)
+    + [Host info section](#host-info-section-1)
+    + [playbooks section](#playbooks-section)
+  * [Testing section](#testing-section)
+  * [Full YAML configuration files examples](#full-yaml-configuration-files-examples)
 
 ## Introduction
 
-`qa-ctl` is a tool that allows you to run tests locally and get the results without worrying about deployments,
-provisioning and dependencies.
+It is a tool that allows us to do the following independently:
 
-To achieve this, this tool does the following:
-
-- Deploy the necessary environment to run the test/s.
-- Install Wazuh and the wazuh-qa framework on the deployed machines. In short, ready for running tests.
-- Execute the test/s and return the results to the user.
+- Run integration tests with a simple command without worrying about deployments, provisioning and dependencies.
+- Deploying instances locally using Vagrant
+- Provision an environment, installing a Wazuh environment plus Wazuh QA framework
+- Running remote commands or specified tasks in an environment via ansible-playbook (**new on `v0.3`**)
+- Running pytest in an environment and getting the result
 
 The next image shows a flow diagram of how the tool works:
 
-<p align="center">
-    <img width="576px" "height="538px" src="https://github.com/wazuh/wazuh-qa/wiki/images/qactl_tool_imgs/diagram.png">
-</p>
+[![schema](https://raw.githubusercontent.com/wiki/wazuh/wazuh-qa/images/qactl_tool_imgs/qa_ctl_schema_v03.png)]()
 
-- The `infrastructure` module is in charge of creating the needed VMs.
+- The `infrastructure` module in charge of deploying the machines using vagrant boxes.
 - The `provisioning` module is in charge of installing Wazuh and the QA framework.
-- The `run` test module is responsible for launching the tests and collect the results.
+- The `Run tasks` module is in charge of executing any task(s) written in one or more ansible-playbooks.
+- The `Run test` test module is responsible for launching the tests and get the results.
 
 ## How to use it
 
@@ -69,7 +71,8 @@ This tool has the following parameters:
 - `--no-validation-logging`: Disable parameters validation logging. Useful when it is run inside a docker container.
 - `--qa-branch <repository_branch>`:  Set a custom wazuh-qa branch to use in the run and provisioning. This has a higher priority than the specified in the configuration file.
 - `--skip-deployment`: Flag to skip the deployment phase. Set it only if `-c` or `--config` (manual mode) was specified.
-- `--skip-provisioning`: Flag to skip the provisioning phase. Set it only if `-c` or `--config` (manual mode) was specified. 
+- `--skip-provisioning`: Flag to skip the provisioning phase. Set it only if `-c` or `--config` (manual mode) was specified.
+- `--skip-tasks`: Flag to skip the tasks phase. Set it only if -c or --config was specified.
 - `--skip-testing`: Flag to skip the testing phase. Set it only if `-c` or `--config` (manual mode) was specified.
 
 ### Parameter restrictions
@@ -79,14 +82,14 @@ This tool has the following parameters:
 - `-v`, `--version` parameter has to be in `x.y.z` format. For example `4.2.1`.
 - `-v`, `--version` can only be specified with `r`, `--run` (automatic mode).
 - `-v`, `--version` value has to correspond to a released version of Wazuh.
-- `--skip-deployment`, `--skip-provisioning`, `--skip-testing` can only be launched with `-c`, `--config` (manual mode).
+- `--skip-deployment`, `--skip-provisioning`, `--skip-tasks`, `--skip-testing` can only be launched with `-c`, `--config` (manual mode).
 - `--qa-branch` must exist in the wazuh-qa repository on github.
 - `-r`, `--run` values have to correspond to existing and documented tests of the specified branch of the wazuh-qa repository.
 - `-o`, `--os` can only be specified with `r`, `--run` (automatic mode).
 
 **Allowed values**
 
-- `-o`, `--os`: [`centos`, `ubuntu`, `windows`]
+- `-o`, `--os`: [`centos_7`, `centos_8`, `ubuntu_focal`, `windows_2019`]
 
 ### Modes of use
 
@@ -165,14 +168,14 @@ The purpose of this mode is to generate a configuration file automatically, to m
 
 We can generate a configuration file automatically in the following ways:
 
-- Perform a run as simulated `--dry-run`, in this way instead of executing the different phases corresponding to one or 
-a set of tests, the corresponding configuration file is generated and its path is indicated so that it can be modified 
+- Perform a run as simulated `--dry-run`, in this way instead of executing the different phases corresponding to one or
+a set of tests, the corresponding configuration file is generated and its path is indicated so that it can be modified
 and used later.
 
-- After a `qa-ctl` run, if the `-p`, or `--persistent` parameter was specified, then the environment and the 
+- After a `qa-ctl` run, if the `-p`, or `--persistent` parameter was specified, then the environment and the
 corresponding generated files will not be deleted, so we can use the auto-generated configuration file again.
 
-The usefulness of this mode is to be able to specify specifically the environment we want to deploy, or in case it 
+The usefulness of this mode is to be able to specify specifically the environment we want to deploy, or in case it
 is already deployed, to reuse it and directly use it to speed up the whole testing process and obtain results.
 
 **For example**
@@ -326,12 +329,13 @@ qa-ctl -c /tmp/qa_ctl/config_1633608335.685262.yaml --skip-deployment --skip-pro
 QACTL consists of several different and independent modules. We can interact with these modules through the
 configuration file written in `YAML` format.
 
-This file consists of 4 main sections:
+This file consists of 5 main sections:
 
-- `deployment`: Section to specify the environment deployment information. It can be with vagrant or docker.
-- `provision`: Section for specifying provisioning information for an environment.
-- `tests`: Section to indicate the set of tests to be run in the environment.
-- `config`: Section to specify custom `qa-ctl` configuration such as logging.
+- **deployment**: Section to specify the environment deployment information. It can be with vagrant or docker.
+- **provision**: Section for specifying provisioning information for an environment.
+- **tasks**: Section to indicate the set of tasks that will be launched in the environment.
+- **tests**: Section to indicate the set of tests to be run in the environment.
+- **config**: Section to specify custom `qa-ctl` configuration such as logging.
 
 All of these sections have different configurable fields, some required, some optional, and declared by default if not
 given. In the next points of this guide, every field will be explained so the user can understand it better.
@@ -353,16 +357,17 @@ deployment:
           label: String (Required)
           vm_ip: IP address (Required)
 ```
+
 **Vagrant deployment**
 
-- `enabled`: If False, the VM won’t be created.
-- `vagrantfile_path`: Path where the vagrantfile will be created.
-- `vagrant_box`: Path to the vagrant box file, link, or box specifying the box that will be used.
-- `vm_memory`: Memory assigned to the VM.
-- `vm_cpu`: Number of CPUs assigned to the VM.
-- `vm_system`:  VM operative system.
-- `Label`: Assign a label to the VM.
-- `vm_ip`: assigned IP for the VM.
+- **enabled**: If False, the VM won’t be created.
+- **vagrantfile_path**: Path where the vagrantfile will be created.
+- **vagrant_box**: Path to the vagrant box file, link, or box specifying the box that will be used.
+- **vm_memory**: Memory assigned to the VM.
+- **vm_cpu**: Number of CPUs assigned to the VM.
+- **vm_system**:  VM operative system.
+- **Label**: Assign a label to the VM.
+- **vm_ip**: assigned IP for the VM.
 
 ### Provisioning module
 
@@ -373,7 +378,8 @@ provision:
       host_info:
         ansible_connection: String (Required)
         ansible_user: String (Required)
-        ansible_password: String (Required)
+        ansible_password: String (Required if `ansible_ssh_private_key_file` is not specified)
+        ansible_ssh_private_key_file: String (Required if `ansible_password` is not specified)
         ansible_port: Integer (Required)
         ansible_python_interpreter: String (Required)
         system: String (Required)
@@ -387,7 +393,7 @@ provision:
           wazuh_branch: String (Optional)
           s3_package_url: String (Optional)
           local_package_path: String (Optional)
-          system: String (Optional) Possible values: rpm, deb, windows, macos, solaris10, 
+          system: String (Optional) Possible values: rpm, deb, windows, macos, solaris10,
           solaris11, rpm5, wpk-linux, wpk-windows
           version: String (Optional)
           revision: String (Optional)
@@ -401,54 +407,97 @@ provision:
           qa_workdir: String (Required)
 ```
 
+
 **Host info section**
 
-- `ansible_connection`: This field defines the connection method selected.
-- `ansible_user`: String with the existing username in the host.
-- `ansible_password`: String with the password of the user.
-- `ansible_port`: The port number that will be used to establish the connection.
-- `ansible_python_interpreter`: String with the Python path.
-- `system`:  System type of the machine where qa-ctl is going to be launched.
-- `installation_files_path`: Path where qa-ctl is going to be installed
-- `host`: String with the IP or DNS of the host.
+- **ansible_connection**: Set the connection type.
+- **ansible_user**: User to establish remote connection.
+- **ansible_password**: User password to establish remote connection.
+- **ansible_ssh_private_key_file**: Local path to the ssh private key to establish the remote connection.
+- **ansible_port**: Port to establish the remote connection.
+- **ansible_python_interpreter**: Path to python binary to establish connection to ansible.
+- **system**: System type of the machine where qa-ctl is going to be launched (check accepted ones).
+- **installation_files_path**: Path where temporary files will be stored.
+- **host**: IP or DNS of the remote host for connection.
 
 **Wazuh deployment section**
 
-- `type`: Type of the installation method. This value can be either `sources` or `package`.
-- `target`: Target of the Wazuh installation. This field can take only two different values:
-  - `manager`: In case we want to install wazuh manager.
-  - `agent`: In case we want to install wazuh agent.
-- `manager_ip`: Manager IP to get connected. This field will be required only when the target specified is `agent`.
-- `wazuh_branch`: Branch containing the desired wazuh installation files. This field is only required when `type` has the value `sources`.
-- `s3_package_url`: URL of a Wazuh s3 package to download. This parameter is only required under two conditions:
-  - `type` field has to have `package` selected as the parameter.
+- **type**: Type of the installation method. This value can be either `sources` or `package`.
+- **target**: Target of the Wazuh installation. This field can take only two different values:
+  - **manager**: In case we want to install wazuh manager.
+  - **agent**: In case we want to install wazuh agent.
+- **manager_ip**: Manager IP to get connected. This field will be required only when the target specified is `agent`.
+- **wazuh_branch**: Branch containing the desired wazuh installation files. This field is only required when `type` has the value `sources`.
+- **s3_package_url**: URL of a Wazuh s3 package to download. This parameter is only required under two conditions:
+  - **type** field has to have `package` selected as the parameter.
   - None of the fields, `local_package_path`,  `system`, `version`, `revision`, and `repository` are given.
-- `local_package_path`: Local path where the wazuh package is located. As with `s3_package_url`, this field will also be required under two conditions:
+- **local_package_path**: Local path where the wazuh package is located. As with `s3_package_url`, this field will also be required under two conditions:
   - The field `type` has to have `package` selected as the parameter.
   - None of the fields, `s3_package_url`, `system`, `version`, `revision`, and `repository` are given.
-- `system`: System type of the machine where Wazuh is going to be installed. The available values for this parameter are: `rpm, deb, windows, macos, solaris10, solaris11, rpm5, wpk-linux, and wpk-windows`.
+- **system**: System type of the machine where Wazuh is going to be installed. The available values for this parameter are: `rpm, deb, windows, macos, solaris10, solaris11, rpm5, wpk-linux, and wpk-windows`.
 > **Note**:  If the fields `version, revision and repository` are not given along with this field itself, there will be a validation error.
 
   This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
-- `version`: Version of the Wazuh package that is going to be installed. This parameter is only required under two conditions:
+- **version**: Version of the Wazuh package that is going to be installed. This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
-- `revision`: Revision of the Wazuh package that is going to be installed. This parameter is only required under two conditions:
+- **revision**: Revision of the Wazuh package that is going to be installed. This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
-- `repository`: S3 Repository where the Wazuh package is located. This parameter is only required under two conditions:
+- **repository**: S3 Repository where the Wazuh package is located. This parameter is only required under two conditions:
   -  The field `type` has to have `package` selected as the parameter.
   -  None of the fields `s3_package_url` and `local_package_path` are given.
-- `installation_files_path`: Path where to place all the downloaded Wazuh installation files.
-- `wazuh_install_path`: Path where Wazuh will be installed. This field is not required and by default the path defined will be `/var/ossec`.
-- `healt_check`: Boolean that determinates if health check is performed.
-  
+- **installation_files_path**: Path where to place all the downloaded Wazuh installation files.
+- **wazuh_install_path**: Path where Wazuh will be installed. This field is not required and by default the path defined will be `/var/ossec`.
+- **healt_check**: Boolean that determinates if health check is performed.
+
 **QA framework section**
 
-- `wazuh_qa_branch`: Branch containing the qa wazuh framework desired.
-- `qa_workdir`: Defines the path where the qa repo will be located.
+- **wazuh_qa_branch**: Branch containing the qa wazuh framework desired.
+- **qa_workdir**: Defines the path where the qa repo will be located.
+
+### Run tasks module
+
+```yaml
+tasks:
+    task_1:
+      host_info:
+        ansible_connection: String (Required)
+        ansible_user: String (Required)
+        ansible_password: String (Required if `ansible_ssh_private_key_file` is not specified)
+        ansible_ssh_private_key_file: String (Required if `ansible_password` is not specified)
+        ansible_port: Integer (Required)
+        ansible_python_interpreter: String (Required)
+        system: String (Required)
+        installation_files_path: String (Required)
+        host: String (Required)
+    playbooks:
+        - name: String (Optional)
+          local_path: String (Required if `remote_url` is not specified)
+          remote_url: String (Required if `local_path` is not specified)
+```
+
+**Host info section**
+
+- **ansible_connection**: Set the connection type.
+- **ansible_user**: User to establish remote connection.
+- **ansible_password**: User password to establish remote connection.
+- **ansible_ssh_private_key_file**: Local path to the ssh private key to establish the remote connection.
+- **ansible_port**: Port to establish the remote connection.
+- **ansible_python_interpreter**: Path to python binary to establish connection to ansible.
+- **system**: System type of the machine where qa-ctl is going to be launched (check accepted ones).
+- **installation_files_path**: Path where temporary files will be stored.
+- **host**: IP or DNS of the remote host for connection.
+
+**playbooks section**
+
+> Note: This section is a list, you can define as many items (playbooks to be executed on that host) as you need.
+
+- **name**: Name of the playbook to display in the log.
+- **local_path**: Full path to the file system where the playbook to be executed is located.
+- **remote_url**: URL of the playbook to use (needs to be plain text type).
 
 ### Test launch module
 
@@ -458,7 +507,8 @@ tests:
     host_info:
         ansible_connection: String (Required)
         ansible_user: String (Required)
-        ansible_password: String (Required)
+        ansible_password: String (Required if `ansible_ssh_private_key_file` is not specified)
+        ansible_ssh_private_key_file: String (Required if `ansible_password` is not specified)
         ansible_port: Integer (Required)
         ansible_python_interpreter: String (Required)
         system: String (Required)
@@ -477,55 +527,52 @@ tests:
         system: String (Required)
         component: String(Required)
         modules: List (Required)
-      parameters:
-        tier: String (Optional)
-        stop_after_first_failure: Boolean (Optional)
-        keyword_expression: String (Optional)
-        traceback: String (Optional)
-        dry_run: Boolean (Optional) Default value: False
-        custom_args: String (Optional)
-        verbose_level: Boolean (Optional)
-        log_level: String (Optional)
-        markers: List (Optional)
+        parameters: Dict (Optional)
+          tier: String (Optional)
+          stop_after_first_failure: Boolean (Optional)
+          keyword_expression: String (Optional)
+          traceback: String (Optional)
+          dry_run: Boolean (Optional)
+          custom_args: String (Optional)
+          verbose_level: Boolean (Optional)
+          log_level: String (Optional)
+          markers: List (Optional)
 ```
 
 **Host info section**
 
-- `ansible_connection`: This field defines the connection method selected.
-- `ansible_user`: String with the existing username in the host.
-- `ansible_password`: String with the password of the user.
-- `ansible_port`: The port number that will be used to establish the connection.
-- `ansible_python_interpreter`: String with the Python path.
-- `system`:  System type of the machine where qa-ctl is going to be launched.
-- `installation_files_path`: Path where qa-ctl is going to be installed
-- `host`: String with the IP or DNS of the host.
-- `ssh_private_key_file_path`: This field is optional and contains the path of an ssh private key in case the user
-                               wants to log into the host with a different method.
+- **ansible_connection**: Set the connection type.
+- **ansible_user**: User to establish remote connection.
+- **ansible_password**: User password to establish remote connection.
+- **ansible_ssh_private_key_file**: Local path to the ssh private key to establish the remote connection.
+- **ansible_port**: Port to establish the remote connection.
+- **ansible_python_interpreter**: Path to python binary to establish connection to ansible.
+- **system**: System type of the machine where qa-ctl is going to be launched (check accepted ones).
+- **installation_files_path**: Path where temporary files will be stored.
+- **host**: IP or DNS of the remote host for connection.
 
 **Test section**
 
-- `hosts`: A list of desired hosts where the test must be launched. Every host in this list is represented by the same ip address used in every particular host under the provision module. If this field is empty then the test will be launched in every host defined in ansible inventory.
-- `type`: Tool used to run the tests. As for now, pytest is the only tool available in this field.
-- `path`: This subsection field holds three different paths, all of them required:
-  - `test_files_path`: The path pointing to the folder containing the desired tests to be launched.
-  - `run_tests_dir_path`: The path to the folder from where we want to run the tests (can be different from `test_files_path`).
-  - `test_results_path`: The path to the folder in the local machine where the test reports will be stored.
-- `wazuh_install_path`: Path where wazuh is going to be installed in the virtual machine
-- `system`: System of the host where the test is going to be launched
-- `component`: Wazuh component target of the test.
-- `modules`: The correspondent modules of the test.
-
-**Parameters section**
-
-- `tiers`: A list containing all the tiers to launch.
-- `stop_after_first_failure`: -x option, stop the execution after the first failure. Default value set to `false`.
-- `keyword_expression`: It works along `test_files_path`, if this value is empty then run all the tests in `test_file_path`. If it’s not empty, then there must be a valid regex to select specific tests in that folder. By default is set to `None`.
-- `traceback`: Modify the traceback printing of python, its possible values are `auto, long, short, native, line, no`. Default value set to `auto`.
-- `dry_run`: Collects all the tests but doesn’t run them. By default is set to `false`.
-- `custom_args`: A list containing a string of space-separated values, corresponding to key-value pair.
-- `verbose_level`: Add the option `--verbose`. By default is set to `false`.
-- `log_level`: Sets the log level for the tests. By default is set to `None`.
-- `markers`: Allow adding markers to pytest command. If the test has a decorator with the same marker, then it will run. The format is a list of strings with each one desired marked.
+- **hosts**: A list of desired hosts where the test must be launched. Every host in this list is represented by the same ip address used in every particular host under the provision module. If this field is empty then the test will be launched in every host defined in ansible inventory.
+- **type**: Tool used to run the tests. As for now, pytest is the only tool available in this field.
+- **path**: This subsection field holds three different paths, all of them required:
+  - **test_files_path**: The path pointing to the folder containing the desired tests to be launched.
+  - **run_tests_dir_path**: The path to the folder from where we want to run the tests (can be different from `test_files_path`).
+  - **test_results_path**: The path to the folder in the local machine where the test reports will be stored.
+- **wazuh_install_path**: Path where wazuh is going to be installed in the virtual machine
+- **system**: System of the host where the test is going to be launched
+- **component**: Wazuh component target of the test.
+- **modules**: The correspondent modules of the test.
+- **parameters**: List of custom parameters to add to the pytest run.
+  - **tiers**: A list containing all the tiers to launch.
+  - **stop_after_first_failure**: -x option, stop the execution after the first failure. Default value set to `false`.
+  - **keyword_expression**: It works along `test_files_path`, if this value is empty then run all the tests in `test_file_path`. If it’s not empty, then there must be a valid regex to select specific tests in that folder. By default is set to `None`.
+  - **traceback**: Modify the traceback printing of python, its possible values are `auto, long, short, native, line, no`. Default value set to `auto`.
+  - **dry_run**: Collects all the tests but doesn’t run them. By default is set to `false`.
+  - **custom_args**: A list containing a string of space-separated values, corresponding to key-value pair.
+  - **verbose_level**: Add the option `--verbose`. By default is set to `false`.
+  - **log_level**: Sets the log level for the tests. By default is set to `None`.
+  - **markers**: Allow adding markers to pytest command. If the test has a decorator with the same marker, then it will run. The format is a list of strings with each one desired marked.
 
 ### Configuration module
 
@@ -539,13 +586,13 @@ config:
         level: String (Optional)
         file: String (Optional)
 ```
-- `qa_ctl_launcher_branch`:Field that defines the branch that will be used to launch `qa-ctl` in the Docker container. This field is optional an only required when `qa-ctl` is being used in Windows and using `Docker` for the `provisioning` or `testing` modules.
-- `vagrant_output`: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(`true`) or if they remain with the default outputs (`false`).
-- `ansible_output`: Field that defines if the ansible's outputs are going to be replaced by customized outputs(`true`) or if they remain with the default outputs (`false`).
-- `logging`:
-  - `enable`: This field is used for enabling(`true`) or disabling(`false`) the logging outputs option.
-  - `level`: This field defines the logging level for the outputs. Four options are available: `DEBUG, INFO, WARNING, ERROR, CRITICAL`.
-  - `file`: This field defines a path for a file where the outputs will be logged as well.
+- **qa_ctl_launcher_branch**:Field that defines the branch that will be used to launch `qa-ctl` in the Docker container. This field is optional an only required when `qa-ctl` is being used in Windows and using `Docker` for the `provisioning` or `testing` modules.
+- **vagrant_output**: Field that defines if the vagrant's outputs are going to be replaced by customized outputs(`true`) or if they remain with the default outputs (`false`).
+- **ansible_output**: Field that defines if the ansible's outputs are going to be replaced by customized outputs(`true`) or if they remain with the default outputs (`false`).
+- **logging**:
+  - **enable**: This field is used for enabling(`true`) or disabling(`false`) the logging outputs option.
+  - **level**: This field defines the logging level for the outputs. Four options are available: `DEBUG, INFO, WARNING, ERROR, CRITICAL`.
+  - **file**: This field defines a path for a file where the outputs will be logged as well.
 
 > **Note**: It is recommended to set `vagrant_output` and `ansible_output` to `False`, and `logging/enable` to `True` \
 (default values) in order to get a clean detail and report on the status of the process.
@@ -555,7 +602,7 @@ config:
 
 Now, there are going to be shown some examples of YAML files separated by use cases.
 
-### Deployment section 
+### Deployment section
 
 The most mentionable fields for the deployment section are `vagrant_box` and `vagrantfile_path`.
 These fields are used to determine the name of the box and the location of the vagrantfile that is going to be used. As for the `vagrant_box` field, any available box can be used, but `qa-ctl` provides some boxes that are ready to use with this tool. The name of these boxes are: `qactl/ubuntu_20_04`, `qactl/centos_8` and `qactl/windows_2019`
@@ -731,7 +778,7 @@ This section handles all the info needed for provisioning the VM host with `Wazu
 
 This section is used for provisioning the host with the Framework of QA. The example given below is a generic one that will use the `master` branch for getting the repository files, and locate them in the path specified in the `qa_workdir` field.
 
-  <details>
+<details>
     <summary>yaml configuration</summary>
 
   ```yaml
@@ -741,8 +788,72 @@ This section is used for provisioning the host with the Framework of QA. The exa
   ```
 </details>
 
+### Run tasks section
+
+This module is used to run tasks (written through `ansible-playbooks`) on different hosts.
+
+- Can be composed of 1 to `n` tasks
+
+<details>
+    <summary>yaml configuration</summary>
+
+```yaml
+tasks:
+    task_1:
+      host_info:
+        ...
+      playbooks:
+        ...
+    task_2:
+      ...
+    task_n:
+      ...
+```
+
+</details>
+
+#### Host info section
+
+Contains the information necessary to establish the remote connection to the host.
+
+<details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    host_info:
+      ansible_connection: ssh
+      ansible_user: vagrant
+      ansible_password: vagrant
+      ansible_port: 22
+      ansible_python_interpreter: /usr/bin/python3
+      system: deb
+      installation_files_path: /tmp
+      host: 10.150.50.2
+  ```
+</details>
+
+#### playbooks section
+
+Contains a list of playbooks to be run for that task.
+
+<details>
+    <summary>yaml configuration</summary>
+
+  ```yaml
+    playbooks:
+      - name: download_check_files_tool
+        local_path: /tmp/wazuh_playbooks/download_files_1640083630_284305.yaml
+      - name: run_pre_check_files_scan
+        local_path: /tmp/wazuh_playbooks/run_linux_commands_1640083630_286911.yaml
+      - name: install_wazuh
+        local_path: /tmp/wazuh_playbooks/install_wazuh_1640083630_288124.yaml
+  ```
+</details>
+
+
 ### Testing section
-The Testing is composed with an always required [`host_info`](#host-info-section) section that contains the same fields as the `Provisioning` stage `host_info` section. Plus, there is a section called `test` with the fields needed for launching a test.
+
+The Testing is composed with a required [`host_info`](#host-info-section) section that contains the same fields as the `Provisioning` stage `host_info` section. Plus, there is a section called `test` with the fields needed for launching a test.
 
 - Run a pytest module test called `test_cors`
    <details>
@@ -752,11 +863,11 @@ The Testing is composed with an always required [`host_info`](#host-info-section
     test:
       type: pytest # As for now, this is the only available type
       path:
-        test_files_path: /wazuh-qa/tests/integration/test_api/test_config/test_cors/test_cors.py # Full location path of the test 
+        test_files_path: /wazuh-qa/tests/integration/test_api/test_config/test_cors/test_cors.py # Full location path of the test
         run_tests_dir_path: /wazuh-qa/test/integration                                           # Path to the folder where to run the tests
         test_results_path: /tmp/wazuh_qa_ctl/test_general_settings_enabled_resutls/              # Path where the results of the tests will be stored
       wazuh_install_path: /var/ossec
-      systen: linux
+      system: linux
       component: manager
       modules:
       - api
@@ -833,9 +944,6 @@ Here you can find some examples of YAML configuration files that are fully compl
 
   ```
 </details>
-
-
-
 
 - Run a pytest test called `test execd restart`. This test is designed for testing a `Wazuh agent`. For this purpose, `qa-ctl` will generate two VMs, one of them will be provisioned with `wazuh manager` and the other will be provisioned with `wazuh agent`.
    <details>
@@ -925,7 +1033,55 @@ Here you can find some examples of YAML configuration files that are fully compl
             test_files_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_active_response/test_execd/test_execd_restart.py
             run_tests_dir_path: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration
             test_results_path: /tmp/wazuh_qa_ctl/test_execd_restart_1635415139.489715
-
-
   ```
 </details>
+
+- Run a set of tasks (ansible-playbooks) on remote hosts.
+
+  <details>
+    <summary>yaml configuration</summary>
+
+    ```yaml
+      tasks:
+        task_1:
+          host_info:
+            ansible_connection: ssh
+            ansible_user: vagrant
+            ansible_password: vagrant
+            ansible_port: 22
+            ansible_python_interpreter: /usr/bin/python3
+            system: deb
+            installation_files_path: /tmp
+            host: 10.150.50.2
+          playbooks:
+            - name: download_check_files_tool
+              local_path: /tmp/wazuh_playbooks/download_files_1640083630_284305.yaml
+            - name: run_pre_check_files_scan
+              local_path: /tmp/wazuh_playbooks/run_linux_commands_1640083630_286911.yaml
+            - name: install_wazuh
+              local_path: /tmp/wazuh_playbooks/install_wazuh_1640083630_288124.yaml
+            - name: waiting_time_before_running_check_files_tool
+              local_path: /tmp/wazuh_playbooks/wait_seconds_1640083630_290778.yaml
+            - name: run_post_check_files_scan
+              local_path: /tmp/wazuh_playbooks/run_linux_commands_1640083630_291583.yaml
+            - name: fetch check-files data
+              local_path: /tmp/wazuh_playbooks/fetch_files_1640083630_29256.yaml
+        task_2:
+          host_info:
+            ansible_connection: ssh
+            ansible_user: vagrant
+            ansible_password: vagrant
+            ansible_port: 22
+            ansible_python_interpreter: /usr/bin/python3
+            system: rpm
+            installation_files_path: /tmp
+            host: 10.150.50.3
+          playbooks:
+            - name: download_check_files_tool
+              local_path: /tmp/wazuh_playbooks/download_files_1640083630_284306.yaml
+            - name: run_pre_check_files_scan
+              local_path: /tmp/wazuh_playbooks/run_linux_commands_1640083630_286914.yaml
+            - name: install_wazuh
+              local_path: /tmp/wazuh_playbooks/install_wazuh_1640083630_288125.yaml
+    ```
+  </details>
