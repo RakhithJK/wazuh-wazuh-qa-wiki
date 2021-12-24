@@ -73,9 +73,9 @@ that pytest session.
 
 |  OS  | Local   | Jenkins     | Notes
 |---    |---    |---    |---    |
-| PS1   | [:green_circle: ](link-to-the-report-r1)  |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
-| PS2   | [:green_circle:](link-to-the-report-r2)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
-| PS3   | [:green_circle:](link-to-the-report-r3)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
+| R1   | [:green_circle: ](link-to-the-report-r1)  |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
+| R2   | [:green_circle:](link-to-the-report-r2)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
+| R3   | [:green_circle:](link-to-the-report-r3)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
 
 * * * 
 
@@ -83,9 +83,9 @@ that pytest session.
 
 |  OS  | Local   | Jenkins     | Notes
 |---    |---    |---    |---    |
-| PS1   | [:green_circle: ](link-to-the-report-r1)  |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
-| PS2   | [:green_circle:](link-to-the-report-r2)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
-| PS3   | [:green_circle:](link-to-the-report-r3)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
+| R1   | [:green_circle: ](link-to-the-report-r1)  |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
+| R2   | [:green_circle:](link-to-the-report-r2)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
+| R3   | [:green_circle:](link-to-the-report-r3)   |  [:green_circle: ](link-to-the-report-r1) - [Build]()   | |
 
 * * * 
 
@@ -124,13 +124,13 @@ for i in $(seq 1 $n_report)
   do
     if [ -z $4 ]
     then
-       python3 -m pytest $1 --html=PS${i}${revision}.html
+       python3 -m pytest $1 --html=R${i}${revision}.html
     else
-       python3 -m pytest $1 --html=PS${i}${revision}.html -k $4
+       python3 -m pytest $1 --html=R${i}${revision}.html -k $4
     fi
-    tar -czvf PS${i}${revision}.tar.gz ./assets PS${i}${revision}.html
+    tar -czvf R${i}${revision}.tar.gz ./assets R${i}${revision}.html
     rm -rf ./assets
-    rm -rf ./PS${i}${revision}.html
+    rm -rf ./R${i}${revision}.html
   done
 }
 
