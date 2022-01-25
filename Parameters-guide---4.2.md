@@ -31,9 +31,9 @@ The aim of this article is to show the necessary parameters to be able to launch
  </tr>
 
  <tr>
-  <td>Analysid</td>
+  <td>Analysisd</td>
   <td> Manager </td>
-  <td>analysisd.debug=2<br/>monitord.rotate_log=0<br/>monitord.rotate_log=0</td>
+  <td>analysisd.debug=2<br/>monitord.rotate_log=0</td>
   <td>&nbsp;</td>
   <td></td>
  </tr>
