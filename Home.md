@@ -14,3 +14,4 @@ Welcome to the wazuh-qa wiki!
   * [Releases Analysis](https://github.com/wazuh/wazuh-qa/wiki/Releases)
 * [System Tests](https://github.com/wazuh/wazuh-qa/wiki/System-testing)
   * [FIM System tests](https://github.com/wazuh/wazuh-qa/wiki/FIM-System-tests)
+* [Templates - Draft](https://github.com/wazuh/wazuh-qa/wiki/Issue-Template)
