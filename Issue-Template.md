@@ -10,8 +10,9 @@ It's a Draft
 ## BUG
     - Description 
     - Details of environment
-    - Cases 
+    - Cases: steps / Actual Results + expected Results 
     - Information/ Research
+    - Labels
 
 ## PR
 
