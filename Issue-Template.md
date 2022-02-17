@@ -7,6 +7,9 @@ It's a Draft
 
 ## GENERAL ISSUE
     - Description 
+    - Requeriments
+    - Testing Required
+    - DoD
     - Labels
 
 ## BUG
