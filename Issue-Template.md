@@ -1,11 +1,13 @@
 It's a Draft
 
 ## EPIC
-
-
-
+    - General Description 
+    - Issues linked with description
+    - Labels
 
 ## GENERAL ISSUE
+    - Description 
+    - Labels
 
 ## BUG
     - Description 
@@ -15,5 +17,5 @@ It's a Draft
     - Labels
 
 ## PR
-
-
+    - Description 
+    - Labels
