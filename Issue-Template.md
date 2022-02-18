@@ -8,7 +8,7 @@ It's a Draft
 ## GENERAL ISSUE
     - Description 
     - Requeriments
-    - Testing Required
+    - Testing Required (Gherkin/text)
     - DoD
     - Labels
 
