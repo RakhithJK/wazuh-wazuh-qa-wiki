@@ -8,7 +8,7 @@ It's a Draft
 ## GENERAL ISSUE
     - Description 
     - Requeriments
-    - Testing Required (Gherkin/text)
+    - Testing Required (Gherkin/text)  / Fix to applied / List affected tests.
     - DoD
     - Labels
 
