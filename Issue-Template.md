@@ -30,18 +30,18 @@ It's a Draft
 	<td style="width: 97px;">Platform</td>
 	</tr>
 	<tr>
-	<td style="width: 175px;">4.4</td>
-	<td style="width: 103px;">Manager/Agent</td>
-	<td style="width: 97px;">dev-10771-agent-groups-files-to-wazuh-db</td>
-	<td style="width: 97px;">Centos8</td>
+	<td style="width: 175px;">-</td>
+	<td style="width: 103px;">-</td>
+	<td style="width: 97px;">-</td>
+	<td style="width: 97px;">-</td>
 	</tr>
 	</tbody>		 
     </table>
 
-4. `Local_internal_options`: Set local_internal_options.conf
+4. `Local_internal_options`: Set local_internal_options.conf. If local internal options are not required please add: **Local internal options** are not required
 5. `Step to reproduce`: This section must specify step by step what has been done in order to reproduce the bug. In as much detail as possible.
-6. `Current Results`.
-7. `Expected Results`.
+6. `Current Results`: Add what is the current result after executed "steps to reproduce" 
+7. `Expected Results`: Add what is the expected after executed "steps to reproduce" 
 8. `Evidence`: This section is for attaching all the evidence, for example, images and videos. Also is for attach file of logs.
 9. `Label to add`: Bug, core/{module}, qa/report, reporter/{subteam}.
 10. `Example`: [Real-time: Doesn't monitor a folder deleted and created again.](https://github.com/wazuh/wazuh/issues/12350)
