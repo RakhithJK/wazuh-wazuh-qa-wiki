@@ -44,7 +44,7 @@ It's a Draft
 7. `Expected Results`: Add what is the expected after executed "steps to reproduce" 
 8. `Evidence`: This section is for attaching all the evidence, for example, images and videos. Also is for attach file of logs.
 9. `Label to add`: Bug, core/{module}, qa/report, reporter/{subteam}.
-10. `Example`: [Real-time: Doesn't monitor a folder deleted and created again.](https://github.com/wazuh/wazuh/issues/12350)
+10. `Example`: [FIM: Real-time a folder that was deleted and restored/created is not monitored](https://github.com/wazuh/wazuh/issues/12350)
 
 </details>
 
