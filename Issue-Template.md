@@ -50,13 +50,43 @@ It's a Draft
 
 ---
 
-## PR
-    - Description (generic)
-    - Labels
-    - Creator: 
-         - OS, version, branch, type env (agent/manager)
-         - Changes applied. Execution of module complete for each OS supported.(3 executions local - 3 executions on Jenkins)
-         - Rules to applied.
-    - Reviewer: To approved, attach 3 executions on Jenkins or 1 executions local and Jenkins. 
-    - Note: The results are in a table with test path, type (manager/agent), OS, Type Executions (Jenkins/local), Status with link, date, executed by, Note (if it's necessary)
-***
+<details>
+  <summary>PR</summary>
+
+1. `Title`: The title must be short and descriptive.
+          **Format:** [Type of test][Module][Issue] Brief Description
+2. `Description`: The description must be precise indicating what was detected, you can also add information
+       on the cause of the failure if you have information about it.
+3. `Details of environment`: In this section considered add all the information related to the environment.
+    <table>
+        <tbody>
+	<tr>
+	<td style="width: 175px;">Wazuh version</td>
+	<td style="width: 79px;">Installation type</td>
+	<td style="width: 97px;">Branch </td>
+	<td style="width: 97px;">Platform</td>
+	</tr>
+	<tr>
+	<td style="width: 175px;">-</td>
+	<td style="width: 103px;">-</td>
+	<td style="width: 97px;">-</td>
+	<td style="width: 97px;">-</td>
+	</tr>
+	</tbody>		 
+    </table>
+
+4. `Local_internal_options`: Set local_internal_options.conf. If local internal options are not required please add: **Local internal options** are not required
+5. `Step to reproduce`: This section must specify step by step what has been done in order to reproduce the bug. In as much detail as possible.
+6. `Test Executions (Creator)`: Three (3) local executions and three (3) Jenkins executions of the complete test module, on each supported system for the module.
+7. `Test Results (Reviewer)`: Three (3) Jenkins executions, **or** One(1) local and One (1) Jenkins execution of the complete test module, on each supported system for the module.
+8. `Rules`: List of rules applied to development
+- [x] Proven that tests **pass** when they have to pass.
+- [x] Proven that tests **fail** when they have to fail.
+- [x] Python codebase satisfies PEP-8 style style guide. `pycodestyle --max-line-length=120 --show-source --show-pep8 file.py`.
+- [x] Python codebase is documented following the Google Style for Python docstrings.
+- [x] The test is documented in wazuh-qa/docs.
+9. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
+10. `Example`: [IT - WDB - 2532- Test set_agent_groups WDB command](https://github.com/wazuh/wazuh-qa/pull/2602)
+
+</details>
+
