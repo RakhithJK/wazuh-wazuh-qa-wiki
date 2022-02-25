@@ -57,7 +57,8 @@ It's a Draft
           **Format:** [Type of test][Module][Issue] Brief Description
 2. `Description`: The description must be precise indicating what was detected, you can also add information
        on the cause of the failure if you have information about it.
-3. `Details of environment`: In this section considered add all the information related to the environment.
+3. `Related Issue`: In This section add the related issue numbers.
+4. `Details of environment`: In this section considered add all the information related to the environment.
     <table>
         <tbody>
 	<tr>
@@ -75,18 +76,18 @@ It's a Draft
 	</tbody>		 
     </table>
 
-4. `Local_internal_options`: Set local_internal_options.conf. If local internal options are not required please add: **Local internal options** are not required
-5. `Step to reproduce`: This section must specify step by step what has been done in order to reproduce the bug. In as much detail as possible.
-6. `Test Executions (Creator)`: Three (3) local executions and three (3) Jenkins executions of the complete test module, on each supported system for the module.
-7. `Test Results (Reviewer)`: Three (3) Jenkins executions, **or** One(1) local and One (1) Jenkins execution of the complete test module, on each supported system for the module.
-8. `Rules`: List of rules applied to development
+5. `Local_internal_options`: Set local_internal_options.conf. If local internal options are not required please add: **Local internal options** are not required
+6. `Step to reproduce`: This section must specify step by step what has been done in order to reproduce the bug. In as much detail as possible.
+7. `Test Executions (Creator)`: Three (3) local executions and three (3) Jenkins executions of the complete test module, on each supported system for the module.
+8. `Test Results (Reviewer)`: Three (3) Jenkins executions, **or** One(1) local and One (1) Jenkins execution of the complete test module, on each supported system for the module.
+9. `Rules`: List of rules applied to development
 - [x] Proven that tests **pass** when they have to pass.
 - [x] Proven that tests **fail** when they have to fail.
 - [x] Python codebase satisfies PEP-8 style style guide. `pycodestyle --max-line-length=120 --show-source --show-pep8 file.py`.
 - [x] Python codebase is documented following the Google Style for Python docstrings.
 - [x] The test is documented in wazuh-qa/docs.
-9. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
-10. `Example`: [IT - WDB - 2532- Test set_agent_groups WDB command](https://github.com/wazuh/wazuh-qa/pull/2602)
+10. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
+11. `Example`: [IT - WDB - 2532- Test set_agent_groups WDB command](https://github.com/wazuh/wazuh-qa/pull/2602)
 
 </details>
 
