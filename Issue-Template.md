@@ -43,7 +43,7 @@ It's a Draft
 6. `Current Results`: Add what is the current result after executed "steps to reproduce" 
 7. `Expected Results`: Add what is the expected after executed "steps to reproduce" 
 8. `Evidence`: This section is for attaching all the evidence, for example, images and videos. Also is for attach file of logs.
-9. `Label to add`: Bug, core/{module}, qa/report, reporter/{subteam}.
+9. `Label to add`: Bug, core/{module}, qa/report, qa/report/{subteam}.
 10. `Example`: [FIM: Real-time a folder that was deleted and restored/created is not monitored](https://github.com/wazuh/wazuh/issues/12350)
 
 </details>
@@ -54,11 +54,11 @@ It's a Draft
   <summary>PR</summary>
 
 1. `Title`: The title must be short and descriptive.
-          **Format:** [Type of test][Module][Issue] Brief Description
+   > **Format:** [Type of test][Module][Issue] Brief Description.
 2. `Description`: The description must be precise indicating what was detected, you can also add information
        on the cause of the failure if you have information about it.
-3. `Related Issue`: In This section add the related issue numbers.
-4. `Details of environment`: In this section considered add all the information related to the environment.
+3. `Related Issue`: In this section add the related issue numbers.
+4. `Details of environment`: In this section considered add a table with all the information related to the environment.
     <table>
         <tbody>
 	<tr>
@@ -66,12 +66,6 @@ It's a Draft
 	<td style="width: 79px;">Installation type</td>
 	<td style="width: 97px;">Branch </td>
 	<td style="width: 97px;">Platform</td>
-	</tr>
-	<tr>
-	<td style="width: 175px;">-</td>
-	<td style="width: 103px;">-</td>
-	<td style="width: 97px;">-</td>
-	<td style="width: 97px;">-</td>
 	</tr>
 	</tbody>		 
     </table>
@@ -81,11 +75,11 @@ It's a Draft
 7. `Test Executions (Creator)`: Three (3) local executions and three (3) Jenkins executions of the complete test module, on each supported system for the module.
 8. `Test Results (Reviewer)`: Three (3) Jenkins executions, **or** One(1) local and One (1) Jenkins execution of the complete test module, on each supported system for the module.
 9. `Rules`: List of rules applied to development
-- [x] Proven that tests **pass** when they have to pass.
-- [x] Proven that tests **fail** when they have to fail.
-- [x] Python codebase satisfies PEP-8 style style guide. `pycodestyle --max-line-length=120 --show-source --show-pep8 file.py`.
-- [x] Python codebase is documented following the Google Style for Python docstrings.
-- [x] The test is documented in wazuh-qa/docs.
+   > - [x] Proven that tests **pass** when they have to pass.
+   > - [x] Proven that tests **fail** when they have to fail.
+   > - [x] Python codebase satisfies PEP-8 style style guide. `pycodestyle --max-line-length=120 --show-source --show-pep8 file.py`.
+   > - [x] Python codebase is documented following the Google Style for Python docstrings.
+   > - [x] The test is documented in wazuh-qa/docs.
 10. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
 11. `Example`: [IT - WDB - 2532- Test set_agent_groups WDB command](https://github.com/wazuh/wazuh-qa/pull/2602)
 
