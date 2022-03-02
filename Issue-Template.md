@@ -72,8 +72,9 @@ It's a Draft
 
 5. `Local_internal_options`: Set local_internal_options.conf. If local internal options are not required please add: **Local internal options** are not required
 6. `Step to reproduce`: This section must specify step by step what has been done in order to reproduce the bug. In as much detail as possible.
-7. `Test Executions (Creator)`: Three (3) local executions and three (3) Jenkins executions of the complete test module, on each supported system for the module.
-8. `Test Results (Reviewer)`: Three (3) Jenkins executions, **or** One(1) local and One (1) Jenkins execution of the complete test module, on each supported system for the module.
+7. `Test Executions:`
+   7.1. `Creator`: Three (3) local executions and three (3) Jenkins executions of the complete test module, on each supported system for the module.
+   7.2. `Reviewer`: To approve, the reviewer has to add Three (3) Jenkins executions, **or** One(1) local and One (1) Jenkins execution of the complete test module, on each supported system for the module.
 9. `Rules`: List of rules applied to development
    > - [x] Proven that tests **pass** when they have to pass.
    > - [x] Proven that tests **fail** when they have to fail.
