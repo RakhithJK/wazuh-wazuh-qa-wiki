@@ -57,7 +57,7 @@ It's a Draft
    > **Format:** [Type of test][Module][Issue] Brief Description.
 2. `Description`: The description must be precise indicating what was detected, you can also add information
        on the cause of the failure if you have information about it.
-3. `Related Issue`: In this section add the related issue numbers.
+3. `Related Issues`: In this section add the related issue numbers. Also, do not forget to Mark the Linked Issues in the sidebar and Connected Issues.
 4. `Details of environment`: In this section considered add a table with all the information related to the environment.
     <table>
         <tbody>
