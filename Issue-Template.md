@@ -7,12 +7,15 @@ It's a Draft
 
 1. `Title`: The title must be short and descriptive.
 
-2. `Description`: The description must be indicating what was detected, you can also add information
-                   on the cause of the failure if you have information about it.
+2. `Description`: It indicates the general development to do. Each issue involved will have specific information and details.
 
-3. `Related Issues`: In this section add the related issue numbers. Also, do not forget to Mark the Linked Issues in the sidebar and Connected Issues.
+   2.1. `PRs Involved`: List of PRs that are working on the issues contained by this Epic. It helps to follow the details.
 
-4. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
+4. `Related Issues`: In this section add the related issue numbers. Also, do not forget to Mark the Linked Issues in the sidebar and Connected Issues.
+
+5. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
+
+6. `Example`: [Wazuh-DB: Migration of agent-group files](https://github.com/wazuh/wazuh-qa/issues/2504)
 
 </details>
 
@@ -68,8 +71,7 @@ It's a Draft
 
 1. `Title`: The title must be short and descriptive.
    > **Format:** [Type of test]:[Module][Issue] Brief Description.
-2. `Description`: The description must be precise indicating what was detected, you can also add information
-       on the cause of the failure if you have information about it.
+2. `Description`: It should be precise indicating what was detected, changes applied' or cases cover. 
 3. `Related Issues`: In this section add the related issue numbers. Also, do not forget to Mark the Linked Issues in the sidebar and Connected Issues.
 4. `Details of environment`: In this section considered add a table with all the information related to the environment.
     <table>
