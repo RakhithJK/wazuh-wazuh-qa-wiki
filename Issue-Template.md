@@ -71,18 +71,17 @@ It's a Draft
     </table>
 
 5. `Local_internal_options`: Set local_internal_options.conf. If local internal options are not required please add: **Local internal options** are not required
-6. `Step to reproduce`: This section must specify step by step what has been done in order to reproduce the bug. In as much detail as possible.
-7. `Test Executions:` Attach all executions with results.
+6. `Test Executions:` Attach all executions with results.
     * `Creator`: Three local executions and three Jenkins executions of the complete test module, on each supported system for the module.
     * `Reviewer`: To approve, the reviewer has to add three Jenkins executions, **or** a local and a Jenkins execution of the complete test module, on each supported system for the module.
-9. `Rules`: List of rules applied to development
+8. `Rules`: List of rules applied to development
    > - [x] Proven that tests **pass** when they have to pass.
    > - [x] Proven that tests **fail** when they have to fail.
    > - [x] Python codebase satisfies PEP-8 style style guide. `pycodestyle --max-line-length=120 --show-source --show-pep8 file.py`.
    > - [x] Python codebase is documented following the Google Style for Python docstrings.
    > - [x] The test is documented in wazuh-qa/docs.
-10. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
-11. `Example`: [IT - WDB - 2532- Test set_agent_groups WDB command](https://github.com/wazuh/wazuh-qa/pull/2602)
+9. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
+10. `Example`: [IT - WDB - 2532- Test set_agent_groups WDB command](https://github.com/wazuh/wazuh-qa/pull/2602)
 
 </details>
 
