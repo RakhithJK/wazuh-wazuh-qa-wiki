@@ -70,7 +70,7 @@ It's a Draft
   <summary>PR</summary>
 
 1. `Title`: The title must be short and descriptive.
-   > **Format:** [Type of test]:[Module][Issue] Brief Description.
+   > **Format:** [Type of test]:[Module]-[Issue] Brief Description.
 2. `Description`: It should be precise indicating what was detected, changes applied' or cases cover. 
 3. `Related Issues`: In this section add the related issue numbers. Also, do not forget to Mark the Linked Issues in the sidebar and Connected Issues.
 4. `Details of environment`: In this section considered add a table with all the information related to the environment.
