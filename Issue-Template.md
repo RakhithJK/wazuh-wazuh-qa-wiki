@@ -1,9 +1,22 @@
 It's a Draft
 
-## EPIC
-    - General Description 
-    - Issues linked with description
-    - Labels
+---
+
+<details>
+  <summary>EPIC</summary>
+
+1. `Title`: The title must be short and descriptive.
+
+2. `Description`: The description must be indicating what was detected, you can also add information
+                   on the cause of the failure if you have information about it.
+
+3. `Related Issues`: In this section add the related issue numbers. Also, do not forget to Mark the Linked Issues in the sidebar and Connected Issues.
+
+4. `Label to add`: feature/{module}, test/{type of test}, team/qa, subteam/{subteam}.
+
+</details>
+
+---
 
 ## GENERAL ISSUE
     - Description 
@@ -11,7 +24,7 @@ It's a Draft
     - Testing Required (Gherkin/text)  / Fix to applied / List affected tests.
     - DoD
     - Labels
-
+    - Example: [IT FIM: Check 'max_fd_win_rt' behaviour ](https://github.com/wazuh/wazuh-qa/issues/2585)
 ---
 
 <details>
