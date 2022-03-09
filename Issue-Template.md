@@ -54,7 +54,7 @@ It's a Draft
   <summary>PR</summary>
 
 1. `Title`: The title must be short and descriptive.
-   > **Format:** [Type of test][Module][Issue] Brief Description.
+   > **Format:** [Type of test]:[Module][Issue] Brief Description.
 2. `Description`: The description must be precise indicating what was detected, you can also add information
        on the cause of the failure if you have information about it.
 3. `Related Issues`: In this section add the related issue numbers. Also, do not forget to Mark the Linked Issues in the sidebar and Connected Issues.
