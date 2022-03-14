@@ -1,6 +1,4 @@
-It's a Draft
-
----
+Because we work cross-functionally with different teams, and the QA team is constantly growing, we have defined a standard for writing each type of issue.
 
 <details>
   <summary>EPIC</summary>
@@ -19,8 +17,6 @@ It's a Draft
 
 </details>
 
----
-
 ## GENERAL ISSUE
     - Description 
     - Requeriments
@@ -28,7 +24,6 @@ It's a Draft
     - DoD
     - Labels
     - Example: [IT FIM: Check 'max_fd_win_rt' behaviour ](https://github.com/wazuh/wazuh-qa/issues/2585)
----
 
 <details>
   <summary>BUGS</summary>
@@ -64,8 +59,6 @@ It's a Draft
 
 </details>
 
----
-
 <details>
   <summary>PR</summary>
 
@@ -99,5 +92,3 @@ It's a Draft
 10. `Example`: [IT - WDB - 2532- Test set_agent_groups WDB command](https://github.com/wazuh/wazuh-qa/pull/2602)
 
 </details>
-
----
