@@ -3,32 +3,31 @@
 After installing `qa-docs`(you can follow the [installation guide](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool-installation-guide)  steps), you can check the `qa-docs` help.
 
 - `-h, --help`: Print the `qa-docs` help message.
-- `-s, --sanity-check`: Perform a sanity check using the data previously parsed. Tests coverage, errors, and tests count.
+- `--sanity-check`: Perform a sanity check using the data previously parsed. Tests coverage, errors, and tests count.
 - `-v, --version`: Print the `qa-docs` version.
 - `--no-logging`: Disable `qa-docs` logging.
 - `-d, --debug`: Run in debug mode.
-- `--tests-path`: Specify the path of the tests to be parsed. Set it when you want to parse or run a sanity check.
-- `-t, --tests`: Parse the test(s) you specify as an argument.
-- `--types`: Parse the tests from type(s) that it is passed as an argument.
-- `--modules`: Parse the tests from module(s) that it is passed as an argument.
+- `-p, --tests-path`: Specify the path of the tests to be parsed. Set it when you want to parse or run a sanity check.
+- `-t, --types`: Parse the tests from type(s) that it is passed as an argument.
+- `-c, --components`: Parse the tests from type(s) that it is passed as an argument.
+- `-s, --suites`: Parse the tests from type(s) that it is passed as an argument.
+- `-m, --modules`: Parse the tests from module(s) that it is passed as an argument.
 - `-o`: Select the output directory where the documentation will be generated.
-- `-e`: Check if the given test(s) exist(s).
-- `--check-documentation`: Check if the test(s) passed with `-t` is(are) documented following the current `qa-docs` schema.
+- `--format`: Select the generated files format. Set as JSON by default.
+- `-e, --exist`: Check if the given test(s) exist(s).
+- `--check-documentation`: Check if the modules(s) passed with `-m` is(are) documented following the current `qa-docs` schema.
+- `--validate-parameters`:  Validate the parameters passed to the qa-docs tool.
 - `-i`: Index the data previously parsed.
 - `-l`: Launch `search-ui`with the data previously indexed.
 - `-il`: Index the data previously parsed and launch `search-ui` 
 - `--docker-run`: Run a docker container that runs `qa-docs` with the same arguments that it receives. This allows you to run `qa-docs` as you would do in a local environment.
 - `--qa-branch`: Specifies the branch that allocates the tests input when `--docker-run` is passed.
-- `--format`: Select the generated files format. Set as JSON by default.
 
 ## Parameter restrictions
 
-- `-t` cannot be launched with `--types` and `--modules`, `-e`, `--exist`, `-i`, `-l` and `-il` options.
-- `-t`, `--types`, `--modules`, `-t`, `-e` and `-s` need the `-I` option.
+- `--types`, `--components`, `--suites`, `--modules`, `--exist` and `--sanity-check` need the `-p` option.
 - `-e` cannot be launched with `--types` and `--modules`, `-i`, `-l` and `-il` options.
-- `-o` cannot be launched with `--types` or `--modules`, `-e`, `--exist`, `-i`, `-l` and `-il` options.
-- `-s` only allows a run with the `--tests-path` option.
-- `--check-documentation` only allows runs with the `-t` option.
+- `--check-documentation` only allows runs with the `-m` option.
 - `--qa-branch` only allows runs with the `--docker-run` option.
 
 ## Examples:
@@ -54,10 +53,55 @@ qa-docs --tests-path /tmp/wazuh-qa/tests --types integration
 </details>
 
 <details>
-<summary>Parse <code>test_active_response</code> and <code>test_agentd</code> tests</summary>
+<summary>Parse <code>test_active_response</code> and <code>test_agentd</code> components</summary>
 
 ```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --modules test_active_response test_agentd
+qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --components test_active_response test_agentd
+```
+
+</details>
+
+<details>
+<summary>Parse <code>config</code> and <code>rbac</code> suites from <code>api</code> component</summary>
+
+```bash
+qa-docs --tests-path /path-to-tests/ --types integration --components test_api --suites test_config test_rbac
+```
+
+</details>
+
+<details>
+<summary>Parse some modules from <code>logtest</code> <code>configuration</code> suite</summary>
+
+```bash
+qa-docs --tests-path /path-to-tests/ --types integration --components test_logtest --suites test_configuration --modules test_configuration_file test_get_configuration_sock
+```
+
+</details>
+
+<details>
+<summary>Check if some modules exist</summary>
+
+```bash
+qa-docs --tests-path /path-to-tests/ --types integration --components test_logtest --suites test_configuration --exist test_configuration_file test_get_configuration_sock
+```
+
+</details>
+
+<details>
+<summary>Parse some modules and select the custom output directory</summary>
+
+```bash
+qa-docs --tests-path /path-to-tests/ --types integration --components test_logtest --suites test_configuration --modules test_configuration_file test_get_configuration_sock -o /tmp/logtest_cfg
+```
+
+</details>
+
+<details>
+<summary>Check if some <code>logtest</code> modules has documentation blocks</summary>
+
+```bash
+qa-docs -p /path-to-tests/ --types integration --components test_logtest --suites test_configuration --modules test_configuration_file test_get_configuration_sock --check-documentation
 ```
 
 </details>
@@ -90,19 +134,19 @@ qa-docs -il index_name
 </details>
 
 <details>
-<summary>Parse integration tests modules, index the data and launch <code>search-ui</code> to visualize it via web browser</summary>
+<summary>Parse integration tests components, index the data and launch <code>search-ui</code> to visualize it via web browser</summary>
 
 ```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --modules test_active_response test_agentd -il index_name
+qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --components test_active_response test_agentd -il index_name
 ```
 
 </details>
 
 <details>
-<summary>Parse integration tests modules, index the data and launch <code>search-ui</code> to visualize it via web browser(using YAML format)</summary>
+<summary>Parse integration tests components, index the data and launch <code>search-ui</code> to visualize it via web browser(using YAML format)</summary>
 
 ```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --modules test_active_response test_agentd -il index_name --format yaml
+qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --components test_active_response test_agentd -il index_name --format yaml
 ```
 
 </details>
@@ -111,43 +155,7 @@ qa-docs --tests-path /tmp/wazuh-qa/tests --types integration --modules test_acti
 <summary>Perform a sanity check after a previous parse run</summary>
 
 ```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests -s
-```
-
-</details>
-
-<details>
-<summary>Parse a list of tests</summary>
-
-```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests -t test_cache test_general_settings_enabled
-```
-
-</details>
-
-<details>
-<summary>Parse a list of tests and give a custom output directory</summary>
-
-```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests -t test_cache test_general_settings_enabled -o /tmp
-```
-
-</details>
-
-<details>
-<summary>Check if a list of tests exists</summary>
-
-```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests -e test_cache test_general_settings_enabled
-```
-
-</details>
-
-<details>
-<summary>Check if a test is properly documented</summary>
-
-```bash
-qa-docs --tests-path /tmp/wazuh-qa/tests -t test_day_wday --check-documentation
+qa-docs --tests-path /tmp/wazuh-qa/tests --sanity-check
 ```
 
 </details>
@@ -156,7 +164,7 @@ qa-docs --tests-path /tmp/wazuh-qa/tests -t test_day_wday --check-documentation
 <summary>Parse <code>test_active_response</code> tests and generate the documentation in <code>/tmp/qa_docs</code> using Docker</summary>
 
 ```bash
-qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --modules test_active_response
+qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --components test_active_response
 ```
 
 </details>
@@ -167,7 +175,7 @@ qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integr
 <summary>Parse <code>test_fim</code> tests and generate the documentation in custom output path using Docker</summary>
 
 ```bash
-qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --modules test_fim -o /custom/path
+qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --components test_fim -o /custom/path
 ```
 
 </details>
@@ -176,9 +184,9 @@ qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integr
 <summary>Parse <code>test_active_response</code> tests and launch search-ui to visualize the documentation using Docker</summary>
 
 ```bash
-qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --modules test_active_response -il qa-index
+qa-docs --docker-run --qa-branch 1796-migrate-doc-active-response --types integration --components test_active_response -il qa-index
 ```
 
 </details>
 
-More details and examples can be found in the `qa-docs` [README.MD](https://github.com/wazuh/wazuh-qa/tree/1864-qa-docs-fixes/deps/wazuh_testing/wazuh_testing/qa_docs).
+More details and examples can be found in the `qa-docs` [README.MD](https://github.com/wazuh/wazuh-qa/blob/master/deps/wazuh_testing/wazuh_testing/qa_docs/README.md).
