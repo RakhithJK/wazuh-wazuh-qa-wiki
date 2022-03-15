@@ -63,7 +63,11 @@ This tool has the following parameters:
    - `-dd`: Show `vagrant` and `ansible` output in logs.
 - `-h, --help`: Show `qa-ctl` help menu.
 - `-p, --persistent`: If specified, the environment will not be destroyed after finishing.
-- `-r, --run <test_name_1> <test_name_2> ...`: Set automatic mode. Launches the tests and returns the results.
+- `-r, --run`: Set automatic mode. Launches the tests and returns the results.
+- `--test-types`: Specify the types of the tests to be run.
+- `--test-components`: Specify the components of the tests to be run.
+- `--test-suites`: Specify the suites of the tests to be run.
+- `--test-modules`: Specify the modules of the tests to be run.
 - `-v, --version <version>`: Specify the version of wazuh to use. If not set, the latest released version will be used.
 - `-o, --os <os_system>`: Specify the system(s) with which to launch each test.
 - `--dry-run`: Config generation mode. The test data will be processed and the configuration will be generated without running anything.
@@ -100,46 +104,52 @@ each test is parsed and the necessary environment is built, provisioning it with
 (with the `-v` or` --version` parameter), or else using the latest released version of Wazuh and using the equivalent
 version for `wazuh-qa` framework and testing.
 
-To use this mode, we have to specify the parameter `-r`, `--run`.
+To use this mode, we have to specify the flag `-r`, `--run` and the type, component, suite so the tool can launch the
+tests within the specified module. If you want to launch more than one module in a single run, you have to specify every type,
+component, suite and module:
 
 ```bash
-qa-ctl -r <test_name_1> <test_name_2> ...
+qa-ctl -r --test-components <test_component1> <test_component2> --test-suites <test_suite1> <test_suite2> --test-modules <test_module1> <test_module2>
 ```
+
 
 <details>
-<summary>For example:</summary>
+<summary>Run sample:</summary>
 
 ```
-qa-ctl -r test_general_settings_enabled
-
-2021-09-08 16:35:31,651 - INFO - Starting 1 instances deployment
-2021-09-08 16:38:01,214 - INFO - The instances deployment has finished sucessfully
-2021-09-08 16:38:01,216 - INFO - Checking hosts SSH connection
-2021-09-08 16:38:07,584 - INFO - Hosts connection OK. The instances are accessible via ssh
-2021-09-08 16:38:07,584 - INFO - Provisioning 1 instances
-2021-09-08 16:39:06,467 - INFO - Waiting 60 seconds before performing the healthcheck in 10.150.50.2 host
-2021-09-08 16:41:10,351 - INFO - The instances have been provisioned sucessfully
-2021-09-08 16:41:10,354 - INFO - Launching 1 tests
-2021-09-08 16:41:10,355 - INFO - Waiting for tests to finish
-2021-09-08 16:41:11,277 - INFO - Running /tmp/wazuh-qa/tests/integration/test_vulnerability_detector/test_general_settings/test_general_settings_enabled.py test on ['10.150.50.2'] hosts
-2021-09-08 16:41:17,795 - INFO -
+qa-ctl -r --test-modules test_enabled --test-components test_vulnerability_detector --test-suites test_general_settings --qa-branch master
+2022-03-15 16:42:15,301 - INFO - Validating input parameters
+2022-03-15 16:42:16,444 - INFO - Input parameters validation has passed successfully
+2022-03-15 16:42:16,875 - INFO - Starting 1 instances deployment
+2022-03-15 16:44:07,206 - INFO - The instances deployment has finished sucessfully
+2022-03-15 16:44:07,292 - INFO - Checking hosts SSH connection
+2022-03-15 16:44:55,394 - INFO - Hosts connection OK. The instances are accessible via ssh
+2022-03-15 16:44:55,394 - INFO - Provisioning 1 instances
+2022-03-15 16:47:11,902 - INFO - Performing a Wazuh installation healthcheck in 10.150.50.3 host
+2022-03-15 16:47:45,223 - INFO - Provisioning the 10.150.50.3 host with the Wazuh QA framework using master branch.
+2022-03-15 16:48:04,239 - INFO - The instances have been provisioned sucessfully
+2022-03-15 16:48:04,260 - INFO - Launching 1 tests
+2022-03-15 16:48:04,261 - INFO - Waiting for tests to finish
+2022-03-15 16:48:06,814 - INFO - Running /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_vulnerability_detector/test_general_settings/test_enabled.py test on ['10.150.50.3'] hosts
+2022-03-15 16:48:23,482 - INFO - 
 
 ============================= test session starts ==============================
-platform linux -- Python 3.8.10, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
-rootdir: /tmp/wazuh-qa/tests/integration, configfile: pytest.ini
-plugins: html-2.0.1, testinfra-6.0.0, metadata-1.11.0, testinfra-6.4.0
-collected 4 items
+platform linux -- Python 3.6.8, pytest-6.2.2, py-1.10.0, pluggy-0.13.1
+rootdir: /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration, configfile: pytest.ini
+plugins: metadata-1.11.0, testinfra-5.0.0, html-3.1.1
+collected 2 items
 
-../../tmp/wazuh-qa/tests/integration/test_vulnerability_detector/test_general_settings/test_general_settings_enabled.py . [ 25%]
-ss.                                                                      [100%]
+test_vulnerability_detector/test_general_settings/test_enabled.py ..     [100%]
 
-- generated html file: file:///tmp/wazuh-qa/test/integration/reports/test_report-2021-09-08 16:41:11.277135.html -
-========================= 2 passed, 2 skipped in 1.90s =========================
+- generated html file: file:///tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/reports/test_report_2022_03_15_16_48_06_814499.html -
+============================== 2 passed in 11.20s ==============================
 
 
-2021-09-08 16:41:17,795 - INFO - The test run is finished
-2021-09-08 16:41:17,795 - INFO - Destroying 1 instances
-2021-09-08 16:41:23,143 - INFO - The instances have been destroyed sucessfully
+2022-03-15 16:48:23,482 - INFO - The test run is finished
+2022-03-15 16:48:23,482 - INFO - The results of /tmp/wazuh_qa_ctl/wazuh-qa/tests/integration/test_vulnerability_detector/test_general_settings/test_enabled.py tests have been saved in /tmp/wazuh_qa_ctl/test_enabled_1647358936.865953
+2022-03-15 16:48:23,482 - INFO - Destroying 1 instances
+2022-03-15 16:48:28,588 - INFO - The instances have been destroyed sucessfully
+
 ```
 
 </details>
@@ -184,7 +194,7 @@ is already deployed, to reuse it and directly use it to speed up the whole testi
 <summary>Generate a configuration file from test information</summary>
 
 ```bash
-qa-ctl --dry-run -r test_general_settings_enabled
+qa-ctl --dry-run --test-components test_vulnerability_detector --test-suites test_general_settings --test-modules test_enabled
     2021-09-08 16:53:40,179 - INFO - Run as dry-run mode. Configuration file saved in /tmp/config_1631112820.17649.yaml
 ```
 
@@ -194,7 +204,7 @@ qa-ctl --dry-run -r test_general_settings_enabled
 <summary>Perform a run with persistent environment, and then re-launch the test in the same environment</summary>
 
 ```bash
-qa-ctl -r test_general_settings_enabled --persistent
+qa-ctl -r --test-components test_vulnerability_detector --test-suites test_general_settings --test-modules test_enabled --persistent
     ......
     INFO - Configuration file saved in /tmp/qa_ctl/config_1633608335.685262.yaml
     ......
@@ -209,7 +219,7 @@ qa-ctl -c  /tmp/qa_ctl/config_1633608335.685262.yaml --skip-deployment --skip-pr
 <summary>Launch a single test.</summary>
 
 ```bash
-qa-ctl -r <test_name>
+qa-ctl qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module>
 ```
 
 </details>
@@ -219,7 +229,7 @@ qa-ctl -r <test_name>
 <summary>Launch a single test for a specified system (in this case windows).</summary>
 
 ```bash
-qa-ctl -r <test_name> -o windows
+qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module> -o windows
 ```
 
 </details>
@@ -228,7 +238,7 @@ qa-ctl -r <test_name> -o windows
 <summary>Launch multiple tests (In parallel using different environments).</summary>
 
 ```bash
-qa-ctl -r <test_name_1> <test_name_2> ...
+qa-ctl -r --test-components <test_component2> <test_component2> --test-suites <test_suite1> <test_suite2> --test-modules <test_module1> <test_module2>
 ```
 
 </details>
@@ -237,7 +247,7 @@ qa-ctl -r <test_name_1> <test_name_2> ...
 <summary>Launch two tests for multiple systems (cross product).</summary>
 
 ```bash
-qa-ctl -r <test_name_1> <test_name_2> -o centos windows
+qa-ctl -r --test-components <test_component1> <test_component2> --test-suites <test_suite1> <test_suite2> --test-modules <test_module1> <test_module2> -o <system1> <system2>
 ```
 
 </details>
@@ -247,7 +257,7 @@ qa-ctl -r <test_name_1> <test_name_2> -o centos windows
 <summary>Launch a test with a specific version of Wazuh.</summary>
 
 ```bash
-qa-ctl -r <test_name> -v <wazuh_version>
+qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module> -v <wazuh_version>
 ```
 
 </details>
@@ -265,7 +275,7 @@ qa-ctl -c <config_file_path>
 <summary>Generate tests configuration, update it and run it.</summary>
 
 ```bash
-qa-ctl --dry-run -r <test_name>
+qa-ctl --dry-run -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module>
     ...
     <Update configuration file generated in showed path>
     ...
@@ -278,7 +288,7 @@ qa-ctl -c <config_file_path>
 <summary>Launch a test, without destroying the environment.</summary>
 
 ```bash
-qa-ctl -r <test_name> -p
+qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module> -p
 ```
 
 </details>
@@ -287,7 +297,7 @@ qa-ctl -r <test_name> -p
 <summary>Launching a test using a custom branch of wazuh-qa.</summary>
 
 ```bash
-qa-ctl -r <test_name> --qa-branch <wazuh_qa_branch>
+qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module> --qa-branch <wazuh_qa_branch>
 ```
 
 </details>
@@ -296,7 +306,7 @@ qa-ctl -r <test_name> --qa-branch <wazuh_qa_branch>
 <summary>Launch <code>qa-ctl</code> in debug mode</summary>
 
 ```bash
-qa-ctl -r <test_name> -d
+qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module> -d
 ```
 
 </details>
@@ -305,7 +315,7 @@ qa-ctl -r <test_name> -d
 <summary>Launch <code>qa-ctl</code> in debug 2 mode</summary>
 
 ```bash
-qa-ctl -r <test_name> -dd
+qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module> -dd
 ```
 
 </details>
@@ -314,7 +324,7 @@ qa-ctl -r <test_name> -dd
 <summary>Launch a test run without destroying the environment, and then relaunch the test again.</summary>
 
 ```bash
-qa-ctl -r test_general_settings_enabled --persistent
+qa-ctl -r --test-components <test_component> --test-suites <test_suite> --test-modules <test_module> --persistent
     ......
     INFO - Configuration file saved in /tmp/qa_ctl/config_1633608335.685262.yaml
     ......
