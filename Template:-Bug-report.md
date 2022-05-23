@@ -1,6 +1,3 @@
-
-# BUG REPORT
-
 |Wazuh version|Component|Install type|Install method|Platform|
 |---|---|---|---|---|
 | |  |  |  |  |
