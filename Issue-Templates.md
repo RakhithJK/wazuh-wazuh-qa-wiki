@@ -17,13 +17,8 @@ Because we work cross-functionally with different teams, and the QA team is cons
 
 </details>
 
-## GENERAL ISSUE
-    - Description 
-    - Requeriments
-    - Testing Required (Gherkin/text)  / Fix to applied / List affected tests.
-    - DoD
-    - Labels
-    - Example: [IT FIM: Check 'max_fd_win_rt' behaviour ](https://github.com/wazuh/wazuh-qa/issues/2585)
+* [New test developments](https://github.com/wazuh/wazuh-qa/wiki/Template:-New-test-developments)
+
 
 <details>
   <summary>BUGS</summary>
