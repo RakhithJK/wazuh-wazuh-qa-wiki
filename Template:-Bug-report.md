@@ -17,6 +17,8 @@ All the steps and configurations necessary to be able to reproduce the use case 
 - Step 1
 - Step 2
 - ...
+- Current Result
+- Expected Result
 
 > **Example issue:** https://github.com/wazuh/wazuh/issues/13529
 
