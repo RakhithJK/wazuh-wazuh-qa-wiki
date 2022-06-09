@@ -1355,7 +1355,7 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
 # Schema blocks
 
-The below tables show the labels allowed for the deployment structure discussed above, along with the data type and example values for these labels:
+The below table shows the labels allowed for the deployment structure discussed above, along with the data type and example values for these labels:
 
 
 | Name | Type | Requirement | Description | Example case |
