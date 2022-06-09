@@ -486,14 +486,9 @@ password: vagrant
 ```
 
   
-
-The `inventory.yaml` that it gets is the following:
-
-  
-
 <details>
+<summary>The `inventory.yaml` that it gets is the following:</summary>
 
-  
 
 ```
 
