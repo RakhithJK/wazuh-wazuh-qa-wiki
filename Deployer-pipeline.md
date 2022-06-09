@@ -1,9 +1,7 @@
 # Introduction
 The deployer pipeline provides an easy way to deploy multiple hosts simultaneously.
 
-# User guide
-
-## Parameters
+# Parameters
   
   **`JENKINS REFERENCE`**: Wazuh-jenkins repository branch
 
@@ -44,31 +42,31 @@ The basic structure for a deployment is shown below:
   groups: ['GROUP1', 'GROUP2']
 ```
 
-### **Service**
+## **Service**
 The `service` label specifies the type of instance to be launched. The supported services are:
 
-#### EC2
+### EC2
 
 Amazon EC2 provides a wide selection of instance types optimized to fit different use cases. Instance types comprise varying combinations of CPU, memory, storage, and networking capacity and give you the flexibility to choose the appropriate mix of resources for your applications. Each instance type includes one or more instance sizes, allowing you to scale your resources to the requirements of your target workload.
 
 
 > Note: For more information about EC2, visit the [AWS official documentation](https://aws.amazon.com/ec2/instance-types/)
 
-#### ECS
+### ECS
   
 An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent and has been registered into an Amazon ECS cluster. When you run tasks with Amazon ECS using the EC2 launch type or an Auto Scaling group capacity provider, your tasks are placed on your active container instances.
 	
 > Note: For more information about ECS, visit the [AWS official documentation](https://aws.amazon.com/es/ecs/)
 
 
-#### Vagrant
+### Vagrant
 
 Vagrant is an open-source software product for building and maintaining portable virtual software development environments; e.g., for VirtualBox, KVM, Hyper-V, Docker containers, VMware, and AWS. It tries to simplify the software configuration management of virtualization in order to increase development productivity.
 
 > Note: For more information about vagrant, visit the [vagrant official documentation](https://www.vagrantup.com/))
 
 
-### Instances
+## Instances
 The `instances` label indicates the operating system to be deployed in the AWS instance. Operating systems supported by service:
 
 <details>
@@ -154,7 +152,7 @@ When the `os` label does not specify the version number, each instance has its o
 </details>
 
   
-### Resources
+## Resources
 
 The `resources` label indicates the resources, `cpu` and `memory`, of the instance to be launched.  Both fields are mandatory in the `resources` block.
 
@@ -227,7 +225,7 @@ Available resources are service dependent:
 </details>
 
 
-###  Groups
+##  Groups
 
 The group tag is used to group instances in the deployment inventory. 
 
