@@ -1349,6 +1349,31 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
 </details>
 
+
+
+### Artifact generation
+
+  
+
+After instances deployed, it will show in the console of the Jenkins pipeline a message to indicate the steps to connect remotely. 
+  
+  
+
+# Schema blocks
+
+  
+
+The below tables show the labels allowed for the deployment structure discussed above, along with the data type and example values for these labels:
+
+
+| Name | Type | Requirement | Description | Example case |
+|:-:|:-:|:-:|:-:|:-:|
+| service | string | Mandatory | Type of instance to be launched. | service: EC2, ECS or vagrant |
+| instances | String list | Mandatory | Operating system to be deployed in the AWS instance. | os: - ubuntu_22 - centos_8 |
+| resources | | Optional | Specify the resources (cpu and memory), of the instance to be deplyed. | resources:cpu: 2 memory: 4096 |
+| cpu | int | Optional | Number of cpu to be deployed. | cpu: 1, 2, or ... |
+| memory | int | Optional | Number of memory to be deployed. | memory: 1024, 2048, or ... |
+| groups | String list | Optional | List of groups to be created in the inventory file | groups: ['agent', ...] |
   
   
 
