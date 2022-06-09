@@ -225,7 +225,7 @@ Available resources are service dependent:
 **Example deployment configuration with resources**
 
 
-####  Groups
+###  Groups
 
 The group tag is used to group instances in the deployment inventory. 
 
