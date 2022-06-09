@@ -149,6 +149,17 @@ When the `os` label does not specify the version number, each instance has its o
 
 <summary>Example deployment configuration with different instances</summary>
 
+```
+- service: EC2
+  instances:
+     - ubuntu
+     - ubuntu_22
+     - amazonlinux
+     - windows
+     - windows_server_2022
+     - debian
+```
+
 </details>
 
   
@@ -222,6 +233,19 @@ Available resources are service dependent:
 
 <summary>Example deployment configuration with resources </summary>
 
+```
+- service: EC2
+  instances:
+     - ubuntu
+     - amazonlinux
+  resources:
+    - cpu: 1
+      memory: 1024
+    - cpu: 3
+      memory: 2048
+```
+
+
 </details>
 
 
@@ -249,6 +273,14 @@ In addition to these groups, all instances of a configuration block will be adde
 <details>
 
 <summary>Example deployment configuration with groups </summary>
+
+
+```
+- service: EC2
+  instances:
+     - ubuntu
+  groups: ['group1', 'testing', 'manager']
+```
 
 </details>
 
