@@ -220,9 +220,11 @@ Available resources are service dependent:
 
 > Note: Currently multiple resources are not supported for vagrant instances. The real supported resources are 2 CPU and  6144MB of memory for macOS and 2 CPU and 2048MB of memory for Solaris
 
+<details>
 
+<summary>Example deployment configuration with resources </summary>
 
-**Example deployment configuration with resources**
+</details>
 
 
 ###  Groups
