@@ -1168,3 +1168,80 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
   
   
 
+## Global Instance parameters
+
+- **Name**:  `<PIPELINE_NAME><JOB_NUMBER>\_<TIMESTAMP>\_<OS>\_<BLOCK_INDEX>\_<INSTANCE_INDEX>`
+
+
+## Images
+
+### EC2
+
+
+| AMI | System 
+|---|---|
+| ami-07efb5be4a4f36912 | Amazon Linux 2 | 
+| ami-035d6ac4014f95a1f | Centos 8 |
+| ami-070ed7bf83e673bea | Debian 10 |
+| ami-05f84c8ee1f23b186 | Ubuntu 22 | 
+| ami-0ef2463f7ca02ccea | Windows Server 2016 | 
+| ami-09a0b558ea45c57f2 | Windows Server 2022 | 
+
+<details>
+
+<summary> Dependencies </summary>
+
+- `python 3.10`
+- `pip 21.3.1`
+- `ip` -> `iproute2`
+- `ifconfig` -> `net-tools`
+- editors: `vim, nano`
+- `sudo`, `visudo`
+- `git` 
+
+</details>
+<details>
+
+<summary> Connection information</summary>
+
+- User: QA
+- Password: wazuhqa
+
+</details>
+
+### ECR
+
+| ECR | System 
+|---|---|
+| qa/amazonlinux | Amazon Linux 2 | 
+| qa/centos | Centos 8 |
+| qa/redhat |  RedHat 8|
+| qa/ubuntu | Ubuntu 22 | 
+| qa/debian | Debian 10 | 
+
+
+<details>
+
+<summary> Dependencies </summary>
+
+- `python 3.10`
+- `pip 21.3.1`
+- `ip` -> `iproute2`
+- `ifconfig` -> `net-tools`
+- editors: `vim, nano`
+- `sudo`, `visudo`
+- `git` 
+
+</details>
+<details>
+
+<summary> Connection information</summary>
+
+- User: QA
+- Password: wazuhqa
+
+</details>
+
+
+
+
