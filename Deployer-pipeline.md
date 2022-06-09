@@ -345,13 +345,13 @@ all:
 
 ### Connection artifact
 
-Instances connection information file. Connection information is generated depending of the service and OS of the instance.
+Instances connection information file. Connection information is generated depending on the service and OS of the instance.
 
 If it is an `EC2` Windows instance, to access the machine it is recommended to download the Remmina client.
 
 Remmina is a remote desktop client for POSIX-based computer operating systems (https://remmina.org/).
 
-In addition, it is necessary to install the RDP plugin. See an [example](here https://community.linuxmint.com/software/view/remmina-plugin-rdp)
+In addition, it is necessary to install the RDP plugin. See an [example](https://community.linuxmint.com/software/view/remmina-plugin-rdp) here.
 
 The configuration required for the connection is as follows:
 
