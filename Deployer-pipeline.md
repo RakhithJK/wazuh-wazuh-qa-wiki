@@ -429,12 +429,6 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
 #### Example 3
 
-  
-
-For the following `DEPLOYMENT_FILE_CONTENT` field:
-
-  
-
 ```
 
 - service: vagrant
@@ -591,12 +585,6 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
 #### Example 5
 
-  
-
-For the following `DEPLOYMENT_FILE_CONTENT` field:
-
-  
-
 ```
 
 - service: EC2
@@ -673,13 +661,6 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
   
 
 #### Example 6
-
-  
-
-For the following `DEPLOYMENT_FILE_CONTENT` field:
-
-  
-
 ```
 
 - service: ECS
@@ -768,12 +749,6 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
   
 
 #### Example 7
-
-  
-
-For the following `DEPLOYMENT_FILE_CONTENT` field:
-
-  
 
 ```
 
@@ -872,12 +847,6 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
   
 
 #### Example 8
-
-  
-
-For the following `DEPLOYMENT_FILE_CONTENT` field:
-
-  
 
 ```
 
