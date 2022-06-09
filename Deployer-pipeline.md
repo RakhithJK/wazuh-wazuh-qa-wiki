@@ -345,7 +345,7 @@ all:
 
 ### Connection artifact
 
-Instances connection information file. Connection information is generated depending on the service and OS of the instance.
+Connection information is generated depending on the service and OS of the instance.
 
 If it is an `EC2` Windows instance, to access the machine it is recommended to download the Remmina client.
 
