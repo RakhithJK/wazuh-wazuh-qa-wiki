@@ -371,7 +371,7 @@ The configuration required for the connection is as follows:
 
 ```
 
-If it is an `EC2` OR `ecs` Linux instance, to access the machine it need the following command:
+If it is an `EC2` OR `ecs` Linux instance, to access the machine it needs the following command:
 
 ```
 
