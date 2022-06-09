@@ -284,5 +284,918 @@ In addition to these groups, all instances of a configuration block will be adde
 
 </details>
 
+
+### Examples deployment configurations
+
+  
+
+#### Example 1
+
+```
+
+- service: EC2
+
+  instances:
+
+     - ubuntu
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+ec2:
+
+hosts:
+
+PoC_environment_launcher_VR_543_20220525163513_ubuntu_0_0:
+
+ansible_host: 172.31.3.82
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ec2
+
+linux:
+
+hosts:
+
+PoC_environment_launcher_VR_543_20220525163513_ubuntu_0_0:
+
+ansible_host: 172.31.3.82
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+os: linux
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
+  
+
+#### Example 2
+
+```
+
+- service: ECS
+
+  instances:
+
+    - amazonlinux_2
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+ecs:
+
+hosts:
+
+PoC_environment_launcher_VR_530_20220525142517_amazonlinux_2_0_0:
+
+ansible_host: 172.31.35.220
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ecs
+
+linux:
+
+hosts:
+
+PoC_environment_launcher_VR_530_20220525142517_amazonlinux_2_0_0:
+
+ansible_host: 172.31.35.220
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+os: linux
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
+  
+
+#### Example 3
+
+  
+
+For the following `DEPLOYMENT_FILE_CONTENT` field:
+
+  
+
+```
+
+- service: vagrant
+
+  instances:
+
+  - solaris_10
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+vagrant:
+
+hosts:
+
+PoC_environment_launcher_VR_523_20220525140739_solaris_10_0_0:
+
+ansible_host: 10.10.0.251
+
+ansible_port: 13300
+
+ansible_password: vagrant
+
+ansible_user: vagrant
+
+vars: {}
+
+solaris:
+
+hosts:
+
+PoC_environment_launcher_VR_523_20220525140739_solaris_10_0_0:
+
+ansible_host: 10.10.0.251
+
+ansible_port: 13300
+
+ansible_password: vagrant
+
+ansible_user: vagrant
+
+vars: {}
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
+
+#### Example 4
+
+  
+
+For the following `DEPLOYMENT_FILE_CONTENT` field:
+
+  
+
+```
+
+- service: EC2
+
+  instances:
+
+    - ubuntu
+
+  groups: ['managers']
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+managers:
+
+hosts:
+
+PoC_environment_launcher_VR_547_20220525164852_ubuntu_0_0:
+
+ansible_host: 172.31.14.63
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+ec2:
+
+hosts:
+
+PoC_environment_launcher_VR_547_20220525164852_ubuntu_0_0:
+
+ansible_host: 172.31.14.63
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ec2
+
+linux:
+
+hosts:
+
+PoC_environment_launcher_VR_547_20220525164852_ubuntu_0_0:
+
+ansible_host: 172.31.14.63
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+os: linux
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
+
+#### Example 5
+
+  
+
+For the following `DEPLOYMENT_FILE_CONTENT` field:
+
+  
+
+```
+
+- service: EC2
+
+  instances:
+
+    - centos
+
+  resources:
+
+  -
+
+    cpu: 1
+
+    memory: 1024
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+ec2:
+
+hosts:
+
+PoC_environment_launcher_VR_485_20220524120930_centos_0_0:
+
+ansible_host: 172.31.12.49
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ec2
+
+linux:
+
+hosts:
+
+PoC_environment_launcher_VR_485_20220524120930_centos_0_0:
+
+ansible_host: 172.31.12.49
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+os: linux
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
+  
+
+#### Example 6
+
+  
+
+For the following `DEPLOYMENT_FILE_CONTENT` field:
+
+  
+
+```
+
+- service: ECS
+  instances:
+    - ubuntu
+	- ubuntu
+
+  resources:
+    - cpu: 1
+      memory: 1024
+    - cpu: 2
+      memory: 1024
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+ecs:
+
+hosts:
+
+PoC_environment_launcher_VR_488_20220524121834_ubuntu_0_0:
+
+ansible_host: 172.31.76.105
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_488_20220524121834_ubuntu_0_1:
+
+ansible_host: 172.31.41.210
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ecs
+
+linux:
+
+hosts:
+
+PoC_environment_launcher_VR_488_20220524121834_ubuntu_0_0:
+
+ansible_host: 172.31.76.105
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_488_20220524121834_ubuntu_0_1:
+
+ansible_host: 172.31.41.210
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+os: linux
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
+
+#### Example 7
+
+  
+
+For the following `DEPLOYMENT_FILE_CONTENT` field:
+
+  
+
+```
+
+- service: ECS
+
+  instances:
+
+    - amazonlinux
+
+- service: EC2
+
+  instances:
+
+    - centos
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+ecs:
+
+hosts:
+
+PoC_environment_launcher_VR_490_20220524121906_amazonlinux_0_0:
+
+ansible_host: 172.31.44.231
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ecs
+
+linux:
+
+hosts:
+
+PoC_environment_launcher_VR_490_20220524121906_amazonlinux_0_0:
+
+ansible_host: 172.31.44.231
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_490_20220524121906_centos_1_0:
+
+ansible_host: 172.31.4.67
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+os: linux
+
+ec2:
+
+hosts:
+
+PoC_environment_launcher_VR_490_20220524121906_centos_1_0:
+
+ansible_host: 172.31.4.67
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ec2
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
+
+#### Example 8
+
+  
+
+For the following `DEPLOYMENT_FILE_CONTENT` field:
+
+  
+
+```
+
+- service: ECS
+
+  instances:
+
+    - amazonlinux
+
+  resources:
+
+    - cpu: 2
+
+      memory: 3000
+
+  groups: ['agent']
+
+  
+
+- service: ECS
+
+  instances:
+
+    - ubuntu
+
+   groups: ['manager', 'group-1']
+
+
+- service: EC2
+
+  instances:
+
+    - centos
+
+  groups: ['wazuh-dashboard', 'wazuh-indexer']
+
+  
+
+- service: EC2
+
+  instances:
+
+    - amazonlinux
+
+  groups: ['wazuh-indexer', 'group-3']
+
+  
+
+- service: vagrant
+
+  instances:
+
+    - macos
+
+  groups: ['agent']
+
+```
+
+  
+
+The `inventory.yaml` that it gets is the following:
+
+  
+
+<details>
+
+  
+
+```
+
+agent:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_0_0:
+
+ansible_host: 172.31.85.111
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_0_1:
+
+ansible_host: 172.31.26.24
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_macos_4_0:
+
+ansible_host: 10.10.0.251
+
+ansible_port: 64183
+
+ansible_password: vagrant
+
+ansible_user: vagrant
+
+vars: {}
+
+ecs:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_0_0:
+
+ansible_host: 172.31.85.111
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_0_1:
+
+ansible_host: 172.31.26.24
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_ubuntu_1_0:
+
+ansible_host: 172.31.51.152
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ecs
+
+linux:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_0_0:
+
+ansible_host: 172.31.85.111
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_0_1:
+
+ansible_host: 172.31.26.24
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_ubuntu_1_0:
+
+ansible_host: 172.31.51.152
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_centos_2_0:
+
+ansible_host: 172.31.8.232
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_3_0:
+
+ansible_host: 172.31.9.224
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+os: linux
+
+manager:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_ubuntu_1_0:
+
+ansible_host: 172.31.51.152
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+group-1:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_ubuntu_1_0:
+
+ansible_host: 172.31.51.152
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+wazuh-dashboard:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_centos_2_0:
+
+ansible_host: 172.31.8.232
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+wazuh-indexer:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_centos_2_0:
+
+ansible_host: 172.31.8.232
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_3_0:
+
+ansible_host: 172.31.9.224
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars: {}
+
+ec2:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_centos_2_0:
+
+ansible_host: 172.31.8.232
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_3_0:
+
+ansible_host: 172.31.9.224
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vars:
+
+service: ec2
+
+group-3:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_amazonlinux_3_0:
+
+ansible_host: 172.31.9.224
+
+ansible_user: qa
+
+ansible_connection: ssh
+
+vagrant:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_macos_4_0:
+
+ansible_host: 10.10.0.251
+
+ansible_port: 64183
+
+ansible_password: vagrant
+
+ansible_user: vagrant
+
+vars: {}
+
+macos:
+
+hosts:
+
+PoC_environment_launcher_VR_483_20220524115358_macos_4_0:
+
+ansible_host: 10.10.0.251
+
+ansible_port: 64183
+
+ansible_password: vagrant
+
+ansible_user: vagrant
+
+vars: {}
+
+all:
+
+vars:
+
+ansible_ssh_common_args: -o StrictHostKeyChecking=no
+
+```
+
+</details>
+
+  
   
 
