@@ -1357,7 +1357,7 @@ The below tables show the labels allowed for the deployment structure discussed 
 
 | Name | Type | Requirement | Description | Example case |
 |:-:|:-:|:-:|:-:|:-:|
-| service | string | Mandatory | Type of instance to be launched. | service: EC2, ECS, or vagrant |
+| service | String | Mandatory | Type of instance to be launched. | service: EC2, ECS, or vagrant |
 | instances | String list | Mandatory | Operating system to be deployed in the AWS instance. | os: - ubuntu_22 - centos_8 |
 | resources | Map | Optional | Specify the resources (cpu and memory), of the instance to be deployed. | resources: [cpu: 2, memory: 4096] |
 | cpu | int | Optional | Number of cpu to be deployed. | cpu: 1, 2, or ... |
