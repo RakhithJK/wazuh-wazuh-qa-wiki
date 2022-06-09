@@ -285,7 +285,191 @@ In addition to these groups, all instances of a configuration block will be adde
 </details>
 
 
-### Examples deployment configurations
+
+## Artifacts
+
+The deployer pipeline produces two artifacts: Connection information and deployment inventory
+
+### Inventory
+Ansible inventory is created using specified groups and default service and OS groups.
+
+<details>
+
+<summary> Example </summary>
+
+```
+  
+
+ec2:
+
+   hosts:
+
+      PoC_environment_launcher_VR_485_20220524120930_centos_0_0:
+
+         ansible_host: 172.31.12.49
+
+         ansible_user: qa
+
+         ansible_connection: ssh
+
+   vars:
+
+      service: ec2
+
+linux:
+
+   hosts:
+
+       PoC_environment_launcher_VR_485_20220524120930_centos_0_0:
+
+          ansible_host: 172.31.12.49
+
+          ansible_user: qa
+
+          ansible_connection: ssh
+
+vars:
+
+    os: linux
+
+all:
+
+   vars:
+
+       ansible_ssh_common_args: -o StrictHostKeyChecking=no
+```
+
+
+</details>
+
+
+### Connection artifact
+
+Instances connection information file. Connection information is generated depending of the service and OS of the instance.
+
+If it is an `EC2` Windows instance, to access the machine it is recommended to download the Remmina client.
+
+Remmina is a remote desktop client for POSIX-based computer operating systems (https://remmina.org/).
+
+In addition, it is necessary to install the RDP plugin. See an [example](here https://community.linuxmint.com/software/view/remmina-plugin-rdp)
+
+The configuration required for the connection is as follows:
+
+```
+
+- Protocol: RDP
+
+- Server: <IP ADDRESS>
+
+- Username: <DEFAULT USER>
+
+- Password: wazuhqa
+
+- Resolution: Custom(1280x960)
+
+- Depth of colour: True color(24 ppp)
+
+```
+
+If it is an `EC2` OR `ecs` Linux instance, to access the machine it need the following command:
+
+```
+
+ssh -i <LINUX_PRIVATE_KEY> <DEFAULT USER>@<IP ADDRESS>
+
+```
+
+For a `vagrant` deployment to access the machine it need the following command:
+
+```
+
+ssh vagrant@<IP ADDRESS> -p <PORT>
+
+password: vagrant
+
+```
+
+  
+
+## Global Instance parameters
+
+- **Name**:  `<PIPELINE_NAME><JOB_NUMBER>_<TIMESTAMP>_<OS>_<BLOCK_INDEX>_<INSTANCE_INDEX>`
+
+
+## Images
+
+### EC2
+
+
+| AMI | System 
+|---|---|
+| ami-07efb5be4a4f36912 | Amazon Linux 2 | 
+| ami-035d6ac4014f95a1f | Centos 8 |
+| ami-070ed7bf83e673bea | Debian 10 |
+| ami-05f84c8ee1f23b186 | Ubuntu 22 | 
+| ami-0ef2463f7ca02ccea | Windows Server 2016 | 
+| ami-09a0b558ea45c57f2 | Windows Server 2022 | 
+
+<details>
+
+<summary> Dependencies </summary>
+
+- `python 3.10`
+- `pip 21.3.1`
+- `ip` -> `iproute2`
+- `ifconfig` -> `net-tools`
+- editors: `vim, nano`
+- `sudo`, `visudo`
+- `git` 
+
+</details>
+<details>
+
+<summary> Connection information</summary>
+
+- User: QA
+- Password: wazuhqa
+
+</details>
+
+### ECR
+
+| ECR | System 
+|---|---|
+| qa/amazonlinux | Amazon Linux 2 | 
+| qa/centos | Centos 8 |
+| qa/redhat |  RedHat 8|
+| qa/ubuntu | Ubuntu 22 | 
+| qa/debian | Debian 10 | 
+
+
+<details>
+
+<summary> Dependencies </summary>
+
+- `python 3.10`
+- `pip 21.3.1`
+- `ip` -> `iproute2`
+- `ifconfig` -> `net-tools`
+- editors: `vim, nano`
+- `sudo`, `visudo`
+- `git` 
+
+</details>
+<details>
+
+<summary> Connection information</summary>
+
+- User: QA
+- Password: wazuhqa
+
+</details>
+
+
+
+
+
+### Examples of deployment configurations
 
   
 
@@ -1167,80 +1351,6 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
   
   
-
-## Global Instance parameters
-
-- **Name**:  `<PIPELINE_NAME><JOB_NUMBER>_<TIMESTAMP>_<OS>_<BLOCK_INDEX>_<INSTANCE_INDEX>`
-
-
-## Images
-
-### EC2
-
-
-| AMI | System 
-|---|---|
-| ami-07efb5be4a4f36912 | Amazon Linux 2 | 
-| ami-035d6ac4014f95a1f | Centos 8 |
-| ami-070ed7bf83e673bea | Debian 10 |
-| ami-05f84c8ee1f23b186 | Ubuntu 22 | 
-| ami-0ef2463f7ca02ccea | Windows Server 2016 | 
-| ami-09a0b558ea45c57f2 | Windows Server 2022 | 
-
-<details>
-
-<summary> Dependencies </summary>
-
-- `python 3.10`
-- `pip 21.3.1`
-- `ip` -> `iproute2`
-- `ifconfig` -> `net-tools`
-- editors: `vim, nano`
-- `sudo`, `visudo`
-- `git` 
-
-</details>
-<details>
-
-<summary> Connection information</summary>
-
-- User: QA
-- Password: wazuhqa
-
-</details>
-
-### ECR
-
-| ECR | System 
-|---|---|
-| qa/amazonlinux | Amazon Linux 2 | 
-| qa/centos | Centos 8 |
-| qa/redhat |  RedHat 8|
-| qa/ubuntu | Ubuntu 22 | 
-| qa/debian | Debian 10 | 
-
-
-<details>
-
-<summary> Dependencies </summary>
-
-- `python 3.10`
-- `pip 21.3.1`
-- `ip` -> `iproute2`
-- `ifconfig` -> `net-tools`
-- editors: `vim, nano`
-- `sudo`, `visudo`
-- `git` 
-
-</details>
-<details>
-
-<summary> Connection information</summary>
-
-- User: QA
-- Password: wazuhqa
-
-</details>
 
 
 
