@@ -379,7 +379,7 @@ ssh -i <LINUX_PRIVATE_KEY> <DEFAULT USER>@<IP ADDRESS>
 
 ```
 
-For a `vagrant` deployment to access the machine it need the following command:
+For a `vagrant` deployment to access the machine it needs the following command:
 
 ```
 
