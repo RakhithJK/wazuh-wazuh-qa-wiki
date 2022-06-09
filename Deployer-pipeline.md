@@ -844,14 +844,21 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
 ```
 
 - service: ECS
+
   instances:
+
     - ubuntu
+
     - ubuntu
 
   resources:
+
     - cpu: 1
+
       memory: 1024
+
     - cpu: 2
+
       memory: 1024
 
 ```
