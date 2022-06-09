@@ -1170,7 +1170,7 @@ ansible_ssh_common_args: -o StrictHostKeyChecking=no
 
 ## Global Instance parameters
 
-- **Name**:  `<PIPELINE_NAME><JOB_NUMBER>\_<TIMESTAMP>\_<OS>\_<BLOCK_INDEX>\_<INSTANCE_INDEX>`
+- **Name**:  `<PIPELINE_NAME><JOB_NUMBER>_<TIMESTAMP>_<OS>_<BLOCK_INDEX>_<INSTANCE_INDEX>`
 
 
 ## Images
