@@ -289,8 +289,6 @@ Ansible inventory is created using specified groups and default service and OS g
 <summary> Example </summary>
 
 ```
-
-
 ec2:
    hosts:
       PoC_environment_launcher_VR_485_20220524120930_centos_0_0:
@@ -329,7 +327,6 @@ In addition, it is necessary to install the RDP plugin. See an [example](https:/
 The configuration required for the connection is as follows:
 
 ```
-
 - Protocol: RDP
 
 - Server: <IP ADDRESS>
@@ -341,25 +338,20 @@ The configuration required for the connection is as follows:
 - Resolution: Custom(1280x960)
 
 - Depth of colour: True color(24 ppp)
-
 ```
 
 If it is an `EC2` OR `ecs` Linux instance, to access the machine it needs the following command:
 
 ```
-
 ssh -i <LINUX_PRIVATE_KEY> <DEFAULT USER>@<IP ADDRESS>
-
 ```
 
 For a `vagrant` deployment to access the machine it needs the following command:
 
 ```
-
 ssh vagrant@<IP ADDRESS> -p <PORT>
 
 password: vagrant
-
 ```
 
 
@@ -449,7 +441,6 @@ password: vagrant
 #### Example 1
 
 ```
-
 - service: EC2
   instances:
      - ubuntu
@@ -462,7 +453,6 @@ The `inventory.yaml` that it gets is the following:
 <details>
 
 ```
-
 ec2:
   hosts:
     PoC_environment_launcher_VR_543_20220525163513_ubuntu_0_0:
@@ -482,7 +472,6 @@ linux:
 all:
   vars:
     ansible_ssh_common_args: -o StrictHostKeyChecking=no
-
 ```
 
 </details>
@@ -493,7 +482,6 @@ all:
 #### Example 2
 
 ```
-
 - service: ECS
   instances:
     - amazonlinux_2
@@ -640,7 +628,6 @@ all:
 #### Example 5
 
 ```
-
 - service: EC2
   instances:
     - centos
@@ -679,7 +666,6 @@ linux:
 all:
   vars:
     ansible_ssh_common_args: -o StrictHostKeyChecking=no
-
 ```
 
 </details>
@@ -689,7 +675,6 @@ all:
 
 #### Example 6
 ```
-
 - service: ECS
   instances:
     - ubuntu
@@ -708,7 +693,6 @@ The `inventory.yaml` that it gets is the following:
 
 
 <details>
-
 
 
 ```
@@ -739,7 +723,6 @@ linux:
 all:
   vars:
     ansible_ssh_common_args: -o StrictHostKeyChecking=no
-
 ```
 
 </details>
@@ -749,7 +732,6 @@ all:
 #### Example 7
 
 ```
-
 - service: ECS
   instances:
     - amazonlinux
@@ -761,8 +743,6 @@ all:
 
 
 The `inventory.yaml` that it gets is the following:
-
-
 
 <details>
 
@@ -800,7 +780,6 @@ ec2:
 all:
   vars:
     ansible_ssh_common_args: -o StrictHostKeyChecking=no
-
 ```
 
 </details>
@@ -810,7 +789,6 @@ all:
 #### Example 8
 
 ```
-
 - service: ECS
   instances:
     - amazonlinux
