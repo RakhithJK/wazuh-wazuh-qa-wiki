@@ -1,7 +1,7 @@
 Teams
 -----
 
-- `QA testing - <header>`: Solicitar que QA pruebe algún desarrollo en particular (PRs..), ya sea de forma manual o automática.
+- `QA testing - <header>`: Request QA to test a particular development (PRs...), either manually or automatically.
 - `New tests development - <header>`: Request new test developments.
 - `Improvement - <header>`: Request the enhancement of something contained in the `wazuh-qa` repository (tests, framework...).
 - `Error report - <header>`: Report a bug/error of something contained in the `wazuh-qa` repository (tests, framework ...) to be checked..
