@@ -4,7 +4,7 @@ QA team defined a standard for writing each type of issue.
 * [New test developments](https://github.com/wazuh/wazuh-qa/wiki/Template:-New-test-developments)
 * [Bug Report](https://github.com/wazuh/wazuh-qa/wiki/Template:-Bug-report) 
 * [Title convention for issues in the wazuh qa repository](https://github.com/wazuh/wazuh-qa/wiki/Title-convention-for-issues-in-the-wazuh-qa-repository)
-* [Manual Testing](https://github.com/wazuh/wazuh-qa/wiki/Template:-Bug-report) 
+* [Manual Testing](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing) 
 
 <details>
   <summary>EPIC</summary>
