@@ -181,7 +181,6 @@ The below tables show the fields allowed for the blocks discussed above, along w
 | copyright    | String | Mandatory | Module copyright.                                                | Copyright (C) 2015-2021...                                                         |
 | type         | String | Mandatory | Type of tests included in the module (**predefined list**).      | integration, system, ...                                                           |
 | brief        | String | Mandatory | Overview of what the module does.   	                       | Checks the components involved in feed management of Vulnerability Detector module |
-| tier         | int    | Mandatory | Tier covered by the module.                                      | 0, 1, 2, ...                                                                       |
 | components      | List   | Mandatory | Components tested (**predefined list**).                            | vulnerability_detector, api, active_response, ...                                  |
 | suites      | List   | Optional | Modules suites (**predefined list**).                            | test_configuration, test_invalid_rule_decoders_syntax, test_general_settings, ...                                  |
 | targets   | List   | Mandatory | Wazuh components used by the module (**predefined list**).       | agent, manager                                                                     |
