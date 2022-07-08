@@ -47,7 +47,9 @@ This name is the same that are in the description section of the Manual Testing 
 </details>
 
 <details>
-  <summary> Note: References Status</summary>
+  <summary> Notes</summary>
+  <details>
+     <summary> References Status</summary>
 
 |Color|Status |
 |:--:|:--|
@@ -58,4 +60,18 @@ This name is the same that are in the description section of the Manual Testing 
 |⚫|To Do|
 |🟠|Jenkins provision fails|
 |:purple_circle:| All skipped |
+
+</details>
+
+  <details>
+  <summary> Considerations</summary>
+
+   - Previous to start verify that PR related is approved and it contains all check green.
+   - Sync with core responsable that this test will start to test. 
+   - If there are a new change added when you test the Manual execution you need to test it again, 
+   - Keep indentation in line 
+   - Enumerate the steps
+   - Paste output as text not pictures.
+  
+  </details>
 </details>
