@@ -5,9 +5,9 @@ The QA team is responsible for performing the different manual tests to improve 
 
 ## Review data
 
-| Tester | PR commit               | Conclusion                   |
-|--------|-------------------------|------------------------------|
-| @user  |  <commit_short_hash>    | :yellow_circle: (In progress) |
+| Tester | PR commit               | 
+|--------|-------------------------|
+| @user  |  <commit_short_hash>    | 
 
 ### Testing environment
 
