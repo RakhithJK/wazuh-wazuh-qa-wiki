@@ -9,7 +9,7 @@ Welcome to the wazuh-qa wiki!
   * [Use guide](https://github.com/wazuh/wazuh-qa/wiki/QADOCS-tool-use-guide)
   * [How to document a test](https://github.com/wazuh/wazuh-qa/wiki/QA-Documentation---How-to-document-a-test-using-Schema-2.0)
 * [Integration Tests](https://github.com/wazuh/wazuh-qa/wiki/Integration-Tests)
-  * [OS to testing](https://github.com/wazuh/wazuh-qa/wiki/OS)
+  * [OS used for testing](https://github.com/wazuh/wazuh-qa/wiki/OS-used-for-testing)
   * [Parameters to run tests](https://github.com/wazuh/wazuh-qa/wiki/Parameters-guide---4.2)
   * [Coverage with tests](https://github.com/wazuh/wazuh-qa/wiki/Coverage-on-4.3)
   * [Releases Analysis](https://github.com/wazuh/wazuh-qa/wiki/Releases)
