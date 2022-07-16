@@ -1,6 +1,6 @@
 The QA team is responsible for performing the different manual tests to improve visibility and add more detail to each test. It is necessary to do: 
 
-## Consideration: Before starting
+# Consideration: Before starting
 
    - [ ] Verify that PR related is approved and it contains all check green.
    - [ ] Sync with core responsable that this test will start to test. 
@@ -22,7 +22,7 @@ De que nos valemos para determinar si probamos en distintas versiones de un mism
 </details>
 
 
-## Consideration: How to show our evidence
+# Consideration: How to show our evidence
 
    - [ ] Keep indentation in line.
    - [ ] Enumerate the steps.
@@ -67,7 +67,7 @@ De que nos valemos para determinar si probamos en distintas versiones de un mism
 		   ...
 
 
-## Note: References Status
+# Note: References Status
 
 |Color|Status |
 |:--:|:--|
