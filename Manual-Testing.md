@@ -56,7 +56,7 @@ De que nos valemos para determinar si probamos en distintas versiones de un mism
 
    - [ ] Then the following comments must contain:
 
-		## Case Name - (status color)
+		## Case Name - (References Status)
 
 		This name is the same that are in the description section of the Manual Testing issue. For each case name you need to add this section to separate cases.
 
