@@ -1,4 +1,4 @@
-The QA team is responsible for performing the different manual tests to improve visibility and add more detail to each test. It is necessary to: 
+The QA team is responsible for performing the different manual tests to improve visibility and add more detail to each test. It is necessary to do: 
 
 
 
