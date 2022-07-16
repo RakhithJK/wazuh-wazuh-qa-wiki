@@ -12,7 +12,7 @@ The QA team is responsible for performing the different manual tests to improve 
 2. 
 3. 
 
-
+   - [ ] If there are a new change added when you test the Manual execution you need to test it again.
 En que nos tenemos que fijar para saber si un upgrade tiene sentido o si no lo tiene?
 Sumar el cambio de que a partir de ahora todos los restart tienen que tener la comprobación si los demonios están levantados
 En que quedo que se debe agregar que están conectados manager y agente? esto en un momento se hablo recuerdo
@@ -21,67 +21,53 @@ De que nos valemos para determinar si probamos en distintas versiones de un mism
 
 </details>
 
-<details>
-  <summary>Before starting</summary>
+
+## Consideration: How to show our evidence
 
    - [ ] Keep indentation in line.
    - [ ] Enumerate the steps.
    - [ ] Paste output as text not pictures.
-   - [ ] If there are a new change added when you test the Manual execution you need to test it again.
+   - [ ] The first comment related to testing should be:
+		## Review data
 
-</details>
+		| Tester | PR commit               | 
+		|--------|-------------------------|
+		| @user  |  <commit_short_hash>    | 
 
+		### Testing environment
 
-<details>
-  <summary> Comment 1 </summary>
-
-## Review data
-
-| Tester | PR commit               | 
-|--------|-------------------------|
-| @user  |  <commit_short_hash>    | 
-
-### Testing environment
-
-| OS | OS version | Deployment                                    | Image/AMI | Notes |
-|----|------------|-----------------------------------------------|-----------|-------|
-|    |            | `<LOCAL, AWS> \| <Vagrant, Docker, EC2, ECS>` |           |       |
+		| OS | OS version | Deployment                                    | Image/AMI | Notes |
+		|----|------------|-----------------------------------------------|-----------|-------|
+		|    |            | `<LOCAL, AWS> \| <Vagrant, Docker, EC2, ECS>` |           |       |
 
 
-### Tested packages
+		### Tested packages
 
-| `wazuh-manager` | `wazuh-agent` | 
-|-----------------|---------------|
-|                 |               |
+		| `wazuh-manager` | `wazuh-agent` | 
+		|-----------------|---------------|
+		|                 |               |
 
-### Status
+		### Status
 
-- [ ] In progress
-- [ ] Pending to review
-- [ ] Team leader approved
-- [ ] Manager approved
+		- [ ] In progress
+		- [ ] Pending to review
+		- [ ] Team leader approved
+		- [ ] Manager approved
 
-</details>
+   - [ ] Then the following comments must contain:
 
-<details>
-  <summary> Comment 2 </summary>
+		## Case Name - (status color)
 
-## Case Name - (status color)
+		This name is the same that are in the description section of the Manual Testing issue. For each case name you need to add this section to separate cases.
 
-This name is the same that are in the description section of the Manual Testing issue. For each case name you need to add this section to separate cases.
+		### Steps enumerated with evidence.
 
-### Steps enumerated with evidence (we prefer not to use pictures attached).
+		   1. Step Y
+		   2. Step X
+		   ...
 
-   1. Step Y
-   2. Step X
-   ...
 
-</details>
-
-<details>
-  <summary> Notes</summary>
-
-### References Status
+## Note: References Status
 
 |Color|Status |
 |:--:|:--|
@@ -92,6 +78,3 @@ This name is the same that are in the description section of the Manual Testing 
 |⚫|To Do|
 |🟠|Jenkins provision fails|
 |:purple_circle:| All skipped |
-
-  
-</details>
