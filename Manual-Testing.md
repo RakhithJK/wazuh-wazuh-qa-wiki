@@ -1,5 +1,18 @@
 The QA team is responsible for performing the different manual tests to improve visibility and add more detail to each test. It is necessary to: 
 
+
+
+<details>
+  <summary>Before starting</summary>
+
+   - Previous to start verify that PR related is approved and it contains all check green.
+   - Sync with core responsable that this test will start to test. 
+   - If there are a new change added when you test the Manual execution you need to test it again, 
+   - Keep indentation in line 
+   - Enumerate the steps
+   - Paste output as text not pictures.
+</details>
+
 <details>
   <summary> Comment 1 </summary>
 
@@ -48,8 +61,8 @@ This name is the same that are in the description section of the Manual Testing 
 
 <details>
   <summary> Notes</summary>
-  <details>
-     <summary> References Status</summary>
+
+### References Status
 
 |Color|Status |
 |:--:|:--|
@@ -61,17 +74,5 @@ This name is the same that are in the description section of the Manual Testing 
 |🟠|Jenkins provision fails|
 |:purple_circle:| All skipped |
 
-</details>
-
-  <details>
-  <summary> Considerations</summary>
-
-   - Previous to start verify that PR related is approved and it contains all check green.
-   - Sync with core responsable that this test will start to test. 
-   - If there are a new change added when you test the Manual execution you need to test it again, 
-   - Keep indentation in line 
-   - Enumerate the steps
-   - Paste output as text not pictures.
   
-  </details>
 </details>
