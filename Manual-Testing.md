@@ -5,12 +5,12 @@ The QA team is responsible for performing the different manual tests to improve 
 <details>
   <summary>Before starting</summary>
 
-   - Previous to start verify that PR related is approved and it contains all check green.
+   - Verify that PR related is approved and it contains all check green.
    - Sync with core responsable that this test will start to test. 
-   - If there are a new change added when you test the Manual execution you need to test it again, 
-   - Keep indentation in line 
-   - Enumerate the steps
+   - Keep indentation in line.
+   - Enumerate the steps.
    - Paste output as text not pictures.
+   - If there are a new change added when you test the Manual execution you need to test it again.
 </details>
 
 <details>
