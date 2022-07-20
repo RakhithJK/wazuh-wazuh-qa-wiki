@@ -17,5 +17,5 @@ Welcome to the wazuh-qa wiki!
   * [Title convention for issues in the wazuh qa repository](https://github.com/wazuh/wazuh-qa/wiki/Title-convention-for-issues-in-the-wazuh-qa-repository)
   * [New test developments](https://github.com/wazuh/wazuh-qa/wiki/Template:-New-test-developments)
   * [Bug report](https://github.com/wazuh/wazuh-qa/wiki/Template:-Bug-report)
-  * [Manual Testing](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing)
-
+  * [Manual Testing - PRs Core](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing---PRs-Core)
+  * [Manual Testing - Release](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing---Release)
