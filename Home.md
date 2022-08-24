@@ -20,3 +20,6 @@ Welcome to the wazuh-qa wiki!
   * [Bug report](https://github.com/wazuh/wazuh-qa/wiki/Template:-Bug-report)
   * [Manual Testing - PRs Core](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing---PRs-Core)
   * [Manual Testing - Release](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing---Release)
+
+* Rules for Our Team
+  * [Conventional Commits](https://github.com/wazuh/wazuh-qa/wiki/Conventional-commits) 
