@@ -38,7 +38,7 @@
 
 * `Platform`: Linux
 * `Tier`: 1
-* `Minimum Version`: 4.3.5
+* `Minimum Version`: 4.3.7
 * `Path`: `tests/integration/test_integratord/test_integratord_read_json_alerts.py`
 
 
@@ -55,7 +55,7 @@
 
 * `Platform`: Linux
 * `Tier`: 1
-* `Minimum Version`: 4.3.5
+* `Minimum Version`: 4.3.7
 * `Path`: `tests/integration/test_integratord/test_integratord_read_json_alerts.py`
 
 
@@ -76,6 +76,6 @@
 
 * `Platform`: Linux
 * `Tier`: 1
-* `Minimum Version`: 4.3.5
+* `Minimum Version`: 4.3.7
 * `Path`: `tests/integration/test_integratord/test_integratord_read_json_file_deleted.py`
 
