@@ -1,2 +1,2 @@
 
-> * [Integratord](https://github.com/wazuh/wazuh-qa/wiki/Integratord) 
+* [Integratord](https://github.com/wazuh/wazuh-qa/wiki/Integratord) 
