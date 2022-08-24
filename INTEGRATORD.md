@@ -1,6 +1,3 @@
-# INTEGRATORD 
-
-       
 ## Test_integratord_change_json_inode
 
 * `Description`: Check that if when reading the `alerts.json` file, the inode for the file changes, `integratord` will reload the file and continue reading from it.
