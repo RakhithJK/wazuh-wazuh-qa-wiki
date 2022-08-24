@@ -21,5 +21,5 @@ Welcome to the wazuh-qa wiki!
   * [Manual Testing - PRs Core](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing---PRs-Core)
   * [Manual Testing - Release](https://github.com/wazuh/wazuh-qa/wiki/Manual-Testing---Release)
 
-* Rules for Our Team
+* Rules for our Team
   * [Conventional Commits](https://github.com/wazuh/wazuh-qa/wiki/Conventional-commits) 
