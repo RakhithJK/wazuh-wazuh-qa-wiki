@@ -1,5 +1,2 @@
 
-* <p>
- 
- [INTEGRATORD ](https://microsoft.com) 
-</p>
+> * [Integratord](https://github.com/wazuh/wazuh-qa/wiki/Integratord) 
