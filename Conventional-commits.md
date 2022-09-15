@@ -33,6 +33,8 @@ label(#issue_number): short_description
 - `docs`: Documentation only changes.
 - `refactor`: A code change that neither fixes a bug nor adds a feature. 
 - `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc).
+- `merge`: Commits that merge a branch into another branch.
+- `revert`: Commits that reverse any change made, such as a PR.
 - `ci`: Changes to our CI configuration files and scripts (`github actions`).
 - `build`: Changes that affect the build system or external dependencies (`requirements.txt`, `setup.py`).
 - `!`: Specifies that this commit is a breaking change. It is placed just before the `:`.
