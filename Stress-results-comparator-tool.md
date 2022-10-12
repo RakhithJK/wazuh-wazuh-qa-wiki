@@ -1,5 +1,5 @@
 [![version](https://img.shields.io/badge/version-v1.0-blue)]()
-[![status](https://img.shields.io/badge/status-latest-green)]()
+[![status](https://img.shields.io/badge/status-stable-green)]()
 
 This tool is designed to be able to make specific comparisons between different data sets (in CSV format) and to plot them in order to
 visualize the comparison.
