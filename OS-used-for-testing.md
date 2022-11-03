@@ -13,4 +13,5 @@ And to avoid future search and investigation of OS that work, we will list them 
 | Windows | Windows 11 | `LOCAL\| Virtualbox` | Ravager/Windows11 |
 | Windows | Windows Server 2008 R2 | `LOCAL\| Virtualbox` | [ISO](https://archive.org/details/WindowsServer2008withSP2x86) |      
 | Windows | Windows Server 2008 R2 | `LOCAL\| Virtualbox` | diodonfrost/windows-2k8r2 |      
-| Windows | Windows Server 2019 | `LOCAL\| Virtualbox` | [qactl/winserver19](https://s3.amazonaws.com/ci.wazuh.com/qa/boxes/QACTL_windows_server_2019.box) |      
+| Windows | Windows Server 2019 | `LOCAL\| Virtualbox` | [qactl/winserver19](https://s3.amazonaws.com/ci.wazuh.com/qa/boxes/QACTL_windows_server_2019.box) |
+| ArchLinux | base-20221030.0.98412  | `LOCAL\| Docker` | [Docker Image](https://hub.docker.com/_/archlinux/) |
