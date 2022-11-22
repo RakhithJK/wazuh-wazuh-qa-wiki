@@ -14,7 +14,7 @@ Welcome to the wazuh-qa wiki!
   * [Parameters to run tests](https://github.com/wazuh/wazuh-qa/wiki/Parameters-guide---4.2)
   * [Coverage with tests](https://github.com/wazuh/wazuh-qa/wiki/Coverage-on-4.3)
   * [Releases Analysis](https://github.com/wazuh/wazuh-qa/wiki/Releases)
-* [Issue Templates](https://github.com/wazuh/wazuh-qa/wiki/Issue-Templates)
+* Issue Templates
   * [Title convention for issues in the wazuh qa repository](https://github.com/wazuh/wazuh-qa/wiki/Title-convention-for-issues-in-the-wazuh-qa-repository)
   * [New test developments](https://github.com/wazuh/wazuh-qa/wiki/Template:-New-test-developments)
   * [Bug report](https://github.com/wazuh/wazuh-qa/wiki/Template:-Bug-report)
