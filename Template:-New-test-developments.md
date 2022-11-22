@@ -34,6 +34,4 @@ Once you have a list of use cases to test, they will be described by a list:
 
 - `type/new-development`.
 - `team/qa`: If it is the QA team that has to do the development.
-- `subteam/qa-storm`: If the development involves adding or modifying integration tests
-- `subteam/qa-thunder`: If the development involves adding or modifying system tests
-- `subteam/qa-hurricane`: If the development involves adding or modifying end to end tests
+- `role/qa-rainbow or role/qa-main`
