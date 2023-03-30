@@ -100,6 +100,30 @@ The aim of this article is to show the necessary parameters to be able to launch
   <td></td>
  </tr>
  <tr>
+  <td>Integratord</td>
+  <td> Manager - Agent (Linux)</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+
+ <tr>
+  <td rowspan="2">Logcollector</td>
+  <td>Manager </td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td>Agent (Linux, Windows, Solaris, macOS)</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr>
   <td>Logtest</td>
   <td>Manager </td>
   <td>analysisd.debug=2</td>
