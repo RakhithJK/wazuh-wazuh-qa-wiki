@@ -11,7 +11,7 @@ Welcome to the wazuh-qa wiki!
 * [Integration Tests](https://github.com/wazuh/wazuh-qa/wiki/Integration-Tests)
   * [General documentation](https://github.com/wazuh/wazuh-qa/wiki/General-documentation)
   * [OS used for testing](https://github.com/wazuh/wazuh-qa/wiki/OS-used-for-testing)
-  * [Parameters to run tests](https://github.com/wazuh/wazuh-qa/wiki/Parameters-guide---4.2)
+  * [Parameters to run tests](https://github.com/wazuh/wazuh-qa/wiki/Parameters-guide-from-4.2)
   * [Coverage with tests](https://github.com/wazuh/wazuh-qa/wiki/Coverage-on-4.3)
   * [Releases Analysis](https://github.com/wazuh/wazuh-qa/wiki/Releases)
 * Issue Templates
