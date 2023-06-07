@@ -64,22 +64,22 @@ The aim of this article is to show the necessary parameters to be able to launch
   <td rowspan="3">FIM</td>
   <td>Manager </td>
   <td>syscheck.debug=2<br/>analysisd.debug=2<br/>monitord.rotate_log=0</td>
-  <td> --tier 0 --tier 1 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
-  <td>--tier 0 --tier 1 --fim_mode="realtime" --fim_mode="whodata"</td>
+  <td> --tier=0 --tier=1 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
+  <td>--tier=0 --tier=1 --fim_mode="realtime" --fim_mode="whodata"</td>
   <td></td>
  </tr>
  <tr>
   <td>Agent (Linux, MacOS, Solaris) </td>
   <td>syscheck.debug=2<br/>agent.debug=2<br/>monitord.rotate_log=0</td>
-  <td>--tier 0 --tier 1 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
-  <td>--tier 0 --tier 1 --fim_mode="realtime" --fim_mode="whodata"</td>
+  <td>--tier=0 --tier=1 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
+  <td>--tier=0 --tier=1 --fim_mode="realtime" --fim_mode="whodata"</td>
   <td></td>
  </tr>
  <tr>
   <td>Agent (Windows) </td>
   <td>syscheck.debug=2<br/>agent.debug=2<br/>monitord.rotate_log=0<br/>windows.debug=2</td>
-  <td>--tier 0 --tier 1 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
-  <td>--tier 0 --tier 1 --fim_mode="realtime" --fim_mode="whodata"</td>
+  <td>--tier=0 --tier=1 --fim_mode="realtime" --fim_mode="whodata" --fim_mode="scheduled"</td>
+  <td>--tier=0 --tier=1</td>
   <td></td>
  </tr>
  <tr>
